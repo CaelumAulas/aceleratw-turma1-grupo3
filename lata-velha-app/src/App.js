@@ -5,6 +5,7 @@ import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
 import SignIn from './components/User/SignIn/SignIn';
 import SignUp from './components/User/SignUp/SignUp';
+import Vehicle from './components/Vehicle/Vehicle';
 import style from './style'
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
         <div className={classes.toolbar} />
         {/* <SignUp /> */}
         {/* <SignIn /> */}
-        <Brand />
+        {/* <Brand /> */}
+        <Vehicle />
       </main>
     </div>
   );
