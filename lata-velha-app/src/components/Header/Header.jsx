@@ -21,8 +21,9 @@ import PeopleIcon from '@material-ui/icons/People';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import style from './style.js'
+import { Fragment } from 'react';
 
-function Header(props) {
+const Header= (props) => {
   const { window } = props;
   const theme = useTheme();
   const classes = style(theme);
@@ -58,7 +59,7 @@ function Header(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div className={classes.root}>
+    <Fragment>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
@@ -106,7 +107,7 @@ function Header(props) {
           </Drawer>
         </Hidden>
       </nav>
-    </div>
+    </Fragment>
   );
 }
 
