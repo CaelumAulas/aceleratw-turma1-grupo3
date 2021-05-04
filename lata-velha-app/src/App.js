@@ -1,7 +1,9 @@
 import { useTheme } from '@material-ui/core';
 import React from 'react';
+import Brand from './components/Brand/Brand';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
+import SignIn from './components/User/SignIn/SignIn';
 import SignUp from './components/User/SignUp/SignUp';
 import style from './style'
 
@@ -25,7 +27,9 @@ function App() {
       />
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <SignUp />
+        {/* <SignUp /> */}
+        {/* <SignIn /> */}
+        <Brand />
       </main>
     </div>
   );
