@@ -1,9 +1,10 @@
 import { useTheme } from '@material-ui/core';
 import React, { useState } from 'react';
 import { IntlProvider } from 'react-intl';
-import ListDashboard from './components/Dashboard/ListDashboard/ListDashboard';
+// import ListDashboard from './components/Dashboard/ListDashboard/ListDashboard';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
+import ListUser from './components/User/ListUser/ListUser';
 // import ListVehicle from './components/Vehicle/ListVehicle/ListVehicle';
 // import ListVehicleBrand from './components/VehicleBrand/ListVehicleBrand/ListVehicleBrand';
 import style from './style';
@@ -29,7 +30,8 @@ function App() {
           {/* <ListVehicle /> */}
           {/* <ListVehicleBrand /> */}
           {/* <VehicleBrand /> */}
-          <ListDashboard />
+          {/* <ListDashboard /> */}
+          <ListUser />
         </main>
       </div>
     </IntlProvider>
