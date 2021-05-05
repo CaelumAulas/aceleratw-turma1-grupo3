@@ -2,7 +2,8 @@ import { useTheme } from '@material-ui/core';
 import React, { useState } from 'react';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
-import ListVehicle from './components/Vehicle/ListVehicle/ListVehicle';
+// import ListVehicle from './components/Vehicle/ListVehicle/ListVehicle';
+import ListVehicleBrand from './components/VehicleBrand/ListVehicleBrand/ListVehicleBrand';
 import style from './style';
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
         <div className={classes.toolbar} />
         {/* <SignUp /> */}
         {/* <SignIn /> */}
-        <ListVehicle />
+        {/* <ListVehicle /> */}
+        <ListVehicleBrand />
 
         {/* <VehicleBrand /> */}
       </main>

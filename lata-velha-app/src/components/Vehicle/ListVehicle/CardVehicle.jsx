@@ -8,7 +8,6 @@ import {
   CardHeader,
   IconButton,
   Typography,
-  useTheme,
 } from '@material-ui/core';
 import {
   Delete as DeleteIcon,
@@ -17,8 +16,7 @@ import {
 import style from './style';
 
 const CardVehicle = ({ vehicle }) => {
-  const theme = useTheme();
-  const classes = style(theme);
+  const classes = style();
 
   const editVehicle = () => {
     console.log('editei');

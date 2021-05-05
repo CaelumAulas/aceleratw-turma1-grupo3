@@ -1,5 +1,5 @@
-import { makeStyles } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -21,15 +21,11 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
-  model: {
+  name: {
     display: 'inline-block',
     maxWidth: '130px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    color: 'red',
-  },
-  year: {
-    display: 'inline-block',
   },
 }));
 
