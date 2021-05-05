@@ -1,33 +1,71 @@
-import React from 'react';
-import { Button, FormControl, FormHelperText, Input, InputLabel } from '@material-ui/core';
+import React, { useState } from 'react';
+import {
+  Button,
+  FormControl,
+  FormHelperText,
+  Input,
+  InputLabel,
+} from '@material-ui/core';
 
 const SignUp = () => {
-    const handleSubmitForm = (e) =>{
-        e.preventDefault()
-        console.log("HUHULLLLLLLL")
-    }
-    return (
-        <form onSubmit={handleSubmitForm}>
-            <FormControl fullWidth margin="normal">
-                <InputLabel htmlFor="my-input">Email </InputLabel>
-                <Input id="my-input" aria-describedby="my-helper-text" />
-                <FormHelperText id="my-helper-text">Informe seu e-mail</FormHelperText>
-            </FormControl>
-            <FormControl fullWidth margin="normal">
-                <InputLabel htmlFor="my-input">Senha</InputLabel>
-                <Input id="my-input" aria-describedby="my-helper-text" />
-                <FormHelperText id="my-helper-text">Informe sua senha</FormHelperText>
-            </FormControl>
-            <FormControl fullWidth margin="normal">
-                <InputLabel htmlFor="my-input">Confirmar Senha</InputLabel>
-                <Input id="my-input" aria-describedby="my-helper-text" />
-                <FormHelperText id="my-helper-text">Confirme sua senha</FormHelperText>
-            </FormControl>
-            <Button variant="contained" color="primary" type="submit">
-                Cadastrar
-            </Button>
-        </form>
-    )
-}
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
-export default SignUp
+  const handleSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit({ email, password, passwordConfirmation });
+      }}
+    >
+      <FormControl fullWidth margin="normal">
+        <InputLabel htmlFor="email">Email </InputLabel>
+        <Input
+          id="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          aria-describedby="email-text"
+        />
+        <FormHelperText id="email-text">Informe seu e-mail</FormHelperText>
+      </FormControl>
+
+      <FormControl fullWidth margin="normal">
+        <InputLabel htmlFor="password">Senha</InputLabel>
+        <Input
+          id="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          aria-describedby="password-text"
+        />
+        <FormHelperText id="password-text">Informe sua senha</FormHelperText>
+      </FormControl>
+
+      <FormControl fullWidth margin="normal">
+        <InputLabel htmlFor="password-confirmation">Confirmar Senha</InputLabel>
+        <Input
+          id="password"
+          type="password"
+          value={passwordConfirmation}
+          onChange={(e) => setPasswordConfirmation(e.target.value)}
+          aria-describedby="password-confirmation-text"
+        />
+        <FormHelperText id="password-confirmation-text">
+          Confirme sua senha
+        </FormHelperText>
+      </FormControl>
+
+      <Button variant="contained" color="primary" type="submit">
+        Cadastrar
+      </Button>
+    </form>
+  );
+};
+
+export default SignUp;
