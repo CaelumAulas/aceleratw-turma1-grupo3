@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import style from './style';
 
-const Vehicle = () => {
+const CreateVehicle = () => {
   const today = new Date();
   const currentYear = today.getFullYear();
 
@@ -19,7 +19,7 @@ const Vehicle = () => {
   const [brand, setBrand] = useState('_');
   const [model, setModel] = useState('');
   const [year, setYear] = useState(currentYear);
-  const [amount, setAmount] = useState(0);
+  const [price, setPrice] = useState(0);
 
   const theme = useTheme();
   const classes = style(theme);
@@ -33,7 +33,7 @@ const Vehicle = () => {
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit({
-          brand, model, year, amount,
+          brand, model, year, price,
         });
       }}
     >
@@ -81,15 +81,15 @@ const Vehicle = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="amount">Preço</InputLabel>
+        <InputLabel htmlFor="price">Preço</InputLabel>
         <Input
-          id="amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
+          id="price"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
           startAdornment={<InputAdornment position="start">R$</InputAdornment>}
-          aria-describedby="amount-text"
+          aria-describedby="price-text"
         />
-        <FormHelperText id="amount-text">
+        <FormHelperText id="price-text">
           Informe o preço do veículo
         </FormHelperText>
       </FormControl>
@@ -114,4 +114,4 @@ const Vehicle = () => {
   );
 };
 
-export default Vehicle;
+export default CreateVehicle;

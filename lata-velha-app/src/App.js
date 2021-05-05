@@ -2,7 +2,7 @@ import { useTheme } from '@material-ui/core';
 import React, { useState } from 'react';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
-import Vehicle from './components/Vehicle/Vehicle';
+import ListVehicle from './components/Vehicle/ListVehicle/ListVehicle';
 import style from './style';
 
 function App() {
@@ -22,7 +22,8 @@ function App() {
         <div className={classes.toolbar} />
         {/* <SignUp /> */}
         {/* <SignIn /> */}
-        <Vehicle />
+        <ListVehicle />
+
         {/* <VehicleBrand /> */}
       </main>
     </div>
