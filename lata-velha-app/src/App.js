@@ -1,7 +1,7 @@
 import { useTheme } from '@material-ui/core';
 import React, { useState } from 'react';
 import { IntlProvider } from 'react-intl';
-import ActionBar from './components/ActionBar/ActionBar';
+// import ActionBar from './components/ActionBar/ActionBar';
 // import ListDashboard from './components/Dashboard/ListDashboard/ListDashboard';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
@@ -11,6 +11,8 @@ import UpdatePassword from './components/User/UpdatePassword/UpdatePassword';
 // import ListVehicle from './components/Vehicle/ListVehicle/ListVehicle';
 // import ListVehicleBrand from './components/VehicleBrand/ListVehicleBrand/ListVehicleBrand';
 import style from './style';
+import FormValidations from './contexts/formValidations';
+import { validateName, validatePassword } from './models/form';
 
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -35,8 +37,16 @@ function App() {
           {/* <VehicleBrand /> */}
           {/* <ListDashboard /> */}
           {/* <ListUser /> */}
-          <UpdatePassword />
-          <ActionBar />
+          <FormValidations.Provider value={{
+            name: validateName,
+            oldPassword: validatePassword,
+            password: validatePassword,
+            passwordConfirmation: validatePassword,
+          }}
+          >
+            <UpdatePassword />
+          </FormValidations.Provider>
+          {/* <ActionBar /> */}
         </main>
       </div>
     </IntlProvider>
