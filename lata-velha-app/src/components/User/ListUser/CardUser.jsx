@@ -19,7 +19,7 @@ const CardUser = ({ user }) => {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <RoundAvatar imgAlt="Remy Sharp" imgSrc="https://www.w3schools.com/howto/img_avatar.png" />
+        <RoundAvatar imgAlt="Awesome User Avatar" imgSrc="https://www.w3schools.com/howto/img_avatar.png" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {user.name}

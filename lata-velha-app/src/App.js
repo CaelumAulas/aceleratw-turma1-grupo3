@@ -4,7 +4,8 @@ import { IntlProvider } from 'react-intl';
 // import ListDashboard from './components/Dashboard/ListDashboard/ListDashboard';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
-import ListUser from './components/User/ListUser/ListUser';
+import SignUp from './components/User/SignUp/SignUp';
+// import ListUser from './components/User/ListUser/ListUser';
 // import ListVehicle from './components/Vehicle/ListVehicle/ListVehicle';
 // import ListVehicleBrand from './components/VehicleBrand/ListVehicleBrand/ListVehicleBrand';
 import style from './style';
@@ -25,13 +26,13 @@ function App() {
         <Menu handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} />
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {/* <SignUp /> */}
+          <SignUp />
           {/* <SignIn /> */}
           {/* <ListVehicle /> */}
           {/* <ListVehicleBrand /> */}
           {/* <VehicleBrand /> */}
           {/* <ListDashboard /> */}
-          <ListUser />
+          {/* <ListUser /> */}
         </main>
       </div>
     </IntlProvider>
