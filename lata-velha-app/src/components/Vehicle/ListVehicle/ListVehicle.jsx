@@ -1,4 +1,5 @@
 import React from 'react';
+import FiltersBar from '../FiltersBar/FiltersBar';
 import CardVehicle from './CardVehicle';
 import style from './style';
 
@@ -26,9 +27,12 @@ const ListVehicle = () => {
   }];
 
   return (
-    <div className={classes.container}>
-      {vehicles.map((vehicle) => <CardVehicle key={vehicle.id} vehicle={vehicle} />)}
-    </div>
+    <>
+      <FiltersBar />
+      <div className={classes.container}>
+        {vehicles.map((vehicle) => <CardVehicle key={vehicle.id} vehicle={vehicle} />)}
+      </div>
+    </>
   );
 };
 
