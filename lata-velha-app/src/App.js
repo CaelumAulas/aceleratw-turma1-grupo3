@@ -6,7 +6,7 @@ import { IntlProvider } from 'react-intl';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
 // import UpdatePassword from './components/User/UpdatePassword/UpdatePassword';
-import SignUp from './components/User/SignUp/SignUp';
+import SignIn from './components/User/SignIn/SignIn';
 // import ListUser from './components/User/ListUser/ListUser';
 // import ListVehicle from './components/Vehicle/ListVehicle/ListVehicle';
 // import ListVehicleBrand from './components/VehicleBrand/ListVehicleBrand/ListVehicleBrand';
@@ -37,8 +37,8 @@ function App() {
             passwordConfirmation: validatePassword,
           }}
           >
-            <SignUp />
-            {/* <SignIn /> */}
+            {/* <SignUp /> */}
+            <SignIn />
             {/* <ListVehicle /> */}
             {/* <ListVehicleBrand /> */}
             {/* <VehicleBrand /> */}

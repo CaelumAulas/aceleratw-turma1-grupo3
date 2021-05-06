@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Button,
   FormControl,
@@ -6,10 +6,15 @@ import {
   Input,
   InputLabel,
 } from '@material-ui/core';
+import useErrors from '../../../hooks/useErrors';
+import FormValidations from '../../../contexts/formValidations';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const validations = useContext(FormValidations);
+  const [errors, validateField, formIsValid] = useErrors(validations);
 
   const handleSubmit = (data) => {
     console.log(data);
@@ -19,7 +24,9 @@ const SignIn = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit({ email, password });
+        if (formIsValid) {
+          handleSubmit({ email, password });
+        }
       }}
     >
       <FormControl fullWidth margin="normal">
@@ -30,6 +37,7 @@ const SignIn = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           aria-describedby="email-text"
+          required
         />
         <FormHelperText id="email-text">Informe seu e-mail</FormHelperText>
       </FormControl>
@@ -38,10 +46,14 @@ const SignIn = () => {
         <InputLabel htmlFor="password">Senha</InputLabel>
         <Input
           id="password"
+          name="password"
           type="password"
+          onBlur={validateField}
+          error={!errors.password.valid}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           aria-describedby="password-text"
+          required
         />
         <FormHelperText id="password-text">Informe sua senha</FormHelperText>
       </FormControl>
