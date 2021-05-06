@@ -38,7 +38,7 @@ const UpdatePassword = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="password">Senha</InputLabel>
+        <InputLabel htmlFor="password">Nova senha</InputLabel>
         <Input
           id="password"
           type="password"
@@ -48,7 +48,7 @@ const UpdatePassword = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="password-confirmation">Confirmar Senha</InputLabel>
+        <InputLabel htmlFor="password-confirmation">Confirmar nova senha</InputLabel>
         <Input
           id="password-confirmation"
           type="password"
