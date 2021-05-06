@@ -1,35 +1,33 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
+// import { red } from '@material-ui/core/colors';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
   },
-  root: {
-    minWidth: 250,
-    maxWidth: 250,
+  card: {
+    width: 450,
     display: 'inline-block',
-    marginRight: '20px',
-    marginBottom: '20px',
+    margin: theme.spacing(3),
   },
-  avatar: {
-    backgroundColor: red[500],
+  cardContent: {
+    padding: theme.spacing(1),
+  },
+  price: {
+    fontSize: '1.2rem',
   },
   cardActions: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
   },
   model: {
     display: 'inline-block',
     maxWidth: '130px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    color: 'red',
-  },
-  year: {
-    display: 'inline-block',
+    textTransform: 'capitalize',
   },
 }));
 
