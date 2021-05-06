@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import {
   Button,
   FormControl,
@@ -6,6 +7,7 @@ import {
   Input,
   InputLabel,
 } from '@material-ui/core';
+import messages from '../messages';
 
 const UpdatePassword = () => {
   const [oldPassord, setOldPassword] = useState('');
@@ -28,7 +30,9 @@ const UpdatePassword = () => {
       }}
     >
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="email">Senha anterior </InputLabel>
+        <InputLabel htmlFor="oldPassword">
+          <FormattedMessage {...messages.oldPassword} />  
+        </InputLabel>
         <Input
           id="oldPassword"
           type="password"
@@ -38,7 +42,9 @@ const UpdatePassword = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="password">Nova senha</InputLabel>
+        <InputLabel htmlFor="password">
+          <FormattedMessage {...messages.newPassword} />  
+        </InputLabel>
         <Input
           id="password"
           type="password"
@@ -48,7 +54,9 @@ const UpdatePassword = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="password-confirmation">Confirmar nova senha</InputLabel>
+        <InputLabel htmlFor="password-confirmation">
+          <FormattedMessage {...messages.textNewPasswordOne} />  
+        </InputLabel>
         <Input
           id="password-confirmation"
           type="password"
@@ -57,7 +65,7 @@ const UpdatePassword = () => {
           aria-describedby="password-confirmation-text"
         />
         <FormHelperText id="password-confirmation-text">
-          Informe a senha digitada anteriormente
+          <FormattedMessage {...messages.textNewPasswordTwo} />  
         </FormHelperText>
       </FormControl>
 

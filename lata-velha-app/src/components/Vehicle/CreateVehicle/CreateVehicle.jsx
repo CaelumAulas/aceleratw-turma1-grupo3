@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import {
   Button,
   FormControl,
@@ -10,6 +11,7 @@ import {
   useTheme,
 } from '@material-ui/core';
 import style from './style';
+import messages from '../messages';
 
 const CreateVehicle = () => {
   const today = new Date();
@@ -38,14 +40,16 @@ const CreateVehicle = () => {
       }}
     >
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="brand">Marca</InputLabel>
+        <InputLabel htmlFor="brand">
+          <FormattedMessage {...messages.brand} />  
+        </InputLabel>
         <NativeSelect
           id="brand"
           value={brand}
           onChange={(e) => { setBrand(e.target.value); }}
         >
           <option value="_" disabled>
-            Escolha a marca
+            <FormattedMessage {...messages.textBrand} />  
           </option>
           {brands.map((currentBrand) => (
             <option key={currentBrand.toLowerCase()} value={currentBrand.toLowerCase()}>
@@ -56,7 +60,9 @@ const CreateVehicle = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="model">Modelo</InputLabel>
+        <InputLabel htmlFor="model">
+          <FormattedMessage {...messages.model} />  
+        </InputLabel>
         <Input
           id="model"
           value={model}
@@ -64,12 +70,14 @@ const CreateVehicle = () => {
           aria-describedby="model-text"
         />
         <FormHelperText id="model-text">
-          Informe o modelo do veículo
+          <FormattedMessage {...messages.textModel} />  
         </FormHelperText>
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="year">Ano</InputLabel>
+        <InputLabel htmlFor="year">
+          <FormattedMessage {...messages.year} />  
+        </InputLabel>
         <Input
           id="year"
           type="number"
@@ -77,11 +85,15 @@ const CreateVehicle = () => {
           onChange={(e) => setYear(e.target.value)}
           aria-describedby="year-text"
         />
-        <FormHelperText id="year-text">Informe o ano do veículo</FormHelperText>
+        <FormHelperText id="year-text">
+          <FormattedMessage {...messages.textYear} />  
+        </FormHelperText>
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="price">Preço</InputLabel>
+        <InputLabel htmlFor="price">
+          <FormattedMessage {...messages.price} />    
+        </InputLabel>
         <Input
           id="price"
           value={price}
@@ -90,7 +102,7 @@ const CreateVehicle = () => {
           aria-describedby="price-text"
         />
         <FormHelperText id="price-text">
-          Informe o preço do veículo
+          <FormattedMessage {...messages.textPrice} />  
         </FormHelperText>
       </FormControl>
 
@@ -100,7 +112,7 @@ const CreateVehicle = () => {
         color="default"
         type="button"
       >
-        Cancelar
+        <FormattedMessage {...messages.buttonCancel} />  
       </Button>
       <Button
         className={classes.formButton}
@@ -108,7 +120,7 @@ const CreateVehicle = () => {
         color="primary"
         type="submit"
       >
-        Cadastrar
+        <FormattedMessage {...messages.buttonCad} />  
       </Button>
     </form>
   );

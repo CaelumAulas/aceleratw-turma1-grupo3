@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import {
   Button,
   FormControl,
@@ -6,6 +7,7 @@ import {
   Input,
   InputLabel,
 } from '@material-ui/core';
+import messages from '../messages';
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -29,7 +31,9 @@ const SignUp = () => {
       }}
     >
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="name">Nome</InputLabel>
+        <InputLabel htmlFor="name">
+          <FormattedMessage {...messages.name} />
+        </InputLabel>
         <Input
           id="name"
           type="name"
@@ -39,7 +43,9 @@ const SignUp = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="email">Email </InputLabel>
+        <InputLabel htmlFor="email">
+          <FormattedMessage {...messages.email} />
+        </InputLabel>
         <Input
           id="email"
           type="email"
@@ -49,7 +55,9 @@ const SignUp = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="password">Senha</InputLabel>
+        <InputLabel htmlFor="password">
+          <FormattedMessage {...messages.password} />
+        </InputLabel>
         <Input
           id="password"
           type="password"
@@ -59,7 +67,9 @@ const SignUp = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="password-confirmation">Confirmar Senha</InputLabel>
+        <InputLabel htmlFor="password-confirmation">
+          <FormattedMessage {...messages.confirmPassword} />
+        </InputLabel>
         <Input
           id="password-confirmation"
           type="password"
@@ -68,12 +78,12 @@ const SignUp = () => {
           aria-describedby="password-confirmation-text"
         />
         <FormHelperText id="password-confirmation-text">
-          Informe a senha digitada anteriormente
+          <FormattedMessage {...messages.textConfirmPassword} />
         </FormHelperText>
       </FormControl>
 
       <Button variant="contained" color="primary" type="submit">
-        Cadastrar
+        <FormattedMessage {...messages.buttonCad} />
       </Button>
     </form>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import {
   Button,
   FormControl,
@@ -8,6 +9,7 @@ import {
   useTheme,
 } from '@material-ui/core';
 import style from './style';
+import messages from '../messages';
 
 const VehicleBrand = () => {
   const [brand, setBrand] = useState('');
@@ -26,7 +28,9 @@ const VehicleBrand = () => {
       }}
     >
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="brand">Marca</InputLabel>
+        <InputLabel htmlFor="brand">
+          <FormattedMessage {...messages.brand} />
+        </InputLabel>
         <Input
           id="brand"
           value={brand}
@@ -34,7 +38,7 @@ const VehicleBrand = () => {
           aria-describedby="brand-text"
         />
         <FormHelperText id="brand-text">
-          Informe a marca do veículo
+          <FormattedMessage {...messages.textBrand} />
         </FormHelperText>
       </FormControl>
 
@@ -44,7 +48,7 @@ const VehicleBrand = () => {
         color="default"
         type="button"
       >
-        Cancelar
+        <FormattedMessage {...messages.buttonCancel} />
       </Button>
       <Button
         className={classes.formButton}
@@ -52,7 +56,7 @@ const VehicleBrand = () => {
         color="primary"
         type="submit"
       >
-        Cadastrar
+        <FormattedMessage {...messages.buttonCad} />
       </Button>
     </form>
   );

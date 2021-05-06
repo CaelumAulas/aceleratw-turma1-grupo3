@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import {
   Avatar,
   Card,
@@ -14,6 +15,7 @@ import {
   Edit as EditIcon,
 } from '@material-ui/icons';
 import style from './style';
+import messages from '../messages';
 
 const CardVehicle = ({ vehicle }) => {
   const classes = style();
@@ -42,14 +44,16 @@ const CardVehicle = ({ vehicle }) => {
         title={(
           <>
             <Typography variant="h5" component="h2" className={classes.model}>
-              {vehicle.model}
-
+              <FormattedMessage
+                {...messages.vehicleModel}
+                values={vehicle.model}
+              />
             </Typography>
-            {' '}
             <Typography variant="subtitle1" component="h2" className={classes.year}>
-              (
-              {vehicle.year}
-              )
+              <FormattedMessage
+                  {...messages.vehicleModel}
+                  values={vehicle.year}
+                />
             </Typography>
           </>
         )}
@@ -74,8 +78,6 @@ const CardVehicle = ({ vehicle }) => {
   );
 };
 
-export default CardVehicle;
-
 CardVehicle.propTypes = {
   vehicle: PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -85,3 +87,5 @@ CardVehicle.propTypes = {
     price: PropTypes.number.isRequired,
   }).isRequired,
 };
+
+export default injectIntl(CardVehicle);
