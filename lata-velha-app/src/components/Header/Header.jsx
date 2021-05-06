@@ -7,8 +7,9 @@ import {
   Typography,
   useTheme,
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Menu as MenuIcon } from '@material-ui/icons';
 import style from './style';
+// import ActionBar from '../ActionBar/ActionBar';
 
 const Header = ({ handleDrawerToggle }) => {
   const theme = useTheme();
@@ -29,7 +30,11 @@ const Header = ({ handleDrawerToggle }) => {
         <Typography variant="h6" noWrap>
           Lata Velha
         </Typography>
+        {/* <IconButton aria-label="search" color="inherit">
+          <SearchIcon />
+        </IconButton> */}
       </Toolbar>
+
     </AppBar>
   );
 };
