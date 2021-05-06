@@ -6,13 +6,13 @@ const ListUser = () => {
   const classes = style();
   const data = [
     {
-      id: Math.random(), name: 'fiat', email: 'somerandom@email.com',
+      id: Math.random(), name: 'Fulano', email: 'somerandom@email.com',
     },
     {
-      id: Math.random(), name: 'BMW', email: 'hello@email.com',
+      id: Math.random(), name: 'Ciclano', email: 'hello@email.com',
     },
     {
-      id: Math.random(), name: 'Volks', email: 'hi@email.com',
+      id: Math.random(), name: 'Osmar', email: 'hi@email.com',
     },
   ];
 

@@ -10,9 +10,11 @@ const useStyles = makeStyles(() => ({
   root: {
     minWidth: 250,
     maxWidth: 250,
+    padding: '10px',
     display: 'inline-block',
     marginRight: '20px',
     marginBottom: '20px',
+    textAlign: 'center',
   },
   avatar: {
     backgroundColor: red[500],
