@@ -1,22 +1,35 @@
-/* eslint-disable react/forbid-prop-types */
-import { FormControl, InputLabel, NativeSelect } from '@material-ui/core';
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  FormControl,
+  InputLabel,
+  NativeSelect,
+  useTheme,
+} from '@material-ui/core';
+import style from './style';
 
-const FilterSelect = ({ options, label }) => {
-  const bla = 'bla';
+const FilterSelect = ({
+  options,
+  defaultOption,
+  label,
+  id,
+  onChangeHandler,
+  value,
+}) => {
+  const theme = useTheme();
+  const classes = style(theme);
 
   return (
     <FormControl margin="normal">
-      <InputLabel htmlFor={`id_${label}`}>{label}</InputLabel>
+      <InputLabel htmlFor={id}>{label}</InputLabel>
       <NativeSelect
-        id={`id_${label}`}
-        value=""
-        onChange={() => { console.log('onchange'); }}
+        className={classes.select}
+        id={id}
+        value={value}
+        onChange={onChangeHandler}
       >
         <option value="_" disabled>
-          Escolha a marca
-          {bla}
+          {defaultOption}
         </option>
         {options.map((option) => (
           <option key={option.toLowerCase()} value={option.toLowerCase()}>
@@ -29,8 +42,12 @@ const FilterSelect = ({ options, label }) => {
 };
 
 FilterSelect.propTypes = {
-  options: PropTypes.array.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  defaultOption: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onChangeHandler: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 export default FilterSelect;

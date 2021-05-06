@@ -1,13 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   filtersBar: {
-    width: 'calc(100%)', // ajustar este calculo
+    width: '100%',
     minHeight: '50px',
-    marginBottom: '20px',
+    marginBottom: theme.spacing(3),
     display: 'flex',
     alignItems: 'center',
-    background: 'red',
   },
 }));
 
