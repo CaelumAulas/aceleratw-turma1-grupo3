@@ -5,8 +5,8 @@ import { IntlProvider } from 'react-intl';
 // import ListDashboard from './components/Dashboard/ListDashboard/ListDashboard';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
-import UpdatePassword from './components/User/UpdatePassword/UpdatePassword';
-// import SignUp from './components/User/SignUp/SignUp';
+// import UpdatePassword from './components/User/UpdatePassword/UpdatePassword';
+import SignUp from './components/User/SignUp/SignUp';
 // import ListUser from './components/User/ListUser/ListUser';
 // import ListVehicle from './components/Vehicle/ListVehicle/ListVehicle';
 // import ListVehicleBrand from './components/VehicleBrand/ListVehicleBrand/ListVehicleBrand';
@@ -30,13 +30,6 @@ function App() {
         <Menu handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} />
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {/* <SignUp /> */}
-          {/* <SignIn /> */}
-          {/* <ListVehicle /> */}
-          {/* <ListVehicleBrand /> */}
-          {/* <VehicleBrand /> */}
-          {/* <ListDashboard /> */}
-          {/* <ListUser /> */}
           <FormValidations.Provider value={{
             name: validateName,
             oldPassword: validatePassword,
@@ -44,7 +37,14 @@ function App() {
             passwordConfirmation: validatePassword,
           }}
           >
-            <UpdatePassword />
+            <SignUp />
+            {/* <SignIn /> */}
+            {/* <ListVehicle /> */}
+            {/* <ListVehicleBrand /> */}
+            {/* <VehicleBrand /> */}
+            {/* <ListDashboard /> */}
+            {/* <ListUser /> */}
+            {/* <UpdatePassword /> */}
           </FormValidations.Provider>
           {/* <ActionBar /> */}
         </main>

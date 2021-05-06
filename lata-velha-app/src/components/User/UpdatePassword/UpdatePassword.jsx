@@ -44,6 +44,7 @@ const UpdatePassword = () => {
           error={!errors.oldPassword.valid}
           value={oldPassord}
           onChange={(e) => setOldPassword(e.target.value)}
+          required
         />
       </FormControl>
 
@@ -57,6 +58,7 @@ const UpdatePassword = () => {
           error={!errors.password.valid}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
       </FormControl>
 
@@ -71,6 +73,7 @@ const UpdatePassword = () => {
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           aria-describedby="password-confirmation-text"
+          required
         />
         <FormHelperText id="password-confirmation-text">
           Informe a senha digitada anteriormente
