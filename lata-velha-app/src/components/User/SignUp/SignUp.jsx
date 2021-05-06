@@ -88,7 +88,7 @@ const SignUp = () => {
           required
         />
         <FormHelperText id="password-confirmation-text">
-          Informe a senha digitada anteriormente
+          {errors.passwordConfirmation.text || 'Informe a senha digitada anteriormente'}
         </FormHelperText>
       </FormControl>
 

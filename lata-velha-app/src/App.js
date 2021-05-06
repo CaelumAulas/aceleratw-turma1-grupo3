@@ -5,11 +5,11 @@ import { IntlProvider } from 'react-intl';
 // import ListDashboard from './components/Dashboard/ListDashboard/ListDashboard';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
-// import UpdatePassword from './components/User/UpdatePassword/UpdatePassword';
+import UpdatePassword from './components/User/UpdatePassword/UpdatePassword';
 // import SignIn from './components/User/SignIn/SignIn';
 // import ListUser from './components/User/ListUser/ListUser';
 // import ListVehicle from './components/Vehicle/ListVehicle/ListVehicle';
-import CreateVehicle from './components/Vehicle/CreateVehicle/CreateVehicle';
+// import CreateVehicle from './components/Vehicle/CreateVehicle/CreateVehicle';
 import style from './style';
 import FormValidations from './contexts/formValidations';
 import {
@@ -41,14 +41,14 @@ function App() {
             price: validatePrice,
           }}
           >
-            {/* <SignUp /> */}
-            <CreateVehicle />
+            {/* <SignIn /> */}
+            {/* <CreateVehicle /> */}
             {/* <ListVehicle /> */}
             {/* <ListVehicleBrand /> */}
             {/* <VehicleBrand /> */}
             {/* <ListDashboard /> */}
             {/* <ListUser /> */}
-            {/* <UpdatePassword /> */}
+            <UpdatePassword />
           </FormValidations.Provider>
           {/* <ActionBar /> */}
         </main>

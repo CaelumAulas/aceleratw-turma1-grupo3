@@ -55,7 +55,9 @@ const SignIn = () => {
           aria-describedby="password-text"
           required
         />
-        <FormHelperText id="password-text">Informe sua senha</FormHelperText>
+        <FormHelperText id="password-text">
+          {errors.password.text || 'Informe sua senha'}
+        </FormHelperText>
       </FormControl>
 
       <Button variant="contained" color="primary" type="submit">
