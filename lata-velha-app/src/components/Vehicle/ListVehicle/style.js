@@ -3,14 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
-  card: {
-    width: 450,
-    display: 'inline-block',
-    margin: theme.spacing(3),
+    width: '100%',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+    gridGap: '2vw',
   },
   cardContent: {
     padding: theme.spacing(1),
@@ -23,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
   model: {
-    display: 'inline-block',
     maxWidth: '130px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
