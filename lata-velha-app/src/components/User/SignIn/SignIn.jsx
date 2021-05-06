@@ -24,7 +24,7 @@ const SignIn = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        if (formIsValid) {
+        if (formIsValid()) {
           handleSubmit({ email, password });
         }
       }}

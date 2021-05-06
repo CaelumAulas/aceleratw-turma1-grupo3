@@ -25,7 +25,7 @@ const UpdatePassword = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        if (formIsValid) {
+        if (formIsValid()) {
           handleSubmit(
             {
               oldPassord, password, passwordConfirmation,

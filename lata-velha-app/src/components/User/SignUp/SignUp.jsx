@@ -26,7 +26,7 @@ const SignUp = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        if (formIsValid) {
+        if (formIsValid()) {
           handleSubmit(
             {
               name, email, password, passwordConfirmation,

@@ -6,13 +6,15 @@ import { IntlProvider } from 'react-intl';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
 // import UpdatePassword from './components/User/UpdatePassword/UpdatePassword';
-import SignIn from './components/User/SignIn/SignIn';
+// import SignIn from './components/User/SignIn/SignIn';
 // import ListUser from './components/User/ListUser/ListUser';
 // import ListVehicle from './components/Vehicle/ListVehicle/ListVehicle';
-// import ListVehicleBrand from './components/VehicleBrand/ListVehicleBrand/ListVehicleBrand';
+import CreateVehicle from './components/Vehicle/CreateVehicle/CreateVehicle';
 import style from './style';
 import FormValidations from './contexts/formValidations';
-import { validateName, validatePassword } from './models/form';
+import {
+  validateName, validatePassword, validateSelect, validatePrice,
+} from './models/form';
 
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -35,10 +37,12 @@ function App() {
             oldPassword: validatePassword,
             password: validatePassword,
             passwordConfirmation: validatePassword,
+            brand: validateSelect,
+            price: validatePrice,
           }}
           >
             {/* <SignUp /> */}
-            <SignIn />
+            <CreateVehicle />
             {/* <ListVehicle /> */}
             {/* <ListVehicleBrand /> */}
             {/* <VehicleBrand /> */}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Button,
   FormControl,
@@ -10,6 +10,8 @@ import {
   useTheme,
 } from '@material-ui/core';
 import style from './style';
+import useErrors from '../../../hooks/useErrors';
+import FormValidations from '../../../contexts/formValidations';
 
 const CreateVehicle = () => {
   const today = new Date();
@@ -24,6 +26,9 @@ const CreateVehicle = () => {
   const theme = useTheme();
   const classes = style(theme);
 
+  const validations = useContext(FormValidations);
+  const [errors, validateField, formIsValid] = useErrors(validations);
+
   const handleSubmit = (data) => {
     console.log(data);
   };
@@ -32,17 +37,23 @@ const CreateVehicle = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit({
-          brand, model, year, price,
-        });
+        if (formIsValid()) {
+          handleSubmit({
+            brand, model, year, price,
+          });
+        }
       }}
     >
       <FormControl fullWidth margin="normal">
         <InputLabel htmlFor="brand">Marca</InputLabel>
         <NativeSelect
           id="brand"
+          name="brand"
           value={brand}
+          onBlur={validateField}
+          error={!errors.brand.valid}
           onChange={(e) => { setBrand(e.target.value); }}
+          required
         >
           <option value="_" disabled>
             Escolha a marca
@@ -62,6 +73,7 @@ const CreateVehicle = () => {
           value={model}
           onChange={(e) => setModel(e.target.value)}
           aria-describedby="model-text"
+          required
         />
         <FormHelperText id="model-text">
           Informe o modelo do veículo
@@ -76,6 +88,7 @@ const CreateVehicle = () => {
           value={year}
           onChange={(e) => setYear(e.target.value)}
           aria-describedby="year-text"
+          required
         />
         <FormHelperText id="year-text">Informe o ano do veículo</FormHelperText>
       </FormControl>
@@ -84,13 +97,17 @@ const CreateVehicle = () => {
         <InputLabel htmlFor="price">Preço</InputLabel>
         <Input
           id="price"
+          name="price"
           value={price}
+          onBlur={validateField}
+          error={!errors.price.valid}
           onChange={(e) => setPrice(e.target.value)}
           startAdornment={<InputAdornment position="start">R$</InputAdornment>}
           aria-describedby="price-text"
+          required
         />
         <FormHelperText id="price-text">
-          Informe o preço do veículo
+          {errors.price.text || 'Informe o preço do veículo'}
         </FormHelperText>
       </FormControl>
 
