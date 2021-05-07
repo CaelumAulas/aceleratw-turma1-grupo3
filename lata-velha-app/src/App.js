@@ -5,12 +5,16 @@ import { IntlProvider } from 'react-intl';
 // import ListDashboard from './components/Dashboard/ListDashboard/ListDashboard';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
-// import UpdatePassword from './components/User/UpdatePassword/UpdatePassword';
-// import SignUp from './components/User/SignUp/SignUp';
+import UpdatePassword from './components/User/UpdatePassword/UpdatePassword';
+// import SignIn from './components/User/SignIn/SignIn';
 // import ListUser from './components/User/ListUser/ListUser';
-import ListVehicle from './components/Vehicle/ListVehicle/ListVehicle';
-// import ListVehicleBrand from './components/VehicleBrand/ListVehicleBrand/ListVehicleBrand';
+// import ListVehicle from './components/Vehicle/ListVehicle/ListVehicle';
+// import CreateVehicle from './components/Vehicle/CreateVehicle/CreateVehicle';
 import style from './style';
+import FormValidations from './contexts/formValidations';
+import {
+  validateName, validatePassword, validateSelect, validatePrice,
+} from './models/form';
 
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -28,14 +32,25 @@ function App() {
         <Menu handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} />
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {/* <SignUp /> */}
-          {/* <SignIn /> */}
-          <ListVehicle />
-          {/* <ListVehicleBrand /> */}
-          {/* <VehicleBrand /> */}
-          {/* <ListDashboard /> */}
-          {/* <ListUser /> */}
-          {/* <UpdatePassword /> */}
+          <FormValidations.Provider value={{
+            name: validateName,
+            oldPassword: validatePassword,
+            password: validatePassword,
+            passwordConfirmation: validatePassword,
+            brand: validateSelect,
+            price: validatePrice,
+          }}
+          >
+            {/* <SignIn /> */}
+            {/* <CreateVehicle /> */}
+            {/* <ListVehicle /> */}
+            {/* <ListVehicleBrand /> */}
+            {/* <VehicleBrand /> */}
+            {/* <ListDashboard /> */}
+            {/* <ListUser /> */}
+            <UpdatePassword />
+          </FormValidations.Provider>
+
           {/* <ActionBar /> */}
         </main>
       </div>

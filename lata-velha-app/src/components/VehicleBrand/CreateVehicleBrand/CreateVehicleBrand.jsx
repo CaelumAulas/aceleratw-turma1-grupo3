@@ -32,6 +32,7 @@ const VehicleBrand = () => {
           value={brand}
           onChange={(e) => setBrand(e.target.value)}
           aria-describedby="brand-text"
+          required
         />
         <FormHelperText id="brand-text">
           Informe a marca do veículo
