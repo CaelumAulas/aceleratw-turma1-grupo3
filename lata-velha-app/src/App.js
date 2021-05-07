@@ -47,12 +47,12 @@ function App() {
             {/* <SignUp /> */}
             {/* <SignIn /> */}
             {/* <CreateVehicle /> */}
-            {/* <ListVehicle />
-            <ListVehicleBrand />
+            <ListVehicle />
+            {/* <ListVehicleBrand />
             <CreateVehicleBrand />
             <ListDashboard />
             <ListUser /> */}
-            <UpdatePassword />
+            {/* <UpdatePassword /> */}
           </FormValidations.Provider>
 
           {/* <ActionBar /> */}
