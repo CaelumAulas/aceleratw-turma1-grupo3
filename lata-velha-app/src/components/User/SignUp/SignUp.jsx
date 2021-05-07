@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { FormattedMessage } from 'react-intl';
 import {
   Button,
   FormControl,
@@ -8,6 +9,7 @@ import {
 } from '@material-ui/core';
 import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
+import messages from '../messages';
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -36,7 +38,9 @@ const SignUp = () => {
       }}
     >
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="name">Nome</InputLabel>
+        <InputLabel htmlFor="name">
+          <FormattedMessage {...messages.name} />
+        </InputLabel>
         <Input
           id="name"
           name="name"
@@ -49,7 +53,9 @@ const SignUp = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="email">Email </InputLabel>
+        <InputLabel htmlFor="email">
+          <FormattedMessage {...messages.email} />
+        </InputLabel>
         <Input
           id="email"
           type="email"
@@ -61,7 +67,9 @@ const SignUp = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="password">Senha</InputLabel>
+        <InputLabel htmlFor="password">
+          <FormattedMessage {...messages.password} />
+        </InputLabel>
         <Input
           id="password"
           name="password"
@@ -75,7 +83,9 @@ const SignUp = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="password-confirmation">Confirmar Senha</InputLabel>
+        <InputLabel htmlFor="password-confirmation">
+          <FormattedMessage {...messages.confirmPassword} />
+        </InputLabel>
         <Input
           id="password-confirmation"
           name="passwordConfirmation"
@@ -88,12 +98,15 @@ const SignUp = () => {
           required
         />
         <FormHelperText id="password-confirmation-text">
-          {errors.passwordConfirmation.text || 'Informe a senha digitada anteriormente'}
+          {
+          errors.passwordConfirmation.text || 
+          <FormattedMessage {...messages.textConfirmPassword} />  
+          }
         </FormHelperText>
       </FormControl>
 
       <Button variant="contained" color="primary" type="submit">
-        Cadastrar
+        <FormattedMessage {...messages.buttonCad} />
       </Button>
     </form>
   );

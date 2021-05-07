@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { FormattedMessage } from 'react-intl';
 import {
   Button,
   FormControl,
@@ -8,6 +9,7 @@ import {
 } from '@material-ui/core';
 import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
+import messages from '../messages';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -30,7 +32,9 @@ const SignIn = () => {
       }}
     >
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="email">Email </InputLabel>
+        <InputLabel htmlFor="email">
+          <FormattedMessage {...messages.email} />  
+        </InputLabel>
         <Input
           id="email"
           type="email"
@@ -39,11 +43,15 @@ const SignIn = () => {
           aria-describedby="email-text"
           required
         />
-        <FormHelperText id="email-text">Informe seu e-mail</FormHelperText>
+        <FormHelperText id="email-text">
+          <FormattedMessage {...messages.textEmail} />  
+        </FormHelperText>
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="password">Senha</InputLabel>
+        <InputLabel htmlFor="password">
+          <FormattedMessage {...messages.password} />  
+        </InputLabel>
         <Input
           id="password"
           name="password"
@@ -56,12 +64,15 @@ const SignIn = () => {
           required
         />
         <FormHelperText id="password-text">
-          {errors.password.text || 'Informe sua senha'}
+          {
+          errors.password.text || 
+          <FormattedMessage {...messages.textPassword} />
+          }
         </FormHelperText>
       </FormControl>
 
       <Button variant="contained" color="primary" type="submit">
-        Entrar
+        <FormattedMessage {...messages.buttonLogin} />  
       </Button>
     </form>
   );

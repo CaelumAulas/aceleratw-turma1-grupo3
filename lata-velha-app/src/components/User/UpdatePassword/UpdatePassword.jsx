@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { FormattedMessage } from 'react-intl';
 import {
   Button,
   FormControl,
@@ -8,6 +9,7 @@ import {
 } from '@material-ui/core';
 import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
+import messages from '../messages';
 
 const UpdatePassword = () => {
   const [oldPassord, setOldPassword] = useState('');
@@ -35,7 +37,9 @@ const UpdatePassword = () => {
       }}
     >
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="email">Senha anterior </InputLabel>
+        <InputLabel htmlFor="oldPassword">
+          <FormattedMessage {...messages.oldPassword} />  
+        </InputLabel>
         <Input
           id="old-password"
           name="oldPassword"
@@ -49,7 +53,9 @@ const UpdatePassword = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="password">Nova senha</InputLabel>
+        <InputLabel htmlFor="password">
+          <FormattedMessage {...messages.newPassword} />  
+        </InputLabel>
         <Input
           id="password"
           name="password"
@@ -63,7 +69,9 @@ const UpdatePassword = () => {
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="password-confirmation">Confirmar nova senha</InputLabel>
+        <InputLabel htmlFor="password-confirmation">
+          <FormattedMessage {...messages.textNewPasswordOne} />  
+        </InputLabel>
         <Input
           id="password-confirmation"
           name="passwordConfirmation"
@@ -76,7 +84,10 @@ const UpdatePassword = () => {
           required
         />
         <FormHelperText id="password-confirmation-text">
-          {errors.passwordConfirmation.text || 'Informe a senha digitada anteriormente'}
+          {
+          errors.passwordConfirmation.text || 
+          <FormattedMessage {...messages.textNewPasswordTwo} />  
+          }
         </FormHelperText>
       </FormControl>
 

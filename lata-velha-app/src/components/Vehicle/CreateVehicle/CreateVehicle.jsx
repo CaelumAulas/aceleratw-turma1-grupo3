@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { FormattedMessage } from 'react-intl';
 import {
   Button,
   FormControl,
@@ -12,6 +13,8 @@ import {
 import style from './style';
 import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
+import messages from '../messages';
+import FilterSelect from '../../FilterSelect/FilterSelect';
 
 const CreateVehicle = () => {
   const today = new Date();
@@ -44,30 +47,18 @@ const CreateVehicle = () => {
         }
       }}
     >
+      <FilterSelect 
+        options={['Fiat', 'BMW', 'Ferrari']}
+        defaultOption={messages.textBrand.defaultMessage}
+        label="Marca"
+        id="select-brand"
+        onChangeHandler={() => console.log('EH PAUUU!')}
+        value="_"
+      />
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="brand">Marca</InputLabel>
-        <NativeSelect
-          id="brand"
-          name="brand"
-          value={brand}
-          onBlur={validateField}
-          error={!errors.brand.valid}
-          onChange={(e) => { setBrand(e.target.value); }}
-          required
-        >
-          <option value="_" disabled>
-            Escolha a marca
-          </option>
-          {brands.map((currentBrand) => (
-            <option key={currentBrand.toLowerCase()} value={currentBrand.toLowerCase()}>
-              {currentBrand}
-            </option>
-          ))}
-        </NativeSelect>
-      </FormControl>
-
-      <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="model">Modelo</InputLabel>
+        <InputLabel htmlFor="model">
+          <FormattedMessage {...messages.model} />  
+        </InputLabel>
         <Input
           id="model"
           value={model}
@@ -76,12 +67,14 @@ const CreateVehicle = () => {
           required
         />
         <FormHelperText id="model-text">
-          Informe o modelo do veículo
+          <FormattedMessage {...messages.textModel} />  
         </FormHelperText>
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="year">Ano</InputLabel>
+        <InputLabel htmlFor="year">
+          <FormattedMessage {...messages.year} />  
+        </InputLabel>
         <Input
           id="year"
           type="number"
@@ -90,11 +83,15 @@ const CreateVehicle = () => {
           aria-describedby="year-text"
           required
         />
-        <FormHelperText id="year-text">Informe o ano do veículo</FormHelperText>
+        <FormHelperText id="year-text">
+          <FormattedMessage {...messages.textYear} />  
+        </FormHelperText>
       </FormControl>
 
       <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="price">Preço</InputLabel>
+        <InputLabel htmlFor="price">
+          <FormattedMessage {...messages.price} />    
+        </InputLabel>
         <Input
           id="price"
           name="price"
@@ -107,7 +104,10 @@ const CreateVehicle = () => {
           required
         />
         <FormHelperText id="price-text">
-          {errors.price.text || 'Informe o preço do veículo'}
+          {
+          errors.price.text || 
+          <FormattedMessage {...messages.textPrice} />  
+          }
         </FormHelperText>
       </FormControl>
 
@@ -117,7 +117,7 @@ const CreateVehicle = () => {
         color="default"
         type="button"
       >
-        Cancelar
+        <FormattedMessage {...messages.buttonCancel} />  
       </Button>
       <Button
         className={classes.formButton}
@@ -125,7 +125,7 @@ const CreateVehicle = () => {
         color="primary"
         type="submit"
       >
-        Cadastrar
+        <FormattedMessage {...messages.buttonCad} />  
       </Button>
     </form>
   );
