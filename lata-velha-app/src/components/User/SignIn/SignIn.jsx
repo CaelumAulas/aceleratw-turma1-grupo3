@@ -23,6 +23,8 @@ const SignIn = () => {
   };
 
   return (
+    <>
+    <h1><FormattedMessage {...messages.signInTitle} /></h1>
     <form
       onSubmit={(e) => {
         e.preventDefault();
@@ -40,12 +42,8 @@ const SignIn = () => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          aria-describedby="email-text"
           required
         />
-        <FormHelperText id="email-text">
-          <FormattedMessage {...messages.textEmail} />  
-        </FormHelperText>
       </FormControl>
 
       <FormControl fullWidth margin="normal">
@@ -63,10 +61,9 @@ const SignIn = () => {
           aria-describedby="password-text"
           required
         />
-        <FormHelperText id="password-text">
+        <FormHelperText id="password-text" aria-live="assertive">
           {
-          errors.password.text || 
-          <FormattedMessage {...messages.textPassword} />
+            errors.password.text
           }
         </FormHelperText>
       </FormControl>
@@ -75,6 +72,7 @@ const SignIn = () => {
         <FormattedMessage {...messages.buttonLogin} />  
       </Button>
     </form>
+    </>
   );
 };
 

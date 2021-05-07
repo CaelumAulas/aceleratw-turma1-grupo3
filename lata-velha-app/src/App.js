@@ -44,9 +44,9 @@ function App() {
             price: validatePrice,
           }}
           >
-            <SignUp />
-            {/* <SignIn />
-            <CreateVehicle />
+            {/* <SignUp /> */}
+            <SignIn />
+            {/* <CreateVehicle />
             <ListVehicle />
             <ListVehicleBrand />
             <CreateVehicleBrand />

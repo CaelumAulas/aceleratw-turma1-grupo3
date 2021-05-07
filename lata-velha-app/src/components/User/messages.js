@@ -7,6 +7,10 @@ export default defineMessages({
     id: `${prefix}.signUpTitle`,
     defaultMessage: 'Cadastro de usuário',
   },
+  signInTitle: {
+    id: `${prefix}.signInTitle`,
+    defaultMessage: 'Entrar no sistema',
+  },
   name: {
     id: `${prefix}.name`,
     defaultMessage: 'Nome',
