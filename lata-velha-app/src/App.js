@@ -45,14 +45,14 @@ function App() {
           }}
           >
             <SignUp />
-            <SignIn />
+            {/* <SignIn />
             <CreateVehicle />
             <ListVehicle />
             <ListVehicleBrand />
             <CreateVehicleBrand />
             <ListDashboard />
             <ListUser />
-            <UpdatePassword />
+            <UpdatePassword /> */}
           </FormValidations.Provider>
 
           {/* <ActionBar /> */}
