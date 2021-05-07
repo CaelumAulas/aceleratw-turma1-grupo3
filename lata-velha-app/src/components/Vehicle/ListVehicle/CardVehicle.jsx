@@ -39,11 +39,6 @@ const CardVehicle = ({ vehicle }) => {
   };
   console.log(vehicle);
 
-  // const money = (price) => price.toLocaleString('pt-BR', {
-  //   style: 'currency',
-  //   currency: 'BRL',
-  // });
-
   console.log(vehicle.model)
   return (
     <Card className={classes.card}>
