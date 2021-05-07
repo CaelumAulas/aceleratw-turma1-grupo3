@@ -6,6 +6,7 @@ import {
   FormHelperText,
   Input,
   InputLabel,
+  Typography,
 } from '@material-ui/core';
 import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
@@ -27,7 +28,7 @@ const SignUp = () => {
 
   return (
     <>
-    <h1><FormattedMessage {...messages.signUpTitle} /></h1>
+    <Typography variant="h4" component="h1"><FormattedMessage {...messages.signUpTitle} /></Typography>
     <form
       onSubmit={(e) => {
         e.preventDefault();
@@ -110,7 +111,7 @@ const SignUp = () => {
           aria-describedby="password-confirmation-text"
           required
         />
-        <FormHelperText id="password-confirmation-text">
+        <FormHelperText id="password-confirmation-text" aria-live="assertive">
           {
           errors.passwordConfirmation.text || 
           <FormattedMessage {...messages.textConfirmPassword} />  

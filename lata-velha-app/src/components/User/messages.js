@@ -11,6 +11,10 @@ export default defineMessages({
     id: `${prefix}.signInTitle`,
     defaultMessage: 'Entrar no sistema',
   },
+  updatePasswordTitle: {
+    id: `${prefix}.updatePasswordTitle`,
+    defaultMessage: 'Atualizar senha',
+  },
   name: {
     id: `${prefix}.name`,
     defaultMessage: 'Nome',

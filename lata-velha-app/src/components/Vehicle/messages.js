@@ -3,6 +3,10 @@ import { defineMessages } from 'react-intl';
 const prefix = 'components.Vehicle';
 
 export default defineMessages({
+  createVehicleTitle: {
+    id: `${prefix}.createVehicleTitle`,
+    defaultMessage: 'Adicionar novo veículo',
+  },
   brand: {
     id: `${prefix}.brand`,
     defaultMessage: 'Marca',

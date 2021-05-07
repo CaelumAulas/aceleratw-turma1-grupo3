@@ -6,6 +6,7 @@ import {
   FormHelperText,
   Input,
   InputLabel,
+  Typography,
 } from '@material-ui/core';
 import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
@@ -24,7 +25,7 @@ const SignIn = () => {
 
   return (
     <>
-    <h1><FormattedMessage {...messages.signInTitle} /></h1>
+    <Typography Typography><FormattedMessage {...messages.signInTitle} /></Typography>
     <form
       onSubmit={(e) => {
         e.preventDefault();
