@@ -1,10 +1,10 @@
 import { useTheme } from '@material-ui/core';
 import React, { useState } from 'react';
 import { IntlProvider } from 'react-intl';
-import ActionBar from './components/ActionBar/ActionBar';
+import ActionBar from './components/ActionBar';
 import ListDashboard from './pages/Dashboard';
-import Header from './components/Header/Header';
-import Menu from './components/Menu/Menu';
+import Header from './components/Header';
+import Menu from './components/Menu';
 import UpdatePassword from './components/User/UpdatePassword/UpdatePassword';
 import SignIn from './components/User/SignIn/SignIn';
 import ListUser from './components/User/ListUser/ListUser';

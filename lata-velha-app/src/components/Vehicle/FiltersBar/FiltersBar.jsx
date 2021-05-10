@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from '@material-ui/core';
-import FilterSelect from '../../FilterSelect/FilterSelect';
+import FilterSelect from '../../FilterSelect';
 import style from './style';
 
 const FiltersBar = () => {
