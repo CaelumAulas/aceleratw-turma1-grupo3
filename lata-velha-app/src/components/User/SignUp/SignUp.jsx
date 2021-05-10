@@ -6,6 +6,7 @@ import {
   FormHelperText,
   Input,
   InputLabel,
+  Typography,
 } from '@material-ui/core';
 import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
@@ -20,11 +21,14 @@ const SignUp = () => {
   const validations = useContext(FormValidations);
   const [errors, validateField, formIsValid] = useErrors(validations);
 
+  console.log(errors);
   const handleSubmit = (data) => {
     console.log(data);
   };
 
   return (
+    <>
+    <Typography variant="h4" component="h1"><FormattedMessage {...messages.signUpTitle} /></Typography>
     <form
       onSubmit={(e) => {
         e.preventDefault();
@@ -49,7 +53,12 @@ const SignUp = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+          autoComplete="off"
+          aria-describedby="name-text"
         />
+        <FormHelperText id="name-text" aria-live="assertive">
+          {errors.name.text}
+        </FormHelperText>
       </FormControl>
 
       <FormControl fullWidth margin="normal">
@@ -63,6 +72,7 @@ const SignUp = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          autoComplete="off"
         />
       </FormControl>
 
@@ -79,7 +89,11 @@ const SignUp = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          aria-describedby="password-text"
         />
+        <FormHelperText id="password-text" aria-live="assertive">
+          {errors.password.text}
+        </FormHelperText>
       </FormControl>
 
       <FormControl fullWidth margin="normal">
@@ -97,7 +111,7 @@ const SignUp = () => {
           aria-describedby="password-confirmation-text"
           required
         />
-        <FormHelperText id="password-confirmation-text">
+        <FormHelperText id="password-confirmation-text" aria-live="assertive">
           {
           errors.passwordConfirmation.text || 
           <FormattedMessage {...messages.textConfirmPassword} />  
@@ -109,6 +123,7 @@ const SignUp = () => {
         <FormattedMessage {...messages.buttonCad} />
       </Button>
     </form>
+    </>
   );
 };
 

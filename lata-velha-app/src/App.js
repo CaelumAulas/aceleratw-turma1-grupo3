@@ -44,15 +44,15 @@ function App() {
             price: validatePrice,
           }}
           >
-            <SignUp />
-            <SignIn />
-            <CreateVehicle />
+            {/* <SignUp /> */}
+            {/* <SignIn /> */}
+            {/* <CreateVehicle /> */}
             <ListVehicle />
-            <ListVehicleBrand />
+            {/* <ListVehicleBrand />
             <CreateVehicleBrand />
             <ListDashboard />
-            <ListUser />
-            <UpdatePassword />
+            <ListUser /> */}
+            {/* <UpdatePassword /> */}
           </FormValidations.Provider>
 
           {/* <ActionBar /> */}

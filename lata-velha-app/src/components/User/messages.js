@@ -3,6 +3,18 @@ import { defineMessages } from 'react-intl';
 const prefix = 'components.User';
 
 export default defineMessages({
+  signUpTitle: {
+    id: `${prefix}.signUpTitle`,
+    defaultMessage: 'Cadastro de usuário',
+  },
+  signInTitle: {
+    id: `${prefix}.signInTitle`,
+    defaultMessage: 'Entrar no sistema',
+  },
+  updatePasswordTitle: {
+    id: `${prefix}.updatePasswordTitle`,
+    defaultMessage: 'Atualizar senha',
+  },
   name: {
     id: `${prefix}.name`,
     defaultMessage: 'Nome',

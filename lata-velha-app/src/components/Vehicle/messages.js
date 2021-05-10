@@ -3,6 +3,10 @@ import { defineMessages } from 'react-intl';
 const prefix = 'components.Vehicle';
 
 export default defineMessages({
+  createVehicleTitle: {
+    id: `${prefix}.createVehicleTitle`,
+    defaultMessage: 'Adicionar novo veículo',
+  },
   brand: {
     id: `${prefix}.brand`,
     defaultMessage: 'Marca',
@@ -50,5 +54,17 @@ export default defineMessages({
   currentPrice: {
     id: `${prefix}.currentPrice`,
     defaultMessage: 'Preço Atual ',
+  },
+  defaultAlt: {
+    id: `${prefix}.defaultAlt`,
+    defaultMessage: 'Logo da marca',
+  },
+  checkboxChecked: {
+    id: `${prefix}.checkboxChecked`,
+    defaultMessage: 'Desselecionar o veículo',
+  },
+  checkboxUnchecked: {
+    id: `${prefix}.checkboxUnchecked`,
+    defaultMessage: 'Selecionar o veículo',
   },
 });
