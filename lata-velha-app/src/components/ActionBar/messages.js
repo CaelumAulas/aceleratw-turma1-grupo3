@@ -9,6 +9,6 @@ export default defineMessages({
   },
   addButton: {
     id: `${prefix}.addButton`,
-    defaultMessage: 'Adicionar Item',
+    defaultMessage: 'Adicionar',
   },
 });

@@ -56,14 +56,23 @@ function App() {
                 <Route path="/login">
                   <SignIn />
                 </Route>
-                <Route path="/veiculos">
+                <Route path="/veiculos" exact>
                   <ListVehicle />
                 </Route>
-                <Route path="/marcas">
+                <Route path="/veiculos/adicionar">
+                  <CreateVehicle />
+                </Route>
+                <Route path="/marcas" exact>
                   <ListVehicleBrand />
                 </Route>
-                <Route path="/usuarios">
+                <Route path="/marcas/adicionar">
+                  <CreateVehicleBrand />
+                </Route>
+                <Route path="/usuarios" exact>
                   <ListUser />
+                </Route>
+                <Route path="/usuarios/adicionar">
+                  <SignUp />
                 </Route>
                 <Route path="/dashboard">
                   <Dashboard />
@@ -72,9 +81,7 @@ function App() {
                   <SignUp />
                 </Route>
               </Switch>
-            {/* <CreateVehicle />
-            <CreateVehicleBrand />
-            <UpdatePassword /> */}
+            {/* <UpdatePassword /> */}
             </main>
           </div>
         </Router>
