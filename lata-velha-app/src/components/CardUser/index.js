@@ -11,7 +11,7 @@ import {
   Edit as EditIcon,
 } from '@material-ui/icons';
 import RoundAvatar from '../../RoundAvatar';
-import style from './style';
+import style from '../../pages/User/ListUser/style';
 
 const CardUser = ({ user }) => {
   const classes = style();
