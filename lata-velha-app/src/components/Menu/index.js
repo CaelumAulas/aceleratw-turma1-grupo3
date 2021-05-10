@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useTheme } from '@material-ui/core/styles';
 import {
   CssBaseline, Divider, Drawer, Hidden, List, ListItem, ListItemIcon, ListItemText,
@@ -27,7 +27,7 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen }) => {
     { label: 'Dashboard', icon: <DashboardIcon />, path:'dashboard' },
     { label: 'Sair', icon: <ExitToAppIcon />, path:'sair' },
   ];
-  const CustomLink = props => <Link to={to} {...props} />;
+  const CustomLink = props => <NavLink activeClassName={classes.navLinkActive} exact {...props} />;
 
   const drawer = (
     <div>
@@ -35,8 +35,8 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen }) => {
       <Divider />
       <List>
         {listMenu.map((item) => (
-          <ListItem className={classes.navLink} key={item.label} component={Link} to={`/${item.path}`}>
-            <ListItemIcon>{item.icon}</ListItemIcon>
+          <ListItem className={classes.navLink} key={item.label} component={CustomLink} to={`/${item.path}`}>
+            <ListItemIcon color="disabled" className={classes.navLinkActiveIcon}>{item.icon}</ListItemIcon>
             <ListItemText primary={item.label} /> 
           </ListItem>
         ))}

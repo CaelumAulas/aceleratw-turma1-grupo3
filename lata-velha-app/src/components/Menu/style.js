@@ -15,8 +15,23 @@ const useStyles = makeStyles((theme) => ({
   },
   navLink: {
     cursor: 'pointer',
-    color: theme.palette.text.primary
-  }
+    color: theme.palette.text.primary,
+    transition: 'all 0.1s linear',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+      color: '#ffffff', 
+      '& svg': {
+        color: '#ffffff', 
+      },
+    },
+  },
+  navLinkActive: {
+    backgroundColor: theme.palette.primary.main,
+    color: '#ffffff', 
+    '& svg': {
+      color: '#ffffff', 
+    },
+  },
 }));
 
 export default useStyles;
