@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 import {
@@ -7,6 +7,7 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  Checkbox,
   Divider,
   IconButton,
   List,
@@ -29,7 +30,7 @@ import messages from './messages';
 const CardVehicle = ({ vehicle }) => {
   const theme = useTheme();
   const classes = style(theme);
-
+  const [checked, setChecked] = useState(false);
   const editVehicle = () => {
     console.log('editei');
   };
@@ -42,17 +43,17 @@ const CardVehicle = ({ vehicle }) => {
     <Card>
       <CardHeader
         avatar={(
-          <Avatar aria-label="recipe" src={vehicle.brand.url} />
+          <Avatar aria-label="recipe" src={vehicle.brand.url} alt={`${messages.defaultAlt.defaultMessage} ${vehicle.brand.name}`} />
         )}
         action={(
-          <IconButton aria-label="settings">
-            <input type="checkbox" />
-          </IconButton>
+          <Checkbox onChange={(e) => setChecked(e.target.checked)} aria-label={
+            checked ? `${messages.checkboxChecked.defaultMessage} ${vehicle.model}`
+              : `${messages.checkboxUnchecked.defaultMessage} ${vehicle.model}`} checked={checked} />
         )}
         title={(
           <>
             <Typography variant="h6" component="h2" className={classes.model}>
-             {vehicle.model}
+              {vehicle.model}
             </Typography>
           </>
         )}
@@ -81,10 +82,10 @@ const CardVehicle = ({ vehicle }) => {
         </List>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <IconButton aria-label={`editar veiculo ${vehicle}`} onClick={editVehicle}>
+        <IconButton aria-label={`editar veiculo ${vehicle.model}`} onClick={editVehicle}>
           <EditIcon />
         </IconButton>
-        <IconButton aria-label={`deletar veiculo ${vehicle}`} onClick={deleteVehicle}>
+        <IconButton aria-label={`deletar veiculo ${vehicle.model}`} onClick={deleteVehicle}>
           <DeleteIcon />
         </IconButton>
       </CardActions>
