@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
   actionBarButton: {
     marginRight: theme.spacing(1),
   },
+  addButton: {
+    width: '180px'
+  }
 }));
 
 export default useStyles;
