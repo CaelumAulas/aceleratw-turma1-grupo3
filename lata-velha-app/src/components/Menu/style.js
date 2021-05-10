@@ -13,10 +13,10 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
+  navLink: {
+    cursor: 'pointer',
+    color: theme.palette.text.primary
+  }
 }));
 
 export default useStyles;
