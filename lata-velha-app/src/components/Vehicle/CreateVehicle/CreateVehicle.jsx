@@ -7,7 +7,6 @@ import {
   Input,
   InputAdornment,
   InputLabel,
-  NativeSelect,
   Typography,
   useTheme,
 } from '@material-ui/core';

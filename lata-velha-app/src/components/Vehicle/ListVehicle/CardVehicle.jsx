@@ -25,6 +25,7 @@ import {
 } from '@material-ui/icons';
 import style from './style';
 import messages from '../messages';
+import formatFloatToBrazilianCurrency from '../../../utils/currency';
 
 const CardVehicle = ({ vehicle }) => {
   const theme = useTheme();
@@ -37,11 +38,6 @@ const CardVehicle = ({ vehicle }) => {
   const deleteVehicle = () => {
     console.log('deletei');
   };
-
-  const money = (price) => price.toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  });
 
   return (
     <Card className={classes.card}>
@@ -72,7 +68,8 @@ const CardVehicle = ({ vehicle }) => {
                 <AttachMoneyIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={<Typography variant="h6" component="h3">{`${money(vehicle.price)}`}</Typography>} secondary={messages.currentPrice.defaultMessage} />
+            <ListItemText primary={
+            <Typography variant="h6" component="h3">{`${formatFloatToBrazilianCurrency(vehicle.price)}`}</Typography>} secondary={messages.currentPrice.defaultMessage} />
           </ListItem>
           <ListItem>
             <ListItemAvatar>
