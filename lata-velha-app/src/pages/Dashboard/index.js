@@ -1,5 +1,5 @@
 import React from 'react';
-import CardDashboard from './CardDashboard';
+import CardDashboard from '../../components/CardDashboard';
 import style from './style';
 
 const ListDashboard = () => {
