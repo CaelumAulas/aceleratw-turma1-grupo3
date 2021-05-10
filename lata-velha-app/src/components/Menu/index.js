@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { useTheme } from '@material-ui/core/styles';
 import {
   CssBaseline, Divider, Drawer, Hidden, List, ListItem, ListItemIcon, ListItemText,
@@ -19,13 +20,14 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen }) => {
   const classes = style(theme);
 
   const listMenu = [
-    { label: 'Login', icon: <VpnKeyIcon /> },
-    { label: 'Veículos', icon: <DirectionsCarIcon /> },
-    { label: 'Marcas', icon: <LocalOfferIcon /> },
-    { label: 'Usuários', icon: <PeopleIcon /> },
-    { label: 'Dashboard', icon: <DashboardIcon /> },
-    { label: 'Sair', icon: <ExitToAppIcon /> },
+    { label: 'Login', icon: <VpnKeyIcon />, path:'login'},
+    { label: 'Veículos', icon: <DirectionsCarIcon />, path:'veiculos' },
+    { label: 'Marcas', icon: <LocalOfferIcon />, path:'marcas' },
+    { label: 'Usuários', icon: <PeopleIcon />, path:'usuarios' },
+    { label: 'Dashboard', icon: <DashboardIcon />, path:'dashboard' },
+    { label: 'Sair', icon: <ExitToAppIcon />, path:'sair' },
   ];
+  const CustomLink = props => <Link to={to} {...props} />;
 
   const drawer = (
     <div>
@@ -33,9 +35,9 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen }) => {
       <Divider />
       <List>
         {listMenu.map((item) => (
-          <ListItem button key={item.label}>
+          <ListItem className={classes.navLink} key={item.label} component={Link} to={`/${item.path}`}>
             <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.label} />
+            <ListItemText primary={item.label} /> 
           </ListItem>
         ))}
       </List>

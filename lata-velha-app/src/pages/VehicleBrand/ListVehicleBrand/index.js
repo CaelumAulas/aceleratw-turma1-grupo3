@@ -1,4 +1,5 @@
 import React from 'react';
+import ActionBar from '../../../components/ActionBar';
 import CardVehicleBrand from '../../../components/CardVehicleBrand';
 import style from './style';
 
@@ -24,9 +25,12 @@ const ListVehicleBrand = () => {
   }];
 
   return (
+    <>
     <div className={classes.container}>
       {brands.map((brand) => <CardVehicleBrand key={brand.id} brand={brand} />)}
     </div>
+    <ActionBar />
+    </>
   );
 };
 

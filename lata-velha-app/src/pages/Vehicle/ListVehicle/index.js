@@ -1,6 +1,7 @@
 import React from 'react';
 import FiltersBar from '../../../components/FiltersBar';
 import CardVehicle from '../../../components/CardVehicle';
+import ActionBar from '../../../components/ActionBar'
 import style from './style';
 
 const ListVehicle = () => {
@@ -32,6 +33,7 @@ const ListVehicle = () => {
       <div className={classes.container}>
         {vehicles.map((vehicle) => <CardVehicle key={vehicle.id} vehicle={vehicle} />)}
       </div>
+      <ActionBar />
     </>
   );
 };

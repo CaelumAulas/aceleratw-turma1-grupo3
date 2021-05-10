@@ -1,4 +1,5 @@
 import React from 'react';
+import ActionBar from '../../../components/ActionBar';
 import CardUser from '../../../components/CardUser';
 import style from './style';
 
@@ -17,9 +18,12 @@ const ListUser = () => {
   ];
 
   return (
+    <>
     <div className={classes.container}>
       {data.map((user) => <CardUser key={user.id} user={user} />)}
     </div>
+    <ActionBar />
+    </>
   );
 };
 
