@@ -22,9 +22,9 @@ import {
   AttachMoney as AttachMoneyIcon,
   CalendarToday as CalendarTodayIcon,
 } from '@material-ui/icons';
+import messages from '../../pages/Vehicle/messages';
+import formatFloatToBrazilianCurrency from '../../utils/currency';
 import style from './style';
-import messages from '../messages';
-import formatFloatToBrazilianCurrency from '../../../utils/currency';
 
 const CardVehicle = ({ vehicle }) => {
   const theme = useTheme();
@@ -37,11 +37,9 @@ const CardVehicle = ({ vehicle }) => {
   const deleteVehicle = () => {
     console.log('deletei');
   };
-  console.log(vehicle);
 
-  console.log(vehicle.model)
   return (
-    <Card className={classes.card}>
+    <Card>
       <CardHeader
         avatar={(
           <Avatar aria-label="recipe" src={vehicle.brand.url} />

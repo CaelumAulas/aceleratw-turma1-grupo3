@@ -43,12 +43,4 @@ export default defineMessages({
     id: `${prefix}.buttonCad`,
     defaultMessage: 'Cadastrar',
   },
-  vehicleYear: {
-    id: `${prefix}.vehicleYear`,
-    defaultMessage: 'Ano ',
-  },
-  currentPrice: {
-    id: `${prefix}.currentPrice`,
-    defaultMessage: 'Preço Atual ',
-  },
 });
