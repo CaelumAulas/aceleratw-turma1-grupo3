@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import style from './style';
 
-const FilterSelect = ({
+const Select = ({
   options,
   defaultOption,
   label,
@@ -41,7 +41,7 @@ const FilterSelect = ({
   );
 };
 
-FilterSelect.propTypes = {
+Select.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   defaultOption: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -50,4 +50,4 @@ FilterSelect.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-export default FilterSelect;
+export default Select;

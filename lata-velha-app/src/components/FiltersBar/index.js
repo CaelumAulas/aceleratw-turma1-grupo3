@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from '@material-ui/core';
-import FilterSelect from '../FilterSelect';
+import FilterSelect from '../Select';
 import style from './style';
 import messages from './messages';
 
