@@ -14,11 +14,11 @@ const ActionBar = () => {
   const renderBtnDelete = () => {
     return path !== '/usuarios' && (
       <Button
-      variant="contained"
-      color="primary"
-      className={classes.actionBarButton}
-      startIcon={<DeleteIcon />}
-      disabled
+        variant="contained"
+        color="primary"
+        className={classes.actionBarButton}
+        startIcon={<DeleteIcon />}
+        disabled
       >
         <FormattedMessage {...messages.deleteButton} />
       </Button>
