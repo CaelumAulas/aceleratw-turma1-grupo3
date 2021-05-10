@@ -1,5 +1,5 @@
 import React from 'react';
-import CardUser from './CardUser';
+import CardUser from '../../../components/CardUser';
 import style from './style';
 
 const ListUser = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import FiltersBar from '../FiltersBar/FiltersBar';
-import CardVehicle from './CardVehicle';
+import FiltersBar from '../../../components/FiltersBar';
+import CardVehicle from '../../../components/CardVehicle';
 import style from './style';
 
 const ListVehicle = () => {

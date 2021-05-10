@@ -13,7 +13,7 @@ import style from './style';
 import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
 import messages from '../messages';
-import FilterSelect from '../../FilterSelect';
+import FilterSelect from '../../../components/FilterSelect';
 
 const CreateVehicle = () => {
   const today = new Date();

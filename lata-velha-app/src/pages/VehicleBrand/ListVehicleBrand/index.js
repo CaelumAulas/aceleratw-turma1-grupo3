@@ -1,5 +1,5 @@
 import React from 'react';
-import CardVehicleBrand from './CardVehicleBrand';
+import CardVehicleBrand from '../../../components/CardVehicleBrand';
 import style from './style';
 
 const ListVehicleBrand = () => {

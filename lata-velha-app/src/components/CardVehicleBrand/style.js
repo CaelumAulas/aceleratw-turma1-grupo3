@@ -2,11 +2,6 @@ import { red } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
   root: {
     minWidth: 250,
     maxWidth: 250,

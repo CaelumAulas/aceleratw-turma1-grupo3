@@ -22,9 +22,9 @@ import {
   AttachMoney as AttachMoneyIcon,
   CalendarToday as CalendarTodayIcon,
 } from '@material-ui/icons';
-import messages from '../../pages/Vehicle/messages';
 import formatFloatToBrazilianCurrency from '../../utils/currency';
 import style from './style';
+import messages from './messages';
 
 const CardVehicle = ({ vehicle }) => {
   const theme = useTheme();

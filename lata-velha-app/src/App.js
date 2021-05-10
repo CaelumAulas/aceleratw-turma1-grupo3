@@ -5,19 +5,19 @@ import ActionBar from './components/ActionBar';
 import ListDashboard from './pages/Dashboard';
 import Header from './components/Header';
 import Menu from './components/Menu';
-import UpdatePassword from './components/User/UpdatePassword/UpdatePassword';
-import SignIn from './components/User/SignIn/SignIn';
-import ListUser from './components/User/ListUser/ListUser';
-import ListVehicle from './components/Vehicle/ListVehicle/ListVehicle';
-import CreateVehicle from './components/Vehicle/CreateVehicle/CreateVehicle';
+import UpdatePassword from './pages/User/UpdatePassword';
+import SignIn from './pages/User/SignIn';
+import ListUser from './pages/User/ListUser';
+import ListVehicle from './pages/Vehicle/ListVehicle';
+import CreateVehicle from './pages/Vehicle/CreateVehicle';
 import style from './style';
 import FormValidations from './contexts/formValidations';
 import {
   validateName, validatePassword, validateSelect, validatePrice,
 } from './models/form';
-import ListVehicleBrand from './components/VehicleBrand/ListVehicleBrand/ListVehicleBrand'
-import CreateVehicleBrand from './components/VehicleBrand/CreateVehicleBrand/CreateVehicleBrand'
-import SignUp from './components/User/SignUp/SignUp'
+import ListVehicleBrand from './pages/VehicleBrand/ListVehicleBrand'
+import CreateVehicleBrand from './pages/VehicleBrand/CreateVehicleBrand'
+import SignUp from './pages/User/SignUp'
 
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);

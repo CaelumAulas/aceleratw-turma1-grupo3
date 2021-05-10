@@ -1,9 +1,8 @@
 import React from 'react';
 import { useTheme } from '@material-ui/core';
-import FilterSelect from '../../FilterSelect';
+import FilterSelect from '../FilterSelect';
 import style from './style';
 import messages from './messages';
-import { FormattedMessage } from 'react-intl';
 
 const FiltersBar = () => {
   const theme = useTheme();
