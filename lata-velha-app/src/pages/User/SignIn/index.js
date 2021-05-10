@@ -25,7 +25,7 @@ const SignIn = () => {
 
   return (
     <>
-    <Typography Typography><FormattedMessage {...messages.signInTitle} /></Typography>
+    <Typography variant="h4" component="h1"><FormattedMessage {...messages.signInTitle} /></Typography>
     <form
       onSubmit={(e) => {
         e.preventDefault();
