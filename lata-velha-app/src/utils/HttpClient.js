@@ -1,7 +1,10 @@
 const HttpClient = () => {
 
-  const get = async (url) => {
-    const response = await fetch(url);
+  const get = async (url ,id) => {
+    if (typeof id === 'undefined') {
+      id = '';
+    }
+    const response = await fetch(`${url}/${id}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
