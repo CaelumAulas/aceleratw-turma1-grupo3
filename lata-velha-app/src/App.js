@@ -1,5 +1,5 @@
 import { useTheme } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IntlProvider } from "react-intl";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
@@ -21,11 +21,13 @@ import {
 import ListVehicleBrand from "./pages/VehicleBrand/ListVehicleBrand";
 import CreateVehicleBrand from "./pages/VehicleBrand/CreateVehicleBrand";
 import SignUp from "./pages/User/SignUp";
+import HttpClient from "./utils/HttpClient";
 
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const classes = style(theme);
+
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -81,7 +83,7 @@ function App() {
                   <SignUp />
                 </Route>
               </Switch>
-            {/* <UpdatePassword /> */}
+              {/* <UpdatePassword /> */}
             </main>
           </div>
         </Router>
