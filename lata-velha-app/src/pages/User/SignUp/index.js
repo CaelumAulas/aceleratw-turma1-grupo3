@@ -23,7 +23,7 @@ const SignUp = () => {
 
   console.log(errors);
   const handleSubmit = (data) => {
-    console.log(data);
+    console.log('Signup Handle Submit');
   };
 
   return (
