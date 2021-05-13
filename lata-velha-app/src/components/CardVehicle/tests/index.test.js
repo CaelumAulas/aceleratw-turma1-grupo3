@@ -4,23 +4,30 @@ import CardVehicle from '../index';
 import renderWithRouter from '../../../utils/test-utils';
 
 describe('<CardVehicle />', () => {
-  it('should render CardVehicle', () => {
     const vehicle = { 
-      id: 1231312, 
       model: 'Uno', 
-      brand: {
-        name:'fiat',
-        url: '#'
-      }, 
-      year: 2020, 
+      brandName:'fiat',
+      brandLogoUrl: '#',
+      year: "2020", 
       price: 10000 
-    }
+    } 
 
-    renderWithRouter(<CardVehicle vehicle={vehicle} />)
+    const cardVehicleComponent = <CardVehicle 
+      model={vehicle.model}
+      brandName={vehicle.brandName}
+      brandLogoUrl={vehicle.brandLogoUrl}
+      year={vehicle.year} 
+      price={vehicle.price}
+      onEditClick={e => {}}
+      onDeleteClick={e => {}}
+    />
 
-    const cardElement = screen.getByTestId(vehicle.id);
+  it('should render CardVehicle', () => {
+    renderWithRouter(cardVehicleComponent)
+
+    const cardElement = screen.getByTestId("card-vehicle");
     const modelElement = screen.getByText(vehicle.model);
-    const brandElement = screen.getByText(vehicle.brand.name);
+    const brandElement = screen.getByText(vehicle.brandName);
     const yearElement = screen.getByText(vehicle.year);
     const priceElement = screen.getByText("R$ 10.000,00");
 
@@ -33,18 +40,7 @@ describe('<CardVehicle />', () => {
 
 
   it('should render all buttons', () => {
-    const vehicle = { 
-      id: 1231312, 
-      model: 'Uno', 
-      brand: {
-        name:'fiat',
-        url: '#'
-      }, 
-      year: 2020, 
-      price: 10000 
-    }
-
-    renderWithRouter(<CardVehicle vehicle={vehicle} />)
+    renderWithRouter(cardVehicleComponent)
 
     const containerButtonsElement = screen.getByTestId('card-vehicle_buttons');
 

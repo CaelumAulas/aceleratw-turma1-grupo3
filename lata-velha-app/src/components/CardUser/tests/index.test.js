@@ -4,11 +4,18 @@ import CardUser from '../index';
 import renderWithRouter from '../../../utils/test-utils';
 
 describe('<CardUser />', () => {
-  it('should render CardUser', () => {
-    const user = { id: 1231312, name: 'Jucelino', email: 'jucelino@email.com' }
-    renderWithRouter(<CardUser user={user} />)
+  const user = { name: 'Jucelino', email: 'jucelino@email.com' }
+  const cardUserElement = <CardUser 
+    name={user.name} 
+    email={user.email} 
+    onEditClick={e => {}}
+    onDeleteClick={e => {}}
+  />
 
-    const cardElement = screen.getByTestId(user.id);
+  it('should render CardUser', () => {
+    renderWithRouter(cardUserElement)
+
+    const cardElement = screen.getByTestId(user.email);
     const nameElement = screen.getByText(user.name);
     const emailElement = screen.getByText(user.email);
 
@@ -18,8 +25,7 @@ describe('<CardUser />', () => {
   })
 
   it('should render all buttons', () => {
-    const user = { id: 1231312, name: 'Jucelino', email: 'jucelino@email.com' }
-    renderWithRouter(<CardUser user={user} />)
+    renderWithRouter(cardUserElement)
 
     const containerButtonsElement = screen.getByTestId('card-user_buttons');
 

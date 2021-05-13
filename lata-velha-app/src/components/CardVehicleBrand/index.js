@@ -18,7 +18,7 @@ const CardVehicleBrand = ({ name, onEditClick, onDeleteClick }) => {
   const classes = style();
 
   return (
-    <Card className={classes.root} data-testid={brand.id}>
+    <Card className={classes.root} data-testid="card-vehicle-brand">
       <CardHeader
         avatar={(
           <Avatar aria-label="recipe" className={classes.avatar}>

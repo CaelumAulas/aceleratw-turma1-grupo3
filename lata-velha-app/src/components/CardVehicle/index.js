@@ -42,7 +42,7 @@ const CardVehicle = (props) => {
   const [checked, setChecked] = useState(false);
 
   return (
-    <Card data-testid={vehicle.id}>
+    <Card data-testid={"card-vehicle"}>
       <CardHeader
         avatar={(
           <Avatar aria-label="recipe" src={brandLogoUrl} alt={`${messages.defaultAlt.defaultMessage} ${brandName}`} />

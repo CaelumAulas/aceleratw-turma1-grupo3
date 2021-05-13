@@ -4,11 +4,17 @@ import CardVehicleBrand from '../index';
 import renderWithRouter from '../../../utils/test-utils';
 
 describe('<CardVehicleBrand />', () => {
+  const brand = { name: 'Fiat' }
+  const cardVehicleBrandComponent = <CardVehicleBrand 
+    name={brand.name} 
+    onEditClick={e => {}}
+    onDeleteClick={e => {}}
+  />
+  
   it('should render CardVehicleBrand', () => {
-    const brand = { id: 1231312, name: 'Fiat' }
-    renderWithRouter(<CardVehicleBrand brand={brand} />)
+    renderWithRouter(cardVehicleBrandComponent)
 
-    const cardElement = screen.getByTestId(brand.id);
+    const cardElement = screen.getByTestId("card-vehicle-brand");
     const nameElement = screen.getByText(brand.name);
 
     expect(cardElement).not.toBe(null);
@@ -16,8 +22,7 @@ describe('<CardVehicleBrand />', () => {
   })
 
   it('should render all buttons', () => {
-    const brand = { id: 1231312, name: 'Fiat' }
-    renderWithRouter(<CardVehicleBrand brand={brand} />)
+    renderWithRouter(cardVehicleBrandComponent)
 
     const containerButtonsElement = screen.getByTestId('card-vehicle-brand_buttons');
 
