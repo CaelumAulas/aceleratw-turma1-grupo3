@@ -21,11 +21,8 @@ import {
 import ListVehicleBrand from "./pages/VehicleBrand/ListVehicleBrand";
 import CreateVehicleBrand from "./pages/VehicleBrand/CreateVehicleBrand";
 import SignUp from "./pages/User/SignUp";
-<<<<<<< HEAD
 import HttpClient from "./utils/HttpClient";
-=======
 import routes from './routes';
->>>>>>> main
 
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
