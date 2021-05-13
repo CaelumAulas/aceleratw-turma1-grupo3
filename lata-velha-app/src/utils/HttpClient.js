@@ -1,10 +1,10 @@
 const HttpClient = () => {
 
-  const get = async (url ,id) => {
-    if (typeof id === 'undefined') {
-      id = '';
+  const get = async (url, params) => {
+    if (typeof params === 'undefined') {
+      params = '';
     }
-    const response = await fetch(`${url}/${id}`);
+    const response = await fetch(`${url}` + new URLSearchParams(params));
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -46,8 +46,18 @@ const HttpClient = () => {
   }
 
   // delete is a reserved js keyword
-  const remove = async (url, headers, body) => {
+  const remove = async (url) => {
+    const response = await fetch(url,
+      {
+        method: 'DELETE',
+      },
+    );
 
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
   }
 
   return {

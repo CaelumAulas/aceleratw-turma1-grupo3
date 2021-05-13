@@ -1,9 +1,8 @@
 import UserView from "../../../models/User/UserView";
 
 const UserService = (userRepository) => {
-  // should this be async?
+
   const listAll = async () => {
-    console.log('UserService listAll');
     const userViewList = [];
     const usersJson = await userRepository.findAll();
     usersJson.forEach(user => {
@@ -13,22 +12,22 @@ const UserService = (userRepository) => {
   }
 
 
-  const create = (userForm) => {
-    if (userRepository.findByEmail(userform.email)) {
-
-    }
-    const newUser = userRepository.save(userForm);
-    return newUser;
+  const create = async (userForm) => {
+    // const existantUser = await userRepository.findByEmail(userform.email);
+    // // if exists return 
+    // const newUser = userRepository.save(userForm);
+    // return newUser;
   }
 
-  const update = (userForm) => {
-    if (userRepository.findByEmail(userform.email)) {
+  const update = async (userForm) => {
+    // if (userRepository.findByEmail(userform.email)) {
 
-    }
+    // }
   }
 
-  const remove = (userId) => {
-
+  const remove = async (userId) => {
+    // const existantUser = await userRepository.findById(userId);
+    // console.log(existantUser);
   }
 
   return {

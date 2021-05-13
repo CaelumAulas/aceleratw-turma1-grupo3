@@ -23,6 +23,7 @@ const ListUser = () => {
 
   const onDeleteHandler = (userId) => {
     console.log("ListUserPage-> onDeleteHandler", userId);
+    userService.remove(userId);
   }
 
   return (
