@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import {
   CssBaseline, 
   Divider, 
@@ -10,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import routes from '../../routes';
 import style from './style';
@@ -19,7 +20,9 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen }) => {
   const theme = useTheme();
   const classes = style(theme);
 
-  const CustomLink = props => <NavLink activeClassName={classes.navLinkActive} exact {...props} />;
+  const CustomLink = forwardRef((props, ref) => { 
+    return <NavLink innerRef={ref} activeClassName={classes.navLinkActive} exact {...props} /> 
+  });
 
   const drawer = (
     <div>
@@ -41,7 +44,7 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen }) => {
   return (
     <>
       <CssBaseline />
-      <nav className={classes.drawer} aria-label="mailbox folders">
+      <nav className={classes.drawer} aria-label="mailbox folders" data-testid="menu">
         <Hidden smUp implementation="css">
           <Drawer
             container={container}
