@@ -5,17 +5,28 @@ import UserRepository from '../../../api/services/User/UserRepository';
 import UserService from '../../../api/services/User/UserService';
 
 const ListUser = () => {
-  // todo: remember to user observable pattern!!!
   const httpClient = useContext(HttpContext);
   const userRepository = UserRepository(httpClient);
   const userService = UserService(userRepository);
   
+  // todo: remember to user observable pattern!!!
   const [usersList, setUsersList] = useState([]);
   useEffect(() => {
-    userService.listAll();
+    userService.listAll().then(list => {
+      setUsersList(list);
+    });
   }, []);
+
+  const onEditHandler = (userId) => {
+    console.log("ListUserPage-> onEditHandler", userId);
+  }
+
+  const onDeleteHandler = (userId) => {
+    console.log("ListUserPage-> onDeleteHandler", userId);
+  }
+
   return (
-    <ListUserPage usersList={[]} />
+    <ListUserPage usersList={usersList} onEditHandler={onEditHandler} onDeleteHandler={onDeleteHandler} />
   );
 };
 

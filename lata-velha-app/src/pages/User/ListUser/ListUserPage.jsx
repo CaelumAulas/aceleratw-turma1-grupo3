@@ -4,13 +4,19 @@ import CardUser from '../../../components/CardUser';
 import PropTypes from 'prop-types';
 import style from './style';
 
-const ListUserPage = (props) => {
+const ListUserPage = ({ usersList, onEditHandler, onDeleteHandler }) => {
   const classes = style();
-  const { usersList } = props;
+
   return (
     <>
       <div className={classes.container}>
-        {usersList.map(user => <CardUser key={user.id} user={user} />)}
+        {usersList.map(user =>
+          <CardUser key={user.id}
+            name={user.name}
+            id={user.id}
+            email={user.email}
+            onEditClick={() => onEditHandler(user.id)}
+            onDeleteClick={() => onDeleteHandler(user.id)} />)}
       </div>
       <ActionBar />
     </>
@@ -18,16 +24,9 @@ const ListUserPage = (props) => {
 }
 
 ListUserPage.propTypes = {
-  usersList: PropTypes.array.isRequired
+  usersList: PropTypes.array.isRequired,
+  onEditHandler: PropTypes.func.isRequired,
+  onDeleteHandler: PropTypes.func.isRequired,
 }
-
-// CardDashboard.propTypes = {
-//   item: PropTypes.shape({
-//     id: PropTypes.number.isRequired,
-//     brand: PropTypes.string.isRequired,
-//     total: PropTypes.number.isRequired,
-//     amount: PropTypes.number.isRequired,
-//   }).isRequired,
-// };
 
 export default ListUserPage;
