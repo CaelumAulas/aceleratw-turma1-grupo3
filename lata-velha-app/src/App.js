@@ -21,6 +21,7 @@ import {
 import ListVehicleBrand from "./pages/VehicleBrand/ListVehicleBrand";
 import CreateVehicleBrand from "./pages/VehicleBrand/CreateVehicleBrand";
 import SignUp from "./pages/User/SignUp";
+import routes from './routes';
 
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -53,35 +54,10 @@ function App() {
             <main className={classes.content}>
               <div className={classes.toolbar} />
               <Switch>
-                <Route path="/login">
-                  <SignIn />
-                </Route>
-                <Route path="/veiculos" exact>
-                  <ListVehicle />
-                </Route>
-                <Route path="/veiculos/adicionar">
-                  <CreateVehicle />
-                </Route>
-                <Route path="/marcas" exact>
-                  <ListVehicleBrand />
-                </Route>
-                <Route path="/marcas/adicionar">
-                  <CreateVehicleBrand />
-                </Route>
-                <Route path="/usuarios" exact>
-                  <ListUser />
-                </Route>
-                <Route path="/usuarios/adicionar">
-                  <SignUp />
-                </Route>
-                <Route path="/dashboard">
-                  <Dashboard />
-                </Route>
-                <Route path="/sair">
-                  <SignUp />
-                </Route>
+                {routes.map(({path, Component}, key) => {
+                  return <Route path={path} key={key} component={Component}></Route>
+                })}
               </Switch>
-            {/* <UpdatePassword /> */}
             </main>
           </div>
         </Router>

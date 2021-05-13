@@ -14,7 +14,7 @@ const FiltersBar = () => {
         defaultOption={messages.searchBrand.defaultMessage}
         label="Marca"
         id="select-brand"
-        onChangeHandler={() => console.log('EH PAUUU!')}
+        onChangeHandler={() => console.log('FiltersBar onchange')}
         value="_"
       />
       <FilterSelect
@@ -22,7 +22,7 @@ const FiltersBar = () => {
         defaultOption={messages.searchModel.defaultMessage}
         label="Modelo"
         id="select-model"
-        onChangeHandler={() => console.log('EH PAUUU!')}
+        onChangeHandler={() => console.log('FiltersBar onchange')}
         value="_"
       />
       <FilterSelect
@@ -30,7 +30,7 @@ const FiltersBar = () => {
         defaultOption={messages.searchPrice.defaultMessage}
         label="Faixa de Preço"
         id="select-price"
-        onChangeHandler={() => console.log('EH PAUUU!')}
+        onChangeHandler={() => console.log('FiltersBar onchange')}
         value="_"
       />
     </div>

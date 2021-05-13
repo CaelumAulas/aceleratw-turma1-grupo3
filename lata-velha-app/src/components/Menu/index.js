@@ -1,32 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import { useTheme } from '@material-ui/core/styles';
 import {
-  CssBaseline, Divider, Drawer, Hidden, List, ListItem, ListItemIcon, ListItemText,
+  CssBaseline, 
+  Divider, 
+  Drawer, 
+  Hidden, 
+  List, 
+  ListItem, 
+  ListItemIcon, 
+  ListItemText
 } from '@material-ui/core';
-import {
-  VpnKey as VpnKeyIcon,
-  DirectionsCar as DirectionsCarIcon,
-  LocalOffer as LocalOfferIcon,
-  People as PeopleIcon,
-  Dashboard as DashboardIcon,
-  ExitToApp as ExitToAppIcon,
-} from '@material-ui/icons';
+import { useTheme } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import routes from '../../routes';
 import style from './style';
 
 const Menu = ({ handleDrawerToggle, window, mobileOpen }) => {
   const theme = useTheme();
   const classes = style(theme);
 
-  const listMenu = [
-    { label: 'Login', icon: <VpnKeyIcon />, path:'login'},
-    { label: 'Veículos', icon: <DirectionsCarIcon />, path:'veiculos' },
-    { label: 'Marcas', icon: <LocalOfferIcon />, path:'marcas' },
-    { label: 'Usuários', icon: <PeopleIcon />, path:'usuarios' },
-    { label: 'Dashboard', icon: <DashboardIcon />, path:'dashboard' },
-    { label: 'Sair', icon: <ExitToAppIcon />, path:'sair' },
-  ];
   const CustomLink = props => <NavLink activeClassName={classes.navLinkActive} exact {...props} />;
 
   const drawer = (
@@ -34,10 +26,10 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen }) => {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {listMenu.map((item) => (
-          <ListItem className={classes.navLink} key={item.label} component={CustomLink} to={`/${item.path}`}>
-            <ListItemIcon color="disabled" className={classes.navLinkActiveIcon}>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.label} /> 
+        {routes.map(({name, path, Icon}) => (
+          <ListItem className={classes.navLink} key={path} component={CustomLink} to={path}>
+            <ListItemIcon color="disabled" className={classes.navLinkActiveIcon}>{Icon}</ListItemIcon>
+            <ListItemText primary={name} /> 
           </ListItem>
         ))}
       </List>
