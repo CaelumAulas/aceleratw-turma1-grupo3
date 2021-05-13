@@ -13,10 +13,8 @@ const UserService = (userRepository) => {
 
 
   const create = async (userForm) => {
-    // const existantUser = await userRepository.findByEmail(userform.email);
-    // // if exists return 
-    // const newUser = userRepository.save(userForm);
-    // return newUser;
+    const newUser = await userRepository.save(userForm);
+    return newUser;
   }
 
   const update = async (userForm) => {

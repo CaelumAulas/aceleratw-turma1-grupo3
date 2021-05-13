@@ -5,14 +5,6 @@ const UserRepository = (httpClient) => {
   // USERS_PATH already has /
   const URL = `${apiConfig.API_URL}:${apiConfig.PORT}${USERS_PATH}`;
 
-  const findByEmail = async (email) => {
-    return await httpClient.get(URL, { email: email });
-  }
-
-  const findById = async (userId) => {
-    return await httpClient.get(`${URL}/${userId}`);
-  }
-
   const findAll = async () => {
     return await httpClient.get(URL);
   }
@@ -28,8 +20,6 @@ const UserRepository = (httpClient) => {
   }
 
   return {
-    findByEmail,
-    findById,
     findAll,
     save,
     remove
