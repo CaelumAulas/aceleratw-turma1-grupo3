@@ -14,7 +14,7 @@ const CardDashboard = ({ item }) => {
   const classes = style();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} data-testid={item.id}>
       <CardActionArea>
         <CardMedia
           component="img"

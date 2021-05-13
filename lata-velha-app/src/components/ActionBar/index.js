@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useLocation, useRouteMatch } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { Button, useTheme } from '@material-ui/core';
 import { Delete as DeleteIcon, Add as AddIcon } from '@material-ui/icons';
@@ -8,7 +8,8 @@ import messages from './messages';
 import { USERS_PATH } from '../../routes/constants';
 
 const ActionBar = () => {
-  const { path } = useRouteMatch()
+  // pq que usa o useLocation e não o useRouteMatch?
+  const path = useLocation().pathname;
   const theme = useTheme();
   const classes = style(theme);
 
@@ -20,6 +21,7 @@ const ActionBar = () => {
         className={classes.actionBarButton}
         startIcon={<DeleteIcon />}
         disabled
+        data-testid="delete-button"
       >
         <FormattedMessage {...messages.deleteButton} />
       </Button>
@@ -28,7 +30,7 @@ const ActionBar = () => {
 
   return (
     <div className={classes.actionBar}>
-      { renderBtnDelete() }
+      { renderBtnDelete()}
 
       <Button
         variant="contained"
@@ -37,6 +39,7 @@ const ActionBar = () => {
         component={Link}
         to={`${path}/adicionar`}
         className={classes.addButton}
+        data-testid="add-button"
       >
         <FormattedMessage {...messages.addButton} />
       </Button>

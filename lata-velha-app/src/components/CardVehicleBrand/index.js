@@ -18,7 +18,7 @@ const CardVehicleBrand = ({ name, onEditClick, onDeleteClick }) => {
   const classes = style();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} data-testid="card-vehicle-brand">
       <CardHeader
         avatar={(
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -36,7 +36,7 @@ const CardVehicleBrand = ({ name, onEditClick, onDeleteClick }) => {
           </Typography>
         )}
       />
-      <CardActions className={classes.cardActions}>
+      <CardActions className={classes.cardActions} data-testid="card-vehicle-brand_buttons">
         <IconButton aria-label={`editar marca ${name}`} onClick={onEditClick}>
           <EditIcon />
         </IconButton>

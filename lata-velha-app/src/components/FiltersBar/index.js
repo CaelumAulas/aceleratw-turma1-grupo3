@@ -1,20 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import { useTheme } from '@material-ui/core';
 import FilterSelect from '../Select';
 import style from './style';
 import messages from './messages';
 
-const FiltersBar = () => {
+const FiltersBar = ({ onChangeHandler }) => {
   const theme = useTheme();
   const classes = style(theme);
+  
   return (
-    <div className={classes.filtersBar}>
+    <div className={classes.filtersBar} data-testid="filters-bar">
       <FilterSelect
         options={['Fiat', 'BMW', 'Ferrari']}
         defaultOption={messages.searchBrand.defaultMessage}
         label="Marca"
         id="select-brand"
-        onChangeHandler={() => console.log('FiltersBar onchange')}
+        onChangeHandler={onChangeHandler}
         value="_"
       />
       <FilterSelect
@@ -22,7 +24,7 @@ const FiltersBar = () => {
         defaultOption={messages.searchModel.defaultMessage}
         label="Modelo"
         id="select-model"
-        onChangeHandler={() => console.log('FiltersBar onchange')}
+        onChangeHandler={onChangeHandler}
         value="_"
       />
       <FilterSelect
@@ -30,7 +32,7 @@ const FiltersBar = () => {
         defaultOption={messages.searchPrice.defaultMessage}
         label="Faixa de Preço"
         id="select-price"
-        onChangeHandler={() => console.log('FiltersBar onchange')}
+        onChangeHandler={onChangeHandler}
         value="_"
       />
     </div>
@@ -38,3 +40,7 @@ const FiltersBar = () => {
 };
 
 export default FiltersBar;
+
+FiltersBar.propTypes = {
+  onChangeHandler: PropTypes.func.isRequired,
+};

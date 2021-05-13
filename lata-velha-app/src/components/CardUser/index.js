@@ -23,7 +23,7 @@ const CardUser = (
   const classes = style();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} data-testid={email}>
       <CardActionArea>
         <RoundAvatar imgAlt="Awesome User Avatar" imgSrc="https://www.w3schools.com/howto/img_avatar.png" />
         <CardContent>
@@ -35,7 +35,7 @@ const CardUser = (
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions className={classes.cardActions}>
+      <CardActions className={classes.cardActions} data-testid="card-user_buttons">
         <IconButton aria-label={`editar ${name}`} onClick={onEditClick}>
           <EditIcon />
         </IconButton>
@@ -48,7 +48,6 @@ const CardUser = (
 };
 
 CardUser.propTypes = {
-  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   onEditClick: PropTypes.func.isRequired,
