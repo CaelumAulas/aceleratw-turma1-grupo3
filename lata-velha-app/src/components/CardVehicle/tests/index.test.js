@@ -1,9 +1,11 @@
 import React from 'react';
-import { screen } from '@testing-library/react'
+import { screen, fireEvent } from '@testing-library/react'
 import CardVehicle from '../index';
 import renderWithRouter from '../../../utils/test-utils';
 
 describe('<CardVehicle />', () => {
+    const mockedEdit = jest.fn();
+    const mockedDelete = jest.fn();
     const vehicle = { 
       model: 'Uno', 
       brandName:'fiat',
@@ -18,8 +20,8 @@ describe('<CardVehicle />', () => {
       brandLogoUrl={vehicle.brandLogoUrl}
       year={vehicle.year} 
       price={vehicle.price}
-      onEditClick={e => {}}
-      onDeleteClick={e => {}}
+      onEditClick={mockedEdit}
+      onDeleteClick={mockedDelete}
     />
 
   it('should render CardVehicle', () => {
@@ -38,7 +40,6 @@ describe('<CardVehicle />', () => {
     expect(priceElement).not.toBe(null);
   })
 
-
   it('should render all buttons', () => {
     renderWithRouter(cardVehicleComponent)
 
@@ -47,4 +48,26 @@ describe('<CardVehicle />', () => {
     expect(containerButtonsElement).not.toBe(null);
     expect(containerButtonsElement.childNodes.length).toBe(2);
   })
+
+  it('should call on edit function', async () => {
+    renderWithRouter(cardVehicleComponent)
+
+    const containerButtonsElement = screen.getByTestId('card-vehicle_buttons');
+    const editClickButton = containerButtonsElement.children[0];
+
+    fireEvent.click(editClickButton)
+
+    expect(mockedEdit).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call on delete function', async () => {
+    renderWithRouter(cardVehicleComponent)
+
+    const containerButtonsElement = screen.getByTestId('card-vehicle_buttons');
+    const deleteClickButton = containerButtonsElement.children[1];
+
+    fireEvent.click(deleteClickButton)
+
+    expect(mockedDelete).toHaveBeenCalledTimes(1);
+  });
 });
