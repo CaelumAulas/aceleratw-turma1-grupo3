@@ -1,9 +1,15 @@
-const API_URL = '';
-
+import UserView from "../../../models/User/UserView";
 
 const UserService = (userRepository) => {
-  const listAll = () => {
-    return userRepository.findAll();
+  // should this be async?
+  const listAll = async () => {
+    console.log('UserService listAll');
+    const userViewList = [];
+    const usersJson = await userRepository.findAll();
+    usersJson.forEach(user => {
+      userViewList.push(UserView(user.id, user.name, user.email));
+    });
+    return userViewList;
   }
 
 
