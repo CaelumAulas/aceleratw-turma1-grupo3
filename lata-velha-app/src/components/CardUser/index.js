@@ -17,7 +17,7 @@ const CardUser = ({ user }) => {
   const classes = style();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} data-testid={user.id}>
       <CardActionArea>
         <RoundAvatar imgAlt="Awesome User Avatar" imgSrc="https://www.w3schools.com/howto/img_avatar.png" />
         <CardContent>
@@ -29,7 +29,7 @@ const CardUser = ({ user }) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions className={classes.cardActions}>
+      <CardActions className={classes.cardActions} data-testid="card-user_buttons">
         <IconButton aria-label={`editar ${user.name}`}>
           <EditIcon />
         </IconButton>

@@ -40,7 +40,7 @@ const CardVehicle = ({ vehicle }) => {
   };
 
   return (
-    <Card>
+    <Card data-testid={vehicle.id}>
       <CardHeader
         avatar={(
           <Avatar aria-label="recipe" src={vehicle.brand.url} alt={`${messages.defaultAlt.defaultMessage} ${vehicle.brand.name}`} />
@@ -81,7 +81,7 @@ const CardVehicle = ({ vehicle }) => {
           </ListItem>
         </List>
       </CardContent>
-      <CardActions className={classes.cardActions}>
+      <CardActions className={classes.cardActions} data-testid="card-vehicle_buttons">
         <IconButton aria-label={`editar veiculo ${vehicle.model}`} onClick={editVehicle}>
           <EditIcon />
         </IconButton>
