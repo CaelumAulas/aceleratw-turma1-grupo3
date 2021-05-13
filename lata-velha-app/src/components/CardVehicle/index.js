@@ -97,7 +97,7 @@ const CardVehicle = (props) => {
 
 CardVehicle.propTypes = {
   model: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired,
+  year: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   brandName: PropTypes.string.isRequired,
   brandLogoUrl: PropTypes.string.isRequired,
