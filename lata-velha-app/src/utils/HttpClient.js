@@ -45,10 +45,16 @@ const HttpClient = () => {
     return await response.json();
   }
 
+  // delete is a reserved js keyword
+  const remove = async (url, headers, body) => {
+
+  }
+
   return {
     get,
     post,
-    put
+    put,
+    remove
   }
 }
 

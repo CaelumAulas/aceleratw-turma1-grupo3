@@ -1,37 +1,59 @@
-import UserFormMapper from "../models/User/UserFormMapper"
-
 const API_URL = '';
 
-const UserService = (httpClient) => {
+const UserRepository = (httpClient) => {
 
-  const userFormMapper = UserFormMapper();
+  const findByEmail = (email) => {
 
+  }
+
+  const findAll = () => {
+
+  }
+
+  const save = () => {
+
+  }
+
+  const remove = () => {
+
+  }
+
+  return {
+    findByEmail,
+    findAll,
+    save,
+    remove
+  }
+}
+
+const UserService = (httpClient, userRepository) => {
   const listAll = () => {
-
+    return userRepository.findAll();
   }
 
-  const showById = (id) => {
-
-  }
 
   const create = (userForm) => {
-    // check if user exists by email
-    if (httpClient.get(API_URL, user)) {
+    if (userRepository.findByEmail(userform.email)) {
       
     }
-    const createdUser = userFormMapper.map(userForm);
-    httpClient.post(createdUser)
-
+    const newUser = userRepository.save(userForm);
+    return newUser;
   }
 
   const update = (userForm) => {
+    if (userRepository.findByEmail(userform.email)) {
+      
+    }
+  }
+
+  const remove = (userId) => {
     
   }
 
   return {
     listAll,
-    showById,
     create,
     update,
+    remove,
   }
 }

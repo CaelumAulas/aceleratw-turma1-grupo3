@@ -4,6 +4,7 @@ import style from './style';
 
 const ListDashboard = () => {
   const classes = style();
+  
   const data = [
     {
       id: Math.random(), brand: 'fiat', total: 40000, amount: 10,
