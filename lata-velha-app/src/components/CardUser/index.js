@@ -13,7 +13,13 @@ import {
 import RoundAvatar from '../RoundAvatar';
 import style from './style';
 
-const CardUser = ({ user }) => {
+const CardUser = (
+  {
+    name,
+    email,
+    onEditClick,
+    onDeleteClick,
+  }) => {
   const classes = style();
 
   return (
@@ -22,18 +28,18 @@ const CardUser = ({ user }) => {
         <RoundAvatar imgAlt="Awesome User Avatar" imgSrc="https://www.w3schools.com/howto/img_avatar.png" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {user.name}
+            {name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {user.email}
+            {email}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.cardActions}>
-        <IconButton aria-label={`editar ${user.name}`}>
+        <IconButton aria-label={`editar ${name}`} onClick={onEditClick}>
           <EditIcon />
         </IconButton>
-        <IconButton aria-label={`deletar ${user.name}`}>
+        <IconButton aria-label={`deletar ${name}`} onClick={onDeleteClick}>
           <DeleteIcon />
         </IconButton>
       </CardActions>
@@ -42,11 +48,11 @@ const CardUser = ({ user }) => {
 };
 
 CardUser.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-  }).isRequired,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  onEditClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
 };
 
 export default injectIntl(CardUser);

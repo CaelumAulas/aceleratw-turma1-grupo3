@@ -14,16 +14,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import style from './style';
 
-const CardVehicleBrand = ({ brand }) => {
+const CardVehicleBrand = ({ name, onEditClick, onDeleteClick }) => {
   const classes = style();
-
-  const editVehicleBrand = () => {
-    console.log('editei');
-  };
-
-  const deleteVehicleBrand = () => {
-    console.log('deletei');
-  };
 
   return (
     <Card className={classes.root}>
@@ -40,15 +32,15 @@ const CardVehicleBrand = ({ brand }) => {
         )}
         title={(
           <Typography variant="h5" component="h2" className={classes.name}>
-            {brand.name}
+            {name}
           </Typography>
         )}
       />
       <CardActions className={classes.cardActions}>
-        <IconButton aria-label={`editar marca ${brand}`} onClick={editVehicleBrand}>
+        <IconButton aria-label={`editar marca ${name}`} onClick={onEditClick}>
           <EditIcon />
         </IconButton>
-        <IconButton aria-label={`deletar marca ${brand}`} onClick={deleteVehicleBrand}>
+        <IconButton aria-label={`deletar marca ${name}`} onClick={onDeleteClick}>
           <DeleteIcon />
         </IconButton>
       </CardActions>
@@ -59,8 +51,7 @@ const CardVehicleBrand = ({ brand }) => {
 export default CardVehicleBrand;
 
 CardVehicleBrand.propTypes = {
-  brand: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-  }).isRequired,
+  name: PropTypes.string.isRequired,
+  onEditClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
 };
