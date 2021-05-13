@@ -5,7 +5,7 @@ const HttpClient = () => {
       id = '';
     }
     const response = await fetch(`${url}/${id}`);
-
+    
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
