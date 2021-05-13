@@ -1,32 +1,7 @@
 const API_URL = '';
 
-const UserRepository = (httpClient) => {
 
-  const findByEmail = (email) => {
-
-  }
-
-  const findAll = () => {
-
-  }
-
-  const save = () => {
-
-  }
-
-  const remove = () => {
-
-  }
-
-  return {
-    findByEmail,
-    findAll,
-    save,
-    remove
-  }
-}
-
-const UserService = (httpClient, userRepository) => {
+const UserService = (userRepository) => {
   const listAll = () => {
     return userRepository.findAll();
   }
@@ -34,7 +9,7 @@ const UserService = (httpClient, userRepository) => {
 
   const create = (userForm) => {
     if (userRepository.findByEmail(userform.email)) {
-      
+
     }
     const newUser = userRepository.save(userForm);
     return newUser;
@@ -42,12 +17,12 @@ const UserService = (httpClient, userRepository) => {
 
   const update = (userForm) => {
     if (userRepository.findByEmail(userform.email)) {
-      
+
     }
   }
 
   const remove = (userId) => {
-    
+
   }
 
   return {
@@ -57,3 +32,5 @@ const UserService = (httpClient, userRepository) => {
     remove,
   }
 }
+
+export default UserService;

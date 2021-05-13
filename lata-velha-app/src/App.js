@@ -23,8 +23,10 @@ import CreateVehicleBrand from "./pages/VehicleBrand/CreateVehicleBrand";
 import SignUp from "./pages/User/SignUp";
 import HttpClient from "./utils/HttpClient";
 import routes from './routes';
-
+import HttpContext from './contexts/HttpContext';
 function App() {
+  
+  const httpClient = HttpClient();
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const classes = style(theme);
@@ -35,36 +37,38 @@ function App() {
   };
 
   return (
-    <FormValidations.Provider
-      value={{
-        name: validateName,
-        oldPassword: validatePassword,
-        password: validatePassword,
-        passwordConfirmation: validatePassword,
-        brand: validateSelect,
-        price: validatePrice,
-      }}
-    >
-      <IntlProvider locale="en" defaultLocale="en">
-        <Router>
-          <div className={classes.root}>
-            <Header handleDrawerToggle={handleDrawerToggle} />
-            <Menu
-              handleDrawerToggle={handleDrawerToggle}
-              mobileOpen={mobileOpen}
-            />
-            <main className={classes.content}>
-              <div className={classes.toolbar} />
-              <Switch>
-                {routes.map(({path, Component}, key) => {
-                  return <Route path={path} key={key} component={Component}></Route>
-                })}
-              </Switch>
-            </main>
-          </div>
-        </Router>
-      </IntlProvider>
-    </FormValidations.Provider>
+    <HttpContext.Provider value={httpClient}>
+      <FormValidations.Provider
+        value={{
+          name: validateName,
+          oldPassword: validatePassword,
+          password: validatePassword,
+          passwordConfirmation: validatePassword,
+          brand: validateSelect,
+          price: validatePrice,
+        }}
+      >
+        <IntlProvider locale="en" defaultLocale="en">
+          <Router>
+            <div className={classes.root}>
+              <Header handleDrawerToggle={handleDrawerToggle} />
+              <Menu
+                handleDrawerToggle={handleDrawerToggle}
+                mobileOpen={mobileOpen}
+              />
+              <main className={classes.content}>
+                <div className={classes.toolbar} />
+                <Switch>
+                  {routes.map(({ path, Component }, key) => {
+                    return <Route path={path} key={key} component={Component}></Route>
+                  })}
+                </Switch>
+              </main>
+            </div>
+          </Router>
+        </IntlProvider>
+      </FormValidations.Provider>
+    </HttpContext.Provider>
   );
 }
 
