@@ -1,30 +1,35 @@
-import React from 'react';
-import ActionBar from '../../../components/ActionBar';
-import CardUser from '../../../components/CardUser';
-import style from './style';
+import React, { useContext, useEffect, useState } from 'react';
+import ListUserPage from './ListUserPage';
+import HttpContext from '../../../contexts/HttpContext';
+import UserRepository from '../../../api/services/User/UserRepository';
+import UserService from '../../../api/services/User/UserService';
 
 const ListUser = () => {
-  const classes = style();
-  const data = [
-    {
-      id: Math.random(), name: 'Fulano', email: 'somerandom@email.com',
-    },
-    {
-      id: Math.random(), name: 'Ciclano', email: 'hello@email.com',
-    },
-    {
-      id: Math.random(), name: 'Osmar', email: 'hi@email.com',
-    },
-  ];
+  const httpClient = useContext(HttpContext);
+  const userRepository = UserRepository(httpClient);
+  const userService = UserService(userRepository);
+  
+  // todo: remember to user observable pattern!!!
+  const [usersList, setUsersList] = useState([]);
+  useEffect(() => {
+    userService.listAll().then(list => {
+      setUsersList(list);
+    });
+  }, []);
+
+  const onEditHandler = (userId) => {
+    console.log("ListUserPage-> onEditHandler", userId);
+  }
+
+  const onDeleteHandler = (userId) => {
+    console.log("ListUserPage-> onDeleteHandler", userId);
+    userService.remove(userId);
+  }
 
   return (
-    <>
-    <div className={classes.container}>
-      {data.map((user) => <CardUser key={user.id} user={user} />)}
-    </div>
-    <ActionBar />
-    </>
+    <ListUserPage usersList={usersList} onEditHandler={onEditHandler} onDeleteHandler={onDeleteHandler} />
   );
 };
 
 export default ListUser;
+

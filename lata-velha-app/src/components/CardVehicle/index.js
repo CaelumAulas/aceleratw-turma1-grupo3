@@ -27,37 +27,39 @@ import formatFloatToBrazilianCurrency from '../../utils/currency';
 import style from './style';
 import messages from './messages';
 
-const CardVehicle = ({ vehicle }) => {
+const CardVehicle = (props) => {
+  const {
+    model,
+    price,
+    year,
+    brandName,
+    brandLogoUrl,
+    onEditClick,
+    onDeleteClick,
+  } = props;
   const theme = useTheme();
   const classes = style(theme);
   const [checked, setChecked] = useState(false);
-  const editVehicle = () => {
-    console.log('editei');
-  };
-
-  const deleteVehicle = () => {
-    console.log('deletei');
-  };
 
   return (
     <Card data-testid={vehicle.id}>
       <CardHeader
         avatar={(
-          <Avatar aria-label="recipe" src={vehicle.brand.url} alt={`${messages.defaultAlt.defaultMessage} ${vehicle.brand.name}`} />
+          <Avatar aria-label="recipe" src={brandLogoUrl} alt={`${messages.defaultAlt.defaultMessage} ${brandName}`} />
         )}
         action={(
           <Checkbox onChange={(e) => setChecked(e.target.checked)} aria-label={
-            checked ? `${messages.checkboxChecked.defaultMessage} ${vehicle.model}`
-              : `${messages.checkboxUnchecked.defaultMessage} ${vehicle.model}`} checked={checked} />
+            checked ? `${messages.checkboxChecked.defaultMessage} ${model}`
+              : `${messages.checkboxUnchecked.defaultMessage} ${model}`} checked={checked} />
         )}
         title={(
           <>
             <Typography variant="h6" component="h2" className={classes.model}>
-              {vehicle.model}
+              {model}
             </Typography>
           </>
         )}
-        subheader={vehicle.brand.name}
+        subheader={brandName}
       />
       <Divider />
       <CardContent className={classes.cardContent}>
@@ -69,7 +71,7 @@ const CardVehicle = ({ vehicle }) => {
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary={
-            <Typography variant="h6" component="h3">{`${formatFloatToBrazilianCurrency(vehicle.price)}`}</Typography>} secondary={messages.currentPrice.defaultMessage} />
+              <Typography variant="h6" component="h3">{`${formatFloatToBrazilianCurrency(price)}`}</Typography>} secondary={messages.currentPrice.defaultMessage} />
           </ListItem>
           <ListItem>
             <ListItemAvatar>
@@ -77,15 +79,15 @@ const CardVehicle = ({ vehicle }) => {
                 <CalendarTodayIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={vehicle.year} secondary={messages.vehicleYear.defaultMessage} />
+            <ListItemText primary={year} secondary={messages.vehicleYear.defaultMessage} />
           </ListItem>
         </List>
       </CardContent>
       <CardActions className={classes.cardActions} data-testid="card-vehicle_buttons">
-        <IconButton aria-label={`editar veiculo ${vehicle.model}`} onClick={editVehicle}>
+        <IconButton aria-label={`editar veiculo ${model}`} onClick={onEditClick}>
           <EditIcon />
         </IconButton>
-        <IconButton aria-label={`deletar veiculo ${vehicle.model}`} onClick={deleteVehicle}>
+        <IconButton aria-label={`deletar veiculo ${model}`} onClick={onDeleteClick}>
           <DeleteIcon />
         </IconButton>
       </CardActions>
@@ -94,16 +96,13 @@ const CardVehicle = ({ vehicle }) => {
 };
 
 CardVehicle.propTypes = {
-  vehicle: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    model: PropTypes.string.isRequired,
-    brand: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    }).isRequired,
-    year: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-  }).isRequired,
+  model: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  brandName: PropTypes.string.isRequired,
+  brandLogoUrl: PropTypes.string.isRequired,
+  onEditClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
 };
 
 export default injectIntl(CardVehicle);

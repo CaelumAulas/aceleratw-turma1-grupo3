@@ -1,36 +1,33 @@
-import React from 'react';
-import ActionBar from '../../../components/ActionBar';
-import CardVehicleBrand from '../../../components/CardVehicleBrand';
-import style from './style';
+import React, { useContext, useEffect, useState } from 'react';
+import ListVehicleBrandPage from './ListVehicleBrandPage';
+import HttpContext from '../../../contexts/HttpContext';
+import VehicleBrandRepository from '../../../api/services/VehicleBrand/VehicleBrandRepository';
+import VehicleBrandService from '../../../api/services/VehicleBrand/VehicleBrandService';
 
 const ListVehicleBrand = () => {
-  const classes = style();
+  const httpClient = useContext(HttpContext);
+  const vehicleBrandRepository = VehicleBrandRepository(httpClient);
+  const vehicleBrandService = VehicleBrandService(vehicleBrandRepository);
 
-  const brands = [{
-    id: Math.random(), name: 'fiat',
-  }, {
-    id: Math.random(), name: 'hello',
-  }, {
-    id: Math.random(), name: 'hey',
-  }, {
-    id: Math.random(), name: 'great name',
-  }, {
-    id: Math.random(), name: 'awesome brand',
-  }, {
-    id: Math.random(), name: 'hello brand',
-  }, {
-    id: Math.random(), name: 'brand again',
-  }, {
-    id: Math.random(), name: 'another one',
-  }];
+  // todo: remember to user observable pattern!!!
+  const [vehicleBrandsList, setVehichleBrandsList] = useState([]);
+  useEffect(() => {
+    vehicleBrandService.listAll().then(list => {
+      setVehichleBrandsList(list);
+    });
+  }, []);
+
+  const onEditHandler = (userId) => {
+    console.log("ListUserPage-> onEditHandler", userId);
+  }
+
+  const onDeleteHandler = (userId) => {
+    console.log("ListUserPage-> onDeleteHandler", userId);
+    userService.remove(userId);
+  }
 
   return (
-    <>
-    <div className={classes.container}>
-      {brands.map((brand) => <CardVehicleBrand key={brand.id} brand={brand} />)}
-    </div>
-    <ActionBar />
-    </>
+    <ListVehicleBrandPage vehicleBrandsList={vehicleBrandsList} onEditHandler={onEditHandler} onDeleteHandler={onDeleteHandler}/>
   );
 };
 
