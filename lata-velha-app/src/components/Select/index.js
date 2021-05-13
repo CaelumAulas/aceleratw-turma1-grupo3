@@ -20,13 +20,14 @@ const Select = ({
   const classes = style(theme);
 
   return (
-    <FormControl margin="normal">
+    <FormControl margin="normal" data-testid={id}>
       <InputLabel htmlFor={id}>{label}</InputLabel>
       <NativeSelect
         className={classes.select}
         id={id}
         value={value}
         onChange={onChangeHandler}
+        data-testid={`${id}-select`}
       >
         <option value="_" disabled>
           {defaultOption}
