@@ -5,6 +5,7 @@ import { Button, useTheme } from '@material-ui/core';
 import { Delete as DeleteIcon, Add as AddIcon } from '@material-ui/icons';
 import style from './style';
 import messages from './messages';
+import { USERS_PATH } from '../../routes/constants';
 
 const ActionBar = () => {
   const { path } = useRouteMatch()
@@ -12,7 +13,7 @@ const ActionBar = () => {
   const classes = style(theme);
 
   const renderBtnDelete = () => {
-    return path !== '/usuarios' && (
+    return path !== USERS_PATH && (
       <Button
         variant="contained"
         color="primary"
