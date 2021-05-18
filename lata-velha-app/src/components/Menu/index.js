@@ -16,7 +16,7 @@ import { NavLink } from 'react-router-dom';
 import { routes } from '../../routes';
 import style from './style';
 
-const Menu = ({ handleDrawerToggle, window, mobileOpen }) => {
+const Menu = ({ handleDrawerToggle, window, mobileOpen, token }) => {
   const theme = useTheme();
   const classes = style(theme);
 
@@ -29,11 +29,13 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen }) => {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {routes.map(({name, path, Icon}) => (
-          <ListItem className={classes.navLink} key={path} component={CustomLink} to={path}>
-            <ListItemIcon color="disabled" className={classes.navLinkActiveIcon}>{Icon}</ListItemIcon>
-            <ListItemText primary={name} /> 
-          </ListItem>
+        {routes.map(({name, path, Icon, isPrivate }) => (
+          (isPrivate && !token) ? null : (
+            <ListItem className={classes.navLink} key={path} component={CustomLink} to={path}>
+              <ListItemIcon color="disabled" className={classes.navLinkActiveIcon}>{Icon}</ListItemIcon>
+              <ListItemText primary={name} /> 
+            </ListItem>
+          )
         ))}
       </List>
     </div>
@@ -82,10 +84,12 @@ Menu.propTypes = {
   handleDrawerToggle: PropTypes.func.isRequired,
   window: PropTypes.func,
   mobileOpen: PropTypes.bool.isRequired,
+  token: PropTypes.string
 };
 
 Menu.defaultProps = {
   window: undefined,
+  token: ''
 };
 
 export default Menu;
