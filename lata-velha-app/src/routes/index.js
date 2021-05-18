@@ -26,10 +26,13 @@ const routes = [
   { path: BRANDS_PATH, name: "Marcas", Component: ListVehicleBrand, Icon: <LocalOfferIcon /> },
   { path: DASHBOARD_PATH, name: "Dashboard", Component: Dashboard, Icon: <DashboardIcon /> },
   { path: SIGNOUT_PATH, name: "Sair", Component: SignUp, Icon: <ExitToAppIcon /> },
-  // { path: ADD_USERS_PATH, name: "Adicionar Usuarios", Component: SignUp , Icon: },
-  // { path: ADD_VEHICLES_PATH, name: "Adicionar Veículos", Component: CreateVehicle , Icon: },
-  // { path: ADD_BRANDS_PATH, name: "Adicionar Marcas", Component: CreateVehicleBrand , Icon: },
-  // { path: UPDATE_PASSWORD_PATH, name: "Atualizar Senha", Component: UpdatePassword , Icon: },
 ]
 
-export default routes;
+const subroutes = [
+  { path: ADD_USERS_PATH, name: "Adicionar Usuarios", Component: SignUp },
+  { path: ADD_VEHICLES_PATH, name: "Adicionar Veículos", Component: CreateVehicle },
+  { path: ADD_BRANDS_PATH, name: "Adicionar Marcas", Component: CreateVehicleBrand },
+  { path: UPDATE_PASSWORD_PATH, name: "Atualizar Senha", Component: UpdatePassword },
+]
+
+export { routes, subroutes };

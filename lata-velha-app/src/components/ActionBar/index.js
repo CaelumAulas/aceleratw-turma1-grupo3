@@ -37,7 +37,7 @@ const ActionBar = () => {
         color="primary"
         startIcon={<AddIcon />}
         component={Link}
-        to={`${path}/adicionar`}
+        to={`${path}/add`}
         className={classes.addButton}
         data-testid="add-button"
       >
