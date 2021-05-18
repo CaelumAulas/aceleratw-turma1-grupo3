@@ -13,7 +13,7 @@ import { useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import routes from '../../routes';
+import { routes } from '../../routes';
 import style from './style';
 
 const Menu = ({ handleDrawerToggle, window, mobileOpen }) => {

@@ -1,15 +1,9 @@
 import { useTheme } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IntlProvider } from "react-intl";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
 import Header from "./components/Header";
 import Menu from "./components/Menu";
-import UpdatePassword from "./pages/User/UpdatePassword";
-import SignIn from "./pages/User/SignIn";
-import ListUser from "./pages/User/ListUser";
-import ListVehicle from "./pages/Vehicle/ListVehicle";
-import CreateVehicle from "./pages/Vehicle/CreateVehicle";
 import style from "./style";
 import FormValidations from "./contexts/formValidations";
 import {
@@ -18,19 +12,15 @@ import {
   validateSelect,
   validatePrice,
 } from "./models/form";
-import ListVehicleBrand from "./pages/VehicleBrand/ListVehicleBrand";
-import CreateVehicleBrand from "./pages/VehicleBrand/CreateVehicleBrand";
-import SignUp from "./pages/User/SignUp";
 import HttpClient from "./utils/HttpClient";
-import routes from './routes';
+import { routes, subroutes } from './routes';
 import HttpContext from './contexts/HttpContext';
+
 function App() {
-  
   const httpClient = HttpClient();
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const classes = style(theme);
-
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -60,6 +50,9 @@ function App() {
                 <div className={classes.toolbar} />
                 <Switch>
                   {routes.map(({ path, Component }, key) => {
+                    return <Route path={path} key={key} component={Component} exact></Route>
+                  })}
+                  {subroutes.map(({ path, Component }, key) => {
                     return <Route path={path} key={key} component={Component}></Route>
                   })}
                 </Switch>

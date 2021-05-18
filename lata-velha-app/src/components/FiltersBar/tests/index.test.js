@@ -16,7 +16,7 @@ describe('<FiltersBar />', () => {
     expect(filtersBarElement.children.length).toBe(3);
   })
 
-  it('should render FiltersBar', () => {
+  it('should call onChange', () => {
     const { container } = renderWithRouter(filtersBarComponent)
 
     const firstFilterElement = container.querySelector('select')
