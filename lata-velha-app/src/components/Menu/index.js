@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import React, { forwardRef, useEffect } from 'react';
+import React, { forwardRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { routes } from '../../routes';
 import style from './style';
@@ -24,9 +24,6 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen, token }) => {
     return <NavLink innerRef={ref} activeClassName={classes.navLinkActive} exact {...props} />
   });
 
-  useEffect(() => {
-    console.log('menu updated');
-  }, [token]);
 
   const drawer = (
     <div>
