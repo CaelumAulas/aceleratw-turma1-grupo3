@@ -40,6 +40,7 @@ const CreateVehicle = () => {
     e.preventDefault();
     if (formIsValid()) {
       const brand = { id: form.brand };
+      const {model, year, price} = form;
       const apiResponse = await vehicleService.create({
         brand, model, year, price,
       });

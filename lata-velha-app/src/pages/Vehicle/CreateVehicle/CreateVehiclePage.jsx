@@ -7,14 +7,14 @@ import style from './style';
 import messages from '../messages';
 
 const CreateVehiclePage = (props) => {
-  const { 
-    onFormSubmitHandler, 
+  const {
+    onFormSubmitHandler,
     onFormChangeHandler,
     formValues,
-    errorsValidation, 
+    errorsValidation,
     validateField,
     brandOptions,
-  } = props
+  } = props;
   const theme = useTheme();
   const classes = style(theme);
 
@@ -43,9 +43,6 @@ const CreateVehiclePage = (props) => {
             aria-describedby="model-text"
             required
           />
-          <FormHelperText id="model-text">
-            <FormattedMessage {...messages.textModel} />
-          </FormHelperText>
         </FormControl>
 
         <FormControl fullWidth margin="normal">
@@ -61,9 +58,6 @@ const CreateVehiclePage = (props) => {
             aria-describedby="year-text"
             required
           />
-          <FormHelperText id="year-text">
-            <FormattedMessage {...messages.textYear} />
-          </FormHelperText>
         </FormControl>
 
         <FormControl fullWidth margin="normal">
@@ -83,10 +77,7 @@ const CreateVehiclePage = (props) => {
             required
           />
           <FormHelperText id="price-text" aria-live="assertive">
-            {
-              errorsValidation.price.text ||
-              <FormattedMessage {...messages.textPrice} />
-            }
+            {errorsValidation.price.text}
           </FormHelperText>
         </FormControl>
 
@@ -115,17 +106,9 @@ CreateVehiclePage.propTypes = {
   onFormSubmitHandler: PropTypes.func.isRequired,
   onFormChangeHandler: PropTypes.func.isRequired,
   formValues: PropTypes.object.isRequired,
-  // onSelectChangeHandler: PropTypes.func.isRequired,
-  // onYearChangeHandler: PropTypes.func.isRequired,
-  // onPriceChangeHandler: PropTypes.func.isRequired,
-  // onModelChangeHandler: PropTypes.func.isRequired,
   errorsValidation: PropTypes.object.isRequired,
   validateField: PropTypes.func.isRequired,
   brandOptions: PropTypes.array.isRequired,
-  // selectedBrandValue: PropTypes.string.isRequired,
-  // modelValue: PropTypes.string.isRequired,
-  // yearValue: PropTypes.number.isRequired,
-  // priceValue: PropTypes.number.isRequired,
 };
 
 export default CreateVehiclePage;

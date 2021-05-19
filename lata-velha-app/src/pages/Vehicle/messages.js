@@ -19,25 +19,13 @@ export default defineMessages({
     id: `${prefix}.model`,
     defaultMessage: 'Modelo',
   },
-  textModel: {
-    id: `${prefix}.textModel`,
-    defaultMessage: 'Informe o modelo do veículo',
-  },
   year: {
     id: `${prefix}.year`,
     defaultMessage: 'Ano de fabricação',
   },
-  textYear: {
-    id: `${prefix}.textYear`,
-    defaultMessage: 'Informe o ano de fabricação do veículo',
-  },
   price: {
     id: `${prefix}.price`,
     defaultMessage: 'Preço',
-  },
-  textPrice: {
-    id: `${prefix}.textPrice`,
-    defaultMessage: 'Informe o preço do veículo',
   },
   buttonCancel: {
     id: `${prefix}.buttonCancel`,
