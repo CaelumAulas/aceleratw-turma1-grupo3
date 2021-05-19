@@ -32,9 +32,9 @@ const Select = ({
         <option value="_" disabled>
           {defaultOption}
         </option>
-        {options.map((option) => (
-          <option key={option.toLowerCase()} value={option.toLowerCase()}>
-            {option}
+        {options.map(({id, name}) => (
+          <option key={name.toLowerCase() + id} value={id}>
+            {name}
           </option>
         ))}
       </NativeSelect>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import {
   Button,
@@ -15,47 +15,82 @@ import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
 import messages from '../messages';
 import FilterSelect from '../../../components/Select';
+import VehicleBrandRepository from '../../../api/services/VehicleBrand/VehicleBrandRepository';
+import VehicleBrandService from '../../../api/services/VehicleBrand/VehicleBrandService';
+import HttpContext from '../../../contexts/HttpContext';
+import VehicleRepository from '../../../api/services/Vehicle/VehicleRepository';
+import VehicleService from '../../../api/services/Vehicle/VehicleService';
 
 const CreateVehicle = () => {
+  const theme = useTheme();
+  const classes = style(theme);
+  const validations = useContext(FormValidations);
+  const [errors, validateField, formIsValid] = useErrors(validations);
+
+  // default value for year input
   const today = new Date();
   const currentYear = today.getFullYear();
 
-  const brands = ['Fiat', 'BMW', 'Ferrari'];
-  const [brand, setBrand] = useState('_');
+  const httpClient = useContext(HttpContext);
+  const brandRepository = VehicleBrandRepository(httpClient);
+  const brandService = VehicleBrandService(brandRepository);
+
+  const vehicleRepository = VehicleRepository(httpClient);
+  const vehicleService = VehicleService(vehicleRepository);
+
+  // todo: review this default option value
+  const [brands, setBrand] = useState([{ id: 0, name: '_' }]);
+  const [selectedBrandValue, setSelectedBrandValue] = useState("_");
+
   const [model, setModel] = useState('');
   const [year, setYear] = useState(currentYear);
   const [price, setPrice] = useState(0);
 
-  const theme = useTheme();
-  const classes = style(theme);
+  useEffect(() => {
+    brandService.listAll().then(list => {
+      setBrand(list);
+    })
+  }, []);
 
-  const validations = useContext(FormValidations);
-  const [errors, validateField, formIsValid] = useErrors(validations);
-
-  const handleSubmit = (data) => {
-    console.log(data);
+  const onFormSubmit = async (e) => {
+    e.preventDefault();
+    if (formIsValid()) {
+      const brand = { id: selectedBrandValue };
+      const apiResponse = await vehicleService.create({
+        brand, model, year, price,
+      });
+      if (apiResponse.success) {
+        // do a barrel roll
+        alert(apiResponse.message);
+        // clean the form
+        resetStates();
+      }
+    }
   };
+
+  const resetStates = () => {
+    setSelectedBrandValue('_');
+    setModel('');
+    setYear(currentYear);
+    setPrice(0);
+  }
+
+  const onSelectChangeHandler = (e) => {
+    const optionSelected = e.target.value;
+    setSelectedBrandValue(optionSelected);
+  }
 
   return (
     <>
       <Typography variant="h4" component="h1"><FormattedMessage {...messages.createVehicleTitle} /></Typography>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (formIsValid()) {
-            handleSubmit({
-              brand, model, year, price,
-            });
-          }
-        }}
-      >
+      <form onSubmit={onFormSubmit}>
         <FilterSelect
-          options={['Fiat', 'BMW', 'Ferrari']}
+          options={brands}
           defaultOption={messages.textBrand.defaultMessage}
           label="Marca"
           id="select-brand"
-          onChangeHandler={() => console.log('EH PAUUU!')}
-          value="_"
+          onChangeHandler={onSelectChangeHandler}
+          value={selectedBrandValue}
         />
         <FormControl fullWidth margin="normal">
           <InputLabel htmlFor="model">
