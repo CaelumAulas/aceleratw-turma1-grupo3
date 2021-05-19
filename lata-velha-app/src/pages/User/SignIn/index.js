@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import {
   Button,
@@ -10,17 +11,33 @@ import {
 } from '@material-ui/core';
 import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
+import HttpContext from '../../../contexts/HttpContext';
+import AuthRepository from '../../../api/services/Auth/AuthRepository';
+import AuthService from '../../../api/services/Auth/AuthService';
 import messages from '../messages';
+import { useHistory } from 'react-router';
+import { VEHICLES_PATH } from '../../../routes/constants';
 
-const SignIn = () => {
+const SignIn = ({ setToken }) => {
+  const httpClient = useContext(HttpContext);
+  const authRepository = AuthRepository(httpClient);
+  const authService = AuthService(authRepository);
+  const history = useHistory();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const validations = useContext(FormValidations);
   const [errors, validateField, formIsValid] = useErrors(validations);
 
-  const handleSubmit = (data) => {
-    console.log(data);
+  const handleSubmit = async(data) => {
+    const response = await authService.create(data)
+    setToken(response.jwtAuthenticationResponse.accessToken);
+    const isAuthenticated = typeof response.jwtAuthenticationResponse.accessToken !== "undefined";
+    // redirect to list of vehicles
+    if (isAuthenticated) {
+      history.push(VEHICLES_PATH);
+    }
   };
 
   return (
@@ -76,5 +93,9 @@ const SignIn = () => {
     </>
   );
 };
+
+SignIn.propTypes = {
+  setToken: PropTypes.func.isRequired,
+}
 
 export default SignIn;
