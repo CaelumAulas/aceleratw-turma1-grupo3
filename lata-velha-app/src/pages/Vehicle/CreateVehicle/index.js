@@ -23,7 +23,7 @@ const CreateVehicle = () => {
 
   // Services setup
   const httpClient = useContext(HttpContext);
-  
+
   const brandRepository = VehicleBrandRepository(httpClient);
   const brandService = VehicleBrandService(brandRepository);
 
@@ -40,7 +40,7 @@ const CreateVehicle = () => {
     e.preventDefault();
     if (formIsValid()) {
       const brand = { id: form.brand };
-      const {model, year, price} = form;
+      const { model, year, price } = form;
       const apiResponse = await vehicleService.create({
         brand, model, year, price,
       });
@@ -57,7 +57,7 @@ const CreateVehicle = () => {
 
   const onFormChange = (e) => {
     const { name, value } = e.target;
-    const newFormState = {...form};
+    const newFormState = { ...form };
     newFormState[name] = value;
     setFormState(newFormState);
   }
