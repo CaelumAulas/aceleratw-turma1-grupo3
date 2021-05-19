@@ -7,7 +7,9 @@ const VehicleRepository = (httpClient) => {
   const URL = `${apiConfig.API_URL}:${apiConfig.PORT}${VEHICLES_PATH}`;
   const { token } = useToken();
   const findAll = async () => {
-    return await httpClient.get(URL);
+    return await httpClient.get(URL, null, {
+      'Authorization': `Bearer ${token}`
+    });
   }
 
   const save = async (vehicleForm) => {

@@ -4,31 +4,37 @@ import CardVehicle from '../../../components/CardVehicle';
 import ActionBar from '../../../components/ActionBar';
 import PropTypes from 'prop-types';
 import style from './style';
+import { useTheme } from '@material-ui/core';
 
-const ListVehiclePage = ({ vehiclesList, onEditHandler, onDeleteHandler }) => {
-  const classes = style();
-  // const brands = {
-  //   fiat: { name: 'Fiat', url: 'https://www.carlogos.org/logo/Fiat-logo-2006-1920x1080.png' },
-  //   bmw: { name: 'BMW', url: 'https://www.carlogos.org/car-logos/bmw-logo-2020-blue-white.png' },
-  //   bugatti: { name: 'Buggati', url: 'https://www.carlogos.org/logo/Bugatti-logo-1024x768.png' },
-  //   volks: { name: 'Volkswagen', url: 'https://www.carlogos.org/logo/Volkswagen-logo-2019-1500x1500.png' },
-  // };
-
+const ListVehiclePage = (props) => {
+  const { 
+    vehiclesList, 
+    onEditHandler, 
+    onDeleteHandler, 
+    brandsFilterOptions,
+    modelsFilterOptions,
+    priceRangesFilterOptions,
+  } = props;
+  
+  const theme = useTheme();
+  const classes = style(theme);
   return (
     <>
-      <FiltersBar />
-      <div className={classes.container}>
-        {vehiclesList.map(vehicle =>
-          <CardVehicle key={vehicle.id}
-            model={vehicle.model}
-            price={vehicle.price}
-            year={vehicle.year}
-            brandName={vehicle.brandName}
-            brandLogoUrl="https://www.carlogos.org/logo/Fiat-logo-2006-1920x1080.png"
-            onEditClick={() => onEditHandler(vehicle.id)}
-            onDeleteClick={() => onDeleteHandler(vehicle.id)} />
-        )
-        }
+      <FiltersBar modelsList={modelsFilterOptions} brandsFilterOptions={brandsFilterOptions} priceRangesList={priceRangesFilterOptions} />
+      <div className={classes.listContainer}>
+        <div className={classes.list}>
+          {vehiclesList.map(vehicle =>
+            <CardVehicle key={vehicle.id}
+              model={vehicle.model}
+              price={vehicle.price}
+              year={vehicle.year}
+              brandName={vehicle.brandName}
+              brandLogoUrl="https://www.carlogos.org/logo/Fiat-logo-2006-1920x1080.png"
+              onEditClick={() => onEditHandler(vehicle.id)}
+              onDeleteClick={() => onDeleteHandler(vehicle.id)} />
+          )
+          }
+        </div>
       </div>
       <ActionBar />
     </>
@@ -38,6 +44,13 @@ const ListVehiclePage = ({ vehiclesList, onEditHandler, onDeleteHandler }) => {
 
 ListVehiclePage.propTypes = {
   vehiclesList: PropTypes.array.isRequired,
+  brandsFilterOptions: PropTypes.shape({
+    list: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
+  }).isRequired,
+  modelsFilterOptions: PropTypes.array.isRequired,
+  priceRangesFilterOptions: PropTypes.array.isRequired,
   onEditHandler: PropTypes.func.isRequired,
   onDeleteHandler: PropTypes.func.isRequired,
 }

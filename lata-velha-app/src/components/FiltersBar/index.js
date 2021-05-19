@@ -5,36 +5,36 @@ import FilterSelect from '../Select';
 import style from './style';
 import messages from './messages';
 
-const FiltersBar = ({ onChangeHandler }) => {
+const FiltersBar = ({ brandsFilterOptions, modelsList, priceRangesList }) => {
   const theme = useTheme();
   const classes = style(theme);
-  
+  console.log('FiltersBar', brandsFilterOptions);
   return (
     <div className={classes.filtersBar} data-testid="filters-bar">
       <FilterSelect
-        options={['Fiat', 'BMW', 'Ferrari']}
+        options={brandsFilterOptions.list}
         defaultOption={messages.searchBrand.defaultMessage}
         label="Marca"
         id="select-brand"
-        onChangeHandler={onChangeHandler}
-        value="_"
+        onChangeHandler={brandsFilterOptions.onChange}
+        value={brandsFilterOptions.value}
       />
-      <FilterSelect
-        options={['Uno', 'Logan', 'monza']}
+      {/* <FilterSelect
+        options={modelsList}
         defaultOption={messages.searchModel.defaultMessage}
         label="Modelo"
         id="select-model"
-        onChangeHandler={onChangeHandler}
+        onChangeHandler={() => console.log('handler')}
         value="_"
       />
       <FilterSelect
-        options={['0 - R$ 10.000,00', 'R$ 10.001,00 - R$ 20.000,00', 'R$ 20.001,00 - R$ 30.000,00', 'R$ 30.001,00 +']}
+        options={priceRangesList}
         defaultOption={messages.searchPrice.defaultMessage}
         label="Faixa de Preço"
         id="select-price"
-        onChangeHandler={onChangeHandler}
+        onChangeHandler={() => console.log('handler')}
         value="_"
-      />
+      /> */}
     </div>
   );
 };
@@ -42,5 +42,12 @@ const FiltersBar = ({ onChangeHandler }) => {
 export default FiltersBar;
 
 FiltersBar.propTypes = {
-  onChangeHandler: PropTypes.func.isRequired,
+  // onChangeHandler: PropTypes.func.isRequired,
+  brandsFilterOptions: PropTypes.shape({
+    list: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
+  }).isRequired,
+  modelsList: PropTypes.array.isRequired,
+  priceRangesList: PropTypes.array.isRequired,
 };
