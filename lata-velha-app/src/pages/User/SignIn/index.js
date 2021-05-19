@@ -15,11 +15,14 @@ import HttpContext from '../../../contexts/HttpContext';
 import AuthRepository from '../../../api/services/Auth/AuthRepository';
 import AuthService from '../../../api/services/Auth/AuthService';
 import messages from '../messages';
+import { useHistory } from 'react-router';
+import { VEHICLES_PATH } from '../../../routes/constants';
 
 const SignIn = ({ setToken }) => {
   const httpClient = useContext(HttpContext);
   const authRepository = AuthRepository(httpClient);
   const authService = AuthService(authRepository);
+  const history = useHistory();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,7 +33,11 @@ const SignIn = ({ setToken }) => {
   const handleSubmit = async(data) => {
     const response = await authService.create(data)
     setToken(response.jwtAuthenticationResponse.accessToken);
-    // redirect
+    const isAuthenticated = typeof response.jwtAuthenticationResponse.accessToken !== "undefined";
+    // redirect to list of vehicles
+    if (isAuthenticated) {
+      history.push(VEHICLES_PATH);
+    }
   };
 
   return (
