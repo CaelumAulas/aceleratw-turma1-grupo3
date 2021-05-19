@@ -30,17 +30,14 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen, token }) => {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {routes.map(({ name, path, Icon, isPrivate }) => {
-          console.log(name,token);
-          return (
-            (isPrivate && !token) ? null : (
-              <ListItem className={classes.navLink} key={path} component={CustomLink} to={path}>
-                <ListItemIcon color="disabled" className={classes.navLinkActiveIcon}>{Icon}</ListItemIcon>
-                <ListItemText primary={name} />
-              </ListItem>
-            )
-          )
-        })}
+        {routes.map(({ name, path, Icon, isPrivate }) =>
+          ((isPrivate && !token) ? null : (
+            <ListItem className={classes.navLink} key={path} component={CustomLink} to={path}>
+              <ListItemIcon color="disabled" className={classes.navLinkActiveIcon}>{Icon}</ListItemIcon>
+              <ListItemText primary={name} />
+            </ListItem>
+          ))
+        )}
       </List>
     </div>
   );
