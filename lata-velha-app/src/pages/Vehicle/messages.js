@@ -35,4 +35,8 @@ export default defineMessages({
     id: `${prefix}.buttonCad`,
     defaultMessage: 'Cadastrar',
   },
+  vehicleCreated: {
+    id: `${prefix}.vehicleCreated`,
+    defaultMessage: 'Veículo salvo com sucesso!',
+  },
 });

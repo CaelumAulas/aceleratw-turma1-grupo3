@@ -19,6 +19,7 @@ const CreateVehicle = () => {
     brand: '_'
   };
   const [form, setFormState] = useState(initialFormState);
+  const [isCompleteShowing, setIsCompleteShowing] = useState(false);
   const [brandOptions, setBrandOptions] = useState([{ id: 0, name: '_' }]);
 
   // Services setup
@@ -36,6 +37,12 @@ const CreateVehicle = () => {
     })
   }, []);
 
+
+  const showSnackbar = () => {
+    console.log('here');
+    setIsCompleteShowing(true);
+  }
+
   const onFormSubmit = async (e) => {
     e.preventDefault();
     if (formIsValid()) {
@@ -45,7 +52,7 @@ const CreateVehicle = () => {
         brand, model, year, price,
       });
       if (apiResponse.success) {
-        alert(apiResponse.message);
+        showSnackbar();
         resetStates();
       }
     }
@@ -66,6 +73,8 @@ const CreateVehicle = () => {
     <CreateVehiclePage
       onFormSubmitHandler={onFormSubmit}
       onFormChangeHandler={onFormChange}
+      showSnackbar={isCompleteShowing}
+      snackCloseHandler={() => setIsCompleteShowing(false)}
       errorsValidation={errors}
       validateField={validateField}
       brandOptions={brandOptions}

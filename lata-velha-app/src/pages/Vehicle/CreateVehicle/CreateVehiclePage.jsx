@@ -1,4 +1,6 @@
-import { Button, FormControl, FormHelperText, Input, InputAdornment, InputLabel, Typography, useTheme } from '@material-ui/core';
+import { Button, FormControl, FormHelperText, IconButton, Input, InputAdornment, InputLabel, Snackbar, Typography, useTheme } from '@material-ui/core';
+import { Close as CloseIcon } from '@material-ui/icons';
+import MuiAlert from '@material-ui/lab/Alert';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
@@ -10,10 +12,12 @@ const CreateVehiclePage = (props) => {
   const {
     onFormSubmitHandler,
     onFormChangeHandler,
+    snackCloseHandler,
     formValues,
     errorsValidation,
     validateField,
     brandOptions,
+    showSnackbar,
   } = props;
   const theme = useTheme();
   const classes = style(theme);
@@ -98,6 +102,22 @@ const CreateVehiclePage = (props) => {
           <FormattedMessage {...messages.buttonCad} />
         </Button>
       </form>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        open={showSnackbar}
+        autoHideDuration={4000}
+        onClose={snackCloseHandler}
+      >
+        <MuiAlert elevation={6} variant="filled" severity="success">
+          <FormattedMessage {...messages.vehicleCreated} />
+          <IconButton size="small" aria-label="close" color="inherit" onClick={snackCloseHandler}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+        </MuiAlert>
+      </Snackbar>
     </>
   );
 }
@@ -105,10 +125,12 @@ const CreateVehiclePage = (props) => {
 CreateVehiclePage.propTypes = {
   onFormSubmitHandler: PropTypes.func.isRequired,
   onFormChangeHandler: PropTypes.func.isRequired,
+  snackCloseHandler: PropTypes.func.isRequired,
   formValues: PropTypes.object.isRequired,
   errorsValidation: PropTypes.object.isRequired,
   validateField: PropTypes.func.isRequired,
   brandOptions: PropTypes.array.isRequired,
+  showSnackbar: PropTypes.bool
 };
 
 export default CreateVehiclePage;
