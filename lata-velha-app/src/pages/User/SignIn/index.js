@@ -29,8 +29,8 @@ const SignIn = ({ setToken }) => {
 
   const handleSubmit = async(data) => {
     const response = await authService.create(data)
-    
     setToken(response.jwtAuthenticationResponse.accessToken);
+    // redirect
   };
 
   return (

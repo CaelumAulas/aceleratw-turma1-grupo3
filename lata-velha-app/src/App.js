@@ -1,5 +1,5 @@
 import { useTheme } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IntlProvider } from "react-intl";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Header from "./components/Header";
@@ -26,23 +26,29 @@ function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const classes = style(theme);
+  const validations = {
+    name: validateName,
+    oldPassword: validatePassword,
+    password: validatePassword,
+    passwordConfirmation: validatePassword,
+    brand: validateSelect,
+    price: validatePrice,
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  const renderRoutes = (routes) => {
+    return routes.map(({ path, Component, isPrivate }, key) => 
+      <PrivateRoute path={path} component={(props) => <Component setToken={setToken} {...props} />} key={key} token={token} isPrivate={isPrivate} exact />
+    );
+  }
+
   return (
     <HttpContext.Provider value={httpClient}>
       <FormValidations.Provider
-        value={{
-          name: validateName,
-          oldPassword: validatePassword,
-          password: validatePassword,
-          passwordConfirmation: validatePassword,
-          brand: validateSelect,
-          price: validatePrice,
-        }}
-      >
+        value={validations}>
         <IntlProvider locale="en" defaultLocale="en">
           <Router>
             <div className={classes.root}>
@@ -55,12 +61,8 @@ function App() {
               <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <Switch>
-                  {routes.map(({ path, Component, isPrivate }, key) => {
-                    return <PrivateRoute path={path} component={(props) => <Component setToken={setToken} {...props} />} key={key} token={token} isPrivate={isPrivate} exact /> 
-                  })}
-                  {subroutes.map(({ path, Component, isPrivate }, key) => {
-                    return <PrivateRoute path={path} component={Component} key={key} token={token} isPrivate={isPrivate} exact /> 
-                  })}
+                  {renderRoutes(routes)}
+                  {renderRoutes(subroutes)}
                 </Switch>
               </main>
             </div>
