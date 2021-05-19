@@ -9,17 +9,11 @@ import messages from '../messages';
 const CreateVehiclePage = (props) => {
   const { 
     onFormSubmitHandler, 
-    onSelectChangeHandler, 
-    onYearChangeHandler,
-    onPriceChangeHandler,
-    onModelChangeHandler,
+    onFormChangeHandler,
+    formValues,
     errorsValidation, 
     validateField,
-    brands,
-    selectedBrandValue,
-    modelValue,
-    yearValue,
-    priceValue,
+    brandOptions,
   } = props
   const theme = useTheme();
   const classes = style(theme);
@@ -29,12 +23,13 @@ const CreateVehiclePage = (props) => {
       <Typography variant="h4" component="h1"><FormattedMessage {...messages.createVehicleTitle} /></Typography>
       <form onSubmit={onFormSubmitHandler}>
         <FilterSelect
-          options={brands}
+          options={brandOptions}
           defaultOption={messages.textBrand.defaultMessage}
-          label="Marca"
+          label={messages.brand.defaultMessage}
           id="select-brand"
-          onChangeHandler={onSelectChangeHandler}
-          value={selectedBrandValue}
+          onChangeHandler={onFormChangeHandler}
+          value={formValues.brand}
+          name="brand"
         />
         <FormControl fullWidth margin="normal">
           <InputLabel htmlFor="model">
@@ -42,8 +37,9 @@ const CreateVehiclePage = (props) => {
           </InputLabel>
           <Input
             id="model"
-            value={modelValue}
-            onChange={onModelChangeHandler}
+            name="model"
+            value={formValues.model}
+            onChange={onFormChangeHandler}
             aria-describedby="model-text"
             required
           />
@@ -59,8 +55,9 @@ const CreateVehiclePage = (props) => {
           <Input
             id="year"
             type="number"
-            value={yearValue}
-            onChange={onYearChangeHandler}
+            name="year"
+            value={formValues.year}
+            onChange={onFormChangeHandler}
             aria-describedby="year-text"
             required
           />
@@ -77,10 +74,10 @@ const CreateVehiclePage = (props) => {
             type="number"
             id="price"
             name="price"
-            value={priceValue}
+            value={formValues.price}
             onBlur={validateField}
             error={!errorsValidation.price.valid}
-            onChange={onPriceChangeHandler}
+            onChange={onFormChangeHandler}
             startAdornment={<InputAdornment position="start">R$</InputAdornment>}
             aria-describedby="price-text"
             required
@@ -116,17 +113,19 @@ const CreateVehiclePage = (props) => {
 
 CreateVehiclePage.propTypes = {
   onFormSubmitHandler: PropTypes.func.isRequired,
-  onSelectChangeHandler: PropTypes.func.isRequired,
-  onYearChangeHandler: PropTypes.func.isRequired,
-  onPriceChangeHandler: PropTypes.func.isRequired,
-  onModelChangeHandler: PropTypes.func.isRequired,
+  onFormChangeHandler: PropTypes.func.isRequired,
+  formValues: PropTypes.object.isRequired,
+  // onSelectChangeHandler: PropTypes.func.isRequired,
+  // onYearChangeHandler: PropTypes.func.isRequired,
+  // onPriceChangeHandler: PropTypes.func.isRequired,
+  // onModelChangeHandler: PropTypes.func.isRequired,
   errorsValidation: PropTypes.object.isRequired,
   validateField: PropTypes.func.isRequired,
-  brands: PropTypes.array.isRequired,
-  selectedBrandValue: PropTypes.string.isRequired,
-  modelValue: PropTypes.string.isRequired,
-  yearValue: PropTypes.number.isRequired,
-  priceValue: PropTypes.number.isRequired,
+  brandOptions: PropTypes.array.isRequired,
+  // selectedBrandValue: PropTypes.string.isRequired,
+  // modelValue: PropTypes.string.isRequired,
+  // yearValue: PropTypes.number.isRequired,
+  // priceValue: PropTypes.number.isRequired,
 };
 
 export default CreateVehiclePage;

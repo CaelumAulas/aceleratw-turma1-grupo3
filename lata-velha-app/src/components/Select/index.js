@@ -15,6 +15,7 @@ const Select = ({
   id,
   onChangeHandler,
   value,
+  name,
 }) => {
   const theme = useTheme();
   const classes = style(theme);
@@ -28,6 +29,7 @@ const Select = ({
         value={value}
         onChange={onChangeHandler}
         data-testid={`${id}-select`}
+        name={name}
       >
         <option value="_" disabled>
           {defaultOption}
@@ -49,6 +51,7 @@ Select.propTypes = {
   id: PropTypes.string.isRequired,
   onChangeHandler: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
+  name: PropTypes.string
 };
 
 export default Select;
