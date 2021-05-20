@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import VehicleRepository from '../../../api/services/Vehicle/VehicleRepository';
-import VehicleService from '../../../api/services/Vehicle/VehicleService';
+import { toast } from 'react-toastify';
 import VehicleBrandRepository from '../../../api/services/VehicleBrand/VehicleBrandRepository';
 import VehicleBrandService from '../../../api/services/VehicleBrand/VehicleBrandService';
 import FormValidations from '../../../contexts/formValidations';
 import HttpContext from '../../../contexts/HttpContext';
 import useErrors from '../../../hooks/useErrors';
-import CreateVehiclePage from './CreateVehiclePage';
-import { toast } from 'react-toastify';
-import messages from '../messages';
-import Vehicle from '../../../models/Vehicle/VehicleForm';
+import useVehicleBrandService from '../../../hooks/useVehicleBrandService';
 import useVehicleService from '../../../hooks/useVehicleService';
+import Vehicle from '../../../models/Vehicle/VehicleForm';
+import messages from '../messages';
+import CreateVehiclePage from './CreateVehiclePage';
 
 
 const CreateVehicle = () => {
@@ -25,12 +24,7 @@ const CreateVehicle = () => {
   const [form, setFormState] = useState(initialFormState);
   const [brandOptions, setBrandOptions] = useState([{ id: 0, name: '_' }]);
 
-  // Services setup
-  const httpClient = useContext(HttpContext);
-
-  const brandRepository = VehicleBrandRepository(httpClient);
-  const brandService = VehicleBrandService(brandRepository);
-
+  const brandService = useVehicleBrandService();
   const vehicleService  = useVehicleService();
 
   useEffect(loadList, []);
