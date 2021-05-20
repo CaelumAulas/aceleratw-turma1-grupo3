@@ -32,6 +32,14 @@ const useStyles = makeStyles((theme) => ({
       color: '#ffffff', 
     },
   },
+  navLinkLogout: {
+    border: 'none',
+    padding: 0,
+    background: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer'
+  },
 }));
 
 export default useStyles;

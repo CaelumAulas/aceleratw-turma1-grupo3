@@ -15,7 +15,6 @@ import {
   LocalOffer as LocalOfferIcon,
   People as PeopleIcon,
   Dashboard as DashboardIcon,
-  ExitToApp as ExitToAppIcon,
 } from '@material-ui/icons';
 
 // The order matters for our maps function on rendering time
@@ -23,9 +22,8 @@ const routes = [
   { path: SIGNIN_PATH, name: "Entrar", Component: SignIn, Icon: <VpnKeyIcon />, isPrivate: false },
   { path: USERS_PATH, name: "Usuarios", Component: ListUser, Icon: <PeopleIcon />, isPrivate: true },
   { path: VEHICLES_PATH, name: "Veículos", Component: ListVehicle, Icon: <DirectionsCarIcon />, isPrivate: false },
-  { path: BRANDS_PATH, name: "Marcas", Component: ListVehicleBrand, Icon: <LocalOfferIcon />, isPrivate: true },
-  { path: DASHBOARD_PATH, name: "Dashboard", Component: Dashboard, Icon: <DashboardIcon />, isPrivate: true },
-  { path: SIGNOUT_PATH, name: "Sair", Component: SignUp, Icon: <ExitToAppIcon />, isPrivate: true },
+  { path: BRANDS_PATH, name: "Marcas", Component: ListVehicleBrand, Icon: <LocalOfferIcon />, isPrivate: true  },
+  { path: DASHBOARD_PATH, name: "Dashboard", Component: Dashboard, Icon: <DashboardIcon />, isPrivate: true  },
 ]
 
 const subroutes = [

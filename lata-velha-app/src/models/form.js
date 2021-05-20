@@ -1,5 +1,5 @@
 function validateName(name) {
-  if (name.length !== 2) {
+  if (name.length <= 2) {
     return { valid: false, text: 'Campo de nome inválido. O nome deve ter no minimo 2 caracteres' };
   }
 

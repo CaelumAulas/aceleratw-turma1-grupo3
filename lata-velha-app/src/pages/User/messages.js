@@ -67,4 +67,8 @@ export default defineMessages({
     id: `${prefix}.textNewPasswordTwo`,
     defaultMessage: 'Informe a senha digitada anteriormente',
   },
+  successDelete: {
+    id: `${prefix}.successDelete`,
+    defaultMessage: 'Usuário excluido com sucesso',
+  },
 });

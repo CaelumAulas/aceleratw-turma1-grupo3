@@ -11,12 +11,6 @@ const UserService = (userRepository) => {
     return userViewList;
   }
 
-
-  const create = async (userForm) => {
-    const newUser = await userRepository.save(userForm);
-    return newUser;
-  }
-
   const update = async (userForm) => {
     // if (userRepository.findByEmail(userform.email)) {
 
@@ -24,13 +18,11 @@ const UserService = (userRepository) => {
   }
 
   const remove = async (userId) => {
-    // const existantUser = await userRepository.findById(userId);
-    // console.log(existantUser);
+    return userRepository.remove(userId);    
   }
 
   return {
     listAll,
-    create,
     update,
     remove,
   }

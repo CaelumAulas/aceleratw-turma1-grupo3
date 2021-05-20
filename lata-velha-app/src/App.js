@@ -57,6 +57,7 @@ function App() {
               <Menu
                 handleDrawerToggle={handleDrawerToggle}
                 mobileOpen={mobileOpen}
+                setToken={setToken}
                 token={token}
               />
               <main className={classes.content}>
