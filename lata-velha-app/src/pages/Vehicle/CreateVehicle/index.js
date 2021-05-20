@@ -10,6 +10,7 @@ import CreateVehiclePage from './CreateVehiclePage';
 import { toast } from 'react-toastify';
 import messages from '../messages';
 import Vehicle from '../../../models/Vehicle/VehicleForm';
+import useVehicleService from '../../../hooks/useVehicleService';
 
 
 const CreateVehicle = () => {
@@ -30,14 +31,18 @@ const CreateVehicle = () => {
   const brandRepository = VehicleBrandRepository(httpClient);
   const brandService = VehicleBrandService(brandRepository);
 
-  const vehicleRepository = VehicleRepository(httpClient);
-  const vehicleService = VehicleService(vehicleRepository);
+  const vehicleService  = useVehicleService();
 
-  useEffect(() => {
-    brandService.listAll().then(list => {
-      setBrandOptions(list);
-    })
-  }, []);
+  useEffect(loadList, []);
+
+  const loadList = async () => {
+    try {
+      const listOfVehicles = await brandService.listAll();
+      setBrandOptions(listOfVehicles);
+    } catch (error) {
+      toast.error(messages.listError.defaultMessage);
+    }
+  };
 
   const onFormSubmit = async (e) => {
     try {

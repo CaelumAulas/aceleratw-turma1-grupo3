@@ -43,4 +43,8 @@ export default defineMessages({
     id: `${prefix}.vehicleDeleted`,
     defaultMessage: 'Veículo excluído com sucesso!',
   },
+  listError: {
+    id: `${prefix}.listError`,
+    defaultMessage: 'Não foi possível carregar a lista',
+  }
 });
