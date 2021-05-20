@@ -39,4 +39,8 @@ export default defineMessages({
     id: `${prefix}.vehicleCreated`,
     defaultMessage: 'Veículo salvo com sucesso!',
   },
+  vehicleDeleted: {
+    id: `${prefix}.vehicleDeleted`,
+    defaultMessage: 'Veículo excluído com sucesso!',
+  },
 });

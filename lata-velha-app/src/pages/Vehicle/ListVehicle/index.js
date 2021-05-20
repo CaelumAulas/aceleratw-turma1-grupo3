@@ -8,6 +8,7 @@ import VehicleBrandService from '../../../api/services/VehicleBrand/VehicleBrand
 import { useHistory } from 'react-router';
 import { EDIT_VEHICLES_PATH } from '../../../routes/constants';
 import { toast } from 'react-toastify';
+import messages from '../messages';
 
 const ListVehicle = () => {
 
@@ -40,17 +41,17 @@ const ListVehicle = () => {
       setVehiclesList(list);
     });
 
-    brandService.listAll().then(list => {
-      const newState = { ...brandsFilterOptions };
-      newState['list'] = list;
-      setBrandsFilterOptions(newState);
-      console.log('useEffect', brandsFilterOptions);
-    });
+    // brandService.listAll().then(list => {
+    //   const newState = { ...brandsFilterOptions };
+    //   newState['list'] = list;
+    //   setBrandsFilterOptions(newState);
+    //   console.log('useEffect', brandsFilterOptions);
+    // });
 
   }, []);
 
   const onEditHandler = (vehicleId) => {
-    history.push('EDIT_VEHICLES_PATH}'.replace(':id', vehicleId), { form: 'asdasd'});
+    history.push(EDIT_VEHICLES_PATH.replace(':id', vehicleId), { form: 'asdasd'});
   }
 
   const onDeleteHandler = async (vehicleId) => {
@@ -60,6 +61,7 @@ const ListVehicle = () => {
         // use toast library later
         const updatedList = await vehicleService.listAll();
         setVehiclesList(updatedList);
+        toast.success(messages.vehicleDeleted.defaultMessage);
       }
     } catch(err) {
       toast.error(err.message);
@@ -71,7 +73,7 @@ const ListVehicle = () => {
       vehiclesList={vehiclesList}
       onEditHandler={onEditHandler}
       onDeleteHandler={onDeleteHandler}
-      brandsFilterOptions={brandsFilterOptions}
+      brandsFilterOptions={[]}
       modelsFilterOptions={[]}
       priceRangesFilterOptions={[]}
     />

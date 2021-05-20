@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router';
 import VehicleRepository from '../../../api/services/Vehicle/VehicleRepository';
 import VehicleService from '../../../api/services/Vehicle/VehicleService';
 import VehicleBrandRepository from '../../../api/services/VehicleBrand/VehicleBrandRepository';
@@ -8,6 +7,8 @@ import FormValidations from '../../../contexts/formValidations';
 import HttpContext from '../../../contexts/HttpContext';
 import useErrors from '../../../hooks/useErrors';
 import CreateVehiclePage from './CreateVehiclePage';
+import { toast } from 'react-toastify';
+import messages from '../messages';
 
 
 const CreateVehicle = () => {
@@ -38,17 +39,21 @@ const CreateVehicle = () => {
   }, []);
 
   const onFormSubmit = async (e) => {
-    e.preventDefault();
-    if (formIsValid()) {
-      const brand = { id: form.brand };
-      const { model, year, price } = form;
-      const apiResponse = await vehicleService.create({
-        brand, model, year, price,
-      });
-      if (apiResponse.success) {
-        showSnackbar();
-        resetStates();
+    try {
+      e.preventDefault();
+      if (formIsValid()) {
+        const brand = { id: form.brand };
+        const { model, year, price } = form;
+        const apiResponse = await vehicleService.create({
+          brand, model, year, price,
+        });
+        if (apiResponse.success) {
+          resetStates();
+          toast.success(messages.vehicleCreated.defaultMessage);
+        }
       }
+    } catch (err) {
+      toast.error(err.message);
     }
   };
 
