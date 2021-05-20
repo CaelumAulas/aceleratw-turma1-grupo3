@@ -11,12 +11,6 @@ const UserService = (userRepository) => {
     return userViewList;
   }
 
-
-  const create = async (userForm) => {
-    const newUser = await userRepository.save(userForm);
-    return newUser;
-  }
-
   const update = async (userForm) => {
     // if (userRepository.findByEmail(userform.email)) {
 
@@ -30,7 +24,6 @@ const UserService = (userRepository) => {
 
   return {
     listAll,
-    create,
     update,
     remove,
   }
