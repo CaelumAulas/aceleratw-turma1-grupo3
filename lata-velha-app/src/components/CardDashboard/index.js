@@ -25,14 +25,14 @@ const CardDashboard = ({ item }) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {item.brand}
+            {item.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             <FormattedMessage
               {...messages.contentDashboard}
               values={{
-                total: <strong>{item.total}</strong>,
-                amount: <strong>{item.amount}</strong>,
+                numberOfVehicles: <strong>{item.numberOfVehicles}</strong>,
+                amount: <strong>{item.total}</strong>,
               }}
             />
           </Typography>
@@ -45,9 +45,9 @@ const CardDashboard = ({ item }) => {
 CardDashboard.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    brand: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    numberOfVehicles: PropTypes.number.isRequired,
     total: PropTypes.number.isRequired,
-    amount: PropTypes.number.isRequired,
   }).isRequired,
 };
 
