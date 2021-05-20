@@ -31,7 +31,7 @@ const SignIn = ({ setToken }) => {
   const [errors, validateField, formIsValid] = useErrors(validations);
 
   const handleSubmit = async(data) => {
-    const response = await authService.create(data)
+    const response = await authService.login(data)
     setToken(response.jwtAuthenticationResponse.accessToken);
     const isAuthenticated = typeof response.jwtAuthenticationResponse.accessToken !== "undefined";
     // redirect to list of vehicles
