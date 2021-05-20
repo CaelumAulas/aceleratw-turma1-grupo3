@@ -18,9 +18,14 @@ const ListVehiclePage = (props) => {
   
   const theme = useTheme();
   const classes = style(theme);
+
   return (
     <>
-      {/* <FiltersBar modelsList={modelsFilterOptions} brandsFilterOptions={brandsFilterOptions} priceRangesList={priceRangesFilterOptions} /> */}
+      <FiltersBar 
+        brandsFilterOptions={brandsFilterOptions} 
+        modelsFilterOptions={modelsFilterOptions}
+        priceRangesList={priceRangesFilterOptions} 
+      />
       <div className={classes.listContainer}>
         <div className={classes.list}>
           {vehiclesList.map(vehicle =>

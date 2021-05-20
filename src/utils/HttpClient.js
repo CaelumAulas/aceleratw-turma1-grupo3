@@ -4,7 +4,8 @@ const HttpClient = () => {
     if (!params || typeof params === 'undefined') {
       params = '';
     }
-    const response = await fetch(`${url}` + new URLSearchParams(params), {
+    
+    const response = await fetch(`${url}` + params, {
         method: 'GET',
         headers: headers
       },

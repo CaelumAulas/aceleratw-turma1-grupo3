@@ -9,6 +9,7 @@ import { useHistory } from 'react-router';
 import { EDIT_VEHICLES_PATH } from '../../../routes/constants';
 import { toast } from 'react-toastify';
 import messages from '../messages';
+import removeDuplicates from '../../../utils/removeDuplicates';
 
 const ListVehicle = () => {
 
@@ -23,32 +24,72 @@ const ListVehicle = () => {
 
   // todo: remember to user observable pattern!!!
   const [vehiclesList, setVehiclesList] = useState([]);
-  // const [brandsFilterOptions, setBrandsFilterOptions] = useState({
-  //   list: [],
-  //   // onChange: (e) => {
-  //   //   console.log(brandsFilterOptions.list);
-  //   //   const newState = {...brandsFilterOptions};
+  const [brandsFilterOptions, setBrandsFilterOptions] = useState({
+    list: [],
+    onChange: (e) => {
+      const newState = { ...brandsFilterOptions, value: e.target.value };
 
-  //   //   console.log('onChange', newState);
-  //   //   setBrandsFilterOptions(newState);
-  //   // }, 
-  //   value: '_',
-  // });
+      setBrandsFilterOptions(newState);
+    }, 
+    value: '_',
+  });
+  const [modelsFilterOptions, setModelsFilterOptions] = useState({
+    list: [],
+    onChange: (e) => {
+      const newState = { ...modelsFilterOptions, value: e.target.value };
+
+      setModelsFilterOptions(newState);
+    }, 
+    value: '_',
+  });
+
+  useEffect(() => {
+    const getFilters = () => {
+      vehicleService.listAll().then(list => {
+        let i = 0;
+        const newState = { ...modelsFilterOptions };
+        const models = list.map((vehicle) => {
+          return { id: i + 1, name: vehicle.model }
+        })
+
+        const modelsWithoutDuplicates = removeDuplicates(models);
+
+        newState['list'] = modelsWithoutDuplicates
+
+        setModelsFilterOptions(newState);
+      });
+
+      brandService.listAll().then(list => {
+        const newState = { ...brandsFilterOptions };
+        newState['list'] = list;
+        
+        setBrandsFilterOptions(newState);
+      });
+    }
+
+    getFilters();
+  }, [brandsFilterOptions.list.length, modelsFilterOptions.list.length]);
 
   // write on change function
   useEffect(() => {
-    vehicleService.listAll().then(list => {
-      setVehiclesList(list);
-    });
+    const getVehicles = () => {
+      let params = ''
 
-    // brandService.listAll().then(list => {
-    //   const newState = { ...brandsFilterOptions };
-    //   newState['list'] = list;
-    //   setBrandsFilterOptions(newState);
-    //   console.log('useEffect', brandsFilterOptions);
-    // });
+      if(brandsFilterOptions.value && brandsFilterOptions.value !== '_') {
+        params = `?brand=${brandsFilterOptions.value}`
+      }
 
-  }, []);
+      if(modelsFilterOptions.value && modelsFilterOptions.value !== '_') {
+        params = `?model=${modelsFilterOptions.value}`
+      }
+
+      vehicleService.listAll(params).then(list => {
+        setVehiclesList(list);
+      });
+    }
+
+    getVehicles();
+  }, [brandsFilterOptions.value, modelsFilterOptions.value]);
 
   const onEditHandler = (vehicle) => {
     history.push(EDIT_VEHICLES_PATH.replace(':id', vehicle.id), { form: vehicle });
@@ -73,8 +114,8 @@ const ListVehicle = () => {
       vehiclesList={vehiclesList}
       onEditHandler={onEditHandler}
       onDeleteHandler={onDeleteHandler}
-      brandsFilterOptions={[]}
-      modelsFilterOptions={[]}
+      brandsFilterOptions={brandsFilterOptions}
+      modelsFilterOptions={modelsFilterOptions}
       priceRangesFilterOptions={[]}
     />
   );
