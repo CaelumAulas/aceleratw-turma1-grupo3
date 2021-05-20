@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import VehicleRepository from '../../../api/services/Vehicle/VehicleRepository';
 import VehicleService from '../../../api/services/Vehicle/VehicleService';
 import VehicleBrandRepository from '../../../api/services/VehicleBrand/VehicleBrandRepository';
@@ -19,7 +20,6 @@ const CreateVehicle = () => {
     brand: '_'
   };
   const [form, setFormState] = useState(initialFormState);
-  const [isCompleteShowing, setIsCompleteShowing] = useState(false);
   const [brandOptions, setBrandOptions] = useState([{ id: 0, name: '_' }]);
 
   // Services setup
@@ -36,12 +36,6 @@ const CreateVehicle = () => {
       setBrandOptions(list);
     })
   }, []);
-
-
-  const showSnackbar = () => {
-    console.log('here');
-    setIsCompleteShowing(true);
-  }
 
   const onFormSubmit = async (e) => {
     e.preventDefault();
@@ -73,8 +67,6 @@ const CreateVehicle = () => {
     <CreateVehiclePage
       onFormSubmitHandler={onFormSubmit}
       onFormChangeHandler={onFormChange}
-      showSnackbar={isCompleteShowing}
-      snackCloseHandler={() => setIsCompleteShowing(false)}
       errorsValidation={errors}
       validateField={validateField}
       brandOptions={brandOptions}
