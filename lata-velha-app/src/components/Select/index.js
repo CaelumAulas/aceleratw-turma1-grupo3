@@ -15,6 +15,7 @@ const Select = ({
   id,
   onChangeHandler,
   value,
+  name,
 }) => {
   const theme = useTheme();
   const classes = style(theme);
@@ -28,13 +29,14 @@ const Select = ({
         value={value}
         onChange={onChangeHandler}
         data-testid={`${id}-select`}
+        name={name}
       >
         <option value="_" disabled>
           {defaultOption}
         </option>
-        {options.map((option) => (
-          <option key={option.toLowerCase()} value={option.toLowerCase()}>
-            {option}
+        {options.map(({id, name}) => (
+          <option key={name.toLowerCase() + id} value={id}>
+            {name}
           </option>
         ))}
       </NativeSelect>
@@ -43,12 +45,13 @@ const Select = ({
 };
 
 Select.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: PropTypes.array.isRequired,
   defaultOption: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   onChangeHandler: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
+  name: PropTypes.string
 };
 
 export default Select;

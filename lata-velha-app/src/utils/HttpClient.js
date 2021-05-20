@@ -5,6 +5,7 @@ const HttpClient = () => {
       params = '';
     }
     const response = await fetch(`${url}` + new URLSearchParams(params), {
+        method: 'GET',
         headers: headers
       },
     );
