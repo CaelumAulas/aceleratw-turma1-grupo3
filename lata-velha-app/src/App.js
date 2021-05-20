@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css';
 import { useTheme } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { IntlProvider } from "react-intl";
@@ -18,6 +19,7 @@ import HttpContext from './contexts/HttpContext';
 import SignIn from "./pages/User/SignIn";
 import useToken from './hooks/useToken';
 import PrivateRoute from './components/PrivateRoute';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const { token, setToken } = useToken();
@@ -60,6 +62,7 @@ function App() {
               />
               <main className={classes.content}>
                 <div className={classes.toolbar} />
+                <ToastContainer />
                 <Switch>
                   {renderRoutes(routes)}
                   {renderRoutes(subroutes)}
