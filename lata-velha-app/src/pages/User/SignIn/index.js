@@ -17,6 +17,7 @@ import AuthService from '../../../api/services/Auth/AuthService';
 import messages from '../messages';
 import { useHistory } from 'react-router';
 import { VEHICLES_PATH } from '../../../routes/constants';
+import { toast } from 'react-toastify';
 
 const SignIn = ({ setToken }) => {
   const httpClient = useContext(HttpContext);
@@ -31,12 +32,16 @@ const SignIn = ({ setToken }) => {
   const [errors, validateField, formIsValid] = useErrors(validations);
 
   const handleSubmit = async(data) => {
-    const response = await authService.create(data)
-    setToken(response.jwtAuthenticationResponse.accessToken);
-    const isAuthenticated = typeof response.jwtAuthenticationResponse.accessToken !== "undefined";
-    // redirect to list of vehicles
-    if (isAuthenticated) {
-      history.push(VEHICLES_PATH);
+    try {
+      const response = await authService.create(data)
+      setToken(response.jwtAuthenticationResponse.accessToken);
+      const isAuthenticated = typeof response.jwtAuthenticationResponse.accessToken !== "undefined";
+      // redirect to list of vehicles
+      if (isAuthenticated) {
+        history.push(VEHICLES_PATH);
+      }
+    } catch(err) {
+      toast.error(err.message);
     }
   };
 

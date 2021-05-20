@@ -9,12 +9,14 @@ const HttpClient = () => {
         headers: headers
       },
     );
+
+    const responseJSON = await response.json();
     
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(responseJSON?.message || 'Erro interno');
     }
 
-    return await response.json();
+    return responseJSON;
   }
 
   const post = async (url, body, headers) => {
@@ -26,11 +28,13 @@ const HttpClient = () => {
       },
     );
 
+    const responseJSON = await response.json();
+
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(responseJSON?.message || 'Erro interno');
     }
 
-    return await response.json();
+    return responseJSON;
   }
 
   const put = async (url, headers, body) => {
@@ -42,11 +46,13 @@ const HttpClient = () => {
       },
     );
 
+    const responseJSON = await response.json();
+
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(responseJSON?.message || 'Erro interno');
     }
 
-    return await response.json();
+    return responseJSON;
   }
 
   // delete is a reserved js keyword
@@ -57,11 +63,13 @@ const HttpClient = () => {
       },
     );
 
+    const responseJSON = await response.json();
+
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(responseJSON?.message || 'Erro interno');
     }
 
-    return await response.json();
+    return responseJSON;
   }
 
   return {
