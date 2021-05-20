@@ -29,8 +29,8 @@ const ListVehiclePage = (props) => {
               price={vehicle.price}
               year={vehicle.year}
               brandName={vehicle.brandName}
-              brandLogoUrl="https://www.carlogos.org/logo/Fiat-logo-2006-1920x1080.png"
-              onEditClick={() => onEditHandler(vehicle.id)}
+              brandLogoUrl="https://ccorpusa.com/wp-content/uploads/2017/07/logo.png"
+              onEditClick={() => onEditHandler(vehicle)}
               onDeleteClick={() => onDeleteHandler(vehicle.id)} />
           )
           }

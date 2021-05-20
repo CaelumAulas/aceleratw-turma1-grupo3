@@ -1,30 +1,29 @@
-import { Button, FormControl, FormHelperText, IconButton, Input, InputAdornment, InputLabel, Snackbar, Typography, useTheme } from '@material-ui/core';
-import { Close as CloseIcon } from '@material-ui/icons';
-import MuiAlert from '@material-ui/lab/Alert';
+import { Button, FormControl, FormHelperText, Input, InputAdornment, InputLabel, Typography, useTheme } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import FilterSelect from '../../../components/Select';
-import style from './style';
 import messages from '../messages';
+import style from './style';
 
 const CreateVehiclePage = (props) => {
   const {
     onFormSubmitHandler,
     onFormChangeHandler,
-    snackCloseHandler,
+    onCancelClickHandler,
     formValues,
     errorsValidation,
     validateField,
     brandOptions,
-    showSnackbar,
+    isEditing,
   } = props;
   const theme = useTheme();
   const classes = style(theme);
-
   return (
     <>
-      <Typography variant="h4" component="h1"><FormattedMessage {...messages.createVehicleTitle} /></Typography>
+      <Typography variant="h4" component="h1">
+      {!isEditing ? <FormattedMessage {...messages.createVehicleTitle} /> : <FormattedMessage {...messages.editVehicleTitle} />}
+      </Typography>
       <form onSubmit={onFormSubmitHandler}>
         <FilterSelect
           options={brandOptions}
@@ -90,6 +89,7 @@ const CreateVehiclePage = (props) => {
           variant="contained"
           color="default"
           type="button"
+          onClick={onCancelClickHandler}
         >
           <FormattedMessage {...messages.buttonCancel} />
         </Button>
@@ -99,25 +99,9 @@ const CreateVehiclePage = (props) => {
           color="primary"
           type="submit"
         >
-          <FormattedMessage {...messages.buttonCad} />
+          {!isEditing ? <FormattedMessage {...messages.buttonCad} /> : <FormattedMessage {...messages.buttonEdit} />}
         </Button>
       </form>
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        open={showSnackbar}
-        autoHideDuration={4000}
-        onClose={snackCloseHandler}
-      >
-        <MuiAlert elevation={6} variant="filled" severity="success">
-          <FormattedMessage {...messages.vehicleCreated} />
-          <IconButton size="small" aria-label="close" color="inherit" onClick={snackCloseHandler}>
-              <CloseIcon fontSize="small" />
-            </IconButton>
-        </MuiAlert>
-      </Snackbar>
     </>
   );
 }
@@ -125,12 +109,12 @@ const CreateVehiclePage = (props) => {
 CreateVehiclePage.propTypes = {
   onFormSubmitHandler: PropTypes.func.isRequired,
   onFormChangeHandler: PropTypes.func.isRequired,
-  snackCloseHandler: PropTypes.func.isRequired,
+  onCancelClickHandler: PropTypes.func.isRequired,
   formValues: PropTypes.object.isRequired,
   errorsValidation: PropTypes.object.isRequired,
   validateField: PropTypes.func.isRequired,
   brandOptions: PropTypes.array.isRequired,
-  showSnackbar: PropTypes.bool
+  isEditing: PropTypes.bool.isRequired,
 };
 
 export default CreateVehiclePage;

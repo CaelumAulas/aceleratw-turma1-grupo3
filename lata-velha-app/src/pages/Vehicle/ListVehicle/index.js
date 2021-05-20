@@ -5,6 +5,10 @@ import VehicleRepository from '../../../api/services/Vehicle/VehicleRepository';
 import VehicleService from '../../../api/services/Vehicle/VehicleService';
 import VehicleBrandRepository from '../../../api/services/VehicleBrand/VehicleBrandRepository';
 import VehicleBrandService from '../../../api/services/VehicleBrand/VehicleBrandService';
+import { useHistory } from 'react-router';
+import { EDIT_VEHICLES_PATH } from '../../../routes/constants';
+import { toast } from 'react-toastify';
+import messages from '../messages';
 
 const ListVehicle = () => {
 
@@ -15,19 +19,21 @@ const ListVehicle = () => {
   const brandRepository = VehicleBrandRepository(httpClient);
   const brandService = VehicleBrandService(brandRepository);
 
+  const history = useHistory();
+
   // todo: remember to user observable pattern!!!
   const [vehiclesList, setVehiclesList] = useState([]);
-  const [brandsFilterOptions, setBrandsFilterOptions ] = useState({
-    list: [],
-    onChange: (e) => {
-      console.log(brandsFilterOptions.list);
-      const newState = {...brandsFilterOptions};
-      
-      console.log('onChange', newState);
-      setBrandsFilterOptions(newState);
-    }, 
-    value: '_',
-  });
+  // const [brandsFilterOptions, setBrandsFilterOptions] = useState({
+  //   list: [],
+  //   // onChange: (e) => {
+  //   //   console.log(brandsFilterOptions.list);
+  //   //   const newState = {...brandsFilterOptions};
+
+  //   //   console.log('onChange', newState);
+  //   //   setBrandsFilterOptions(newState);
+  //   // }, 
+  //   value: '_',
+  // });
 
   // write on change function
   useEffect(() => {
@@ -35,21 +41,31 @@ const ListVehicle = () => {
       setVehiclesList(list);
     });
 
-    brandService.listAll().then(list => {
-      const newState = {...brandsFilterOptions};
-      newState['list'] = list;
-      setBrandsFilterOptions(newState);
-      console.log('useEffect', brandsFilterOptions);
-    });
+    // brandService.listAll().then(list => {
+    //   const newState = { ...brandsFilterOptions };
+    //   newState['list'] = list;
+    //   setBrandsFilterOptions(newState);
+    //   console.log('useEffect', brandsFilterOptions);
+    // });
 
   }, []);
 
-  const onEditHandler = (vehicleId) => {
-    console.log('ListVehicle -> onEditHandler', vehicleId);
+  const onEditHandler = (vehicle) => {
+    history.push(EDIT_VEHICLES_PATH.replace(':id', vehicle.id), { form: vehicle });
   }
 
-  const onDeleteHandler = (vehicleId) => {
-    console.log('ListVehicle -> onDeleteHandler', vehicleId);
+  const onDeleteHandler = async (vehicleId) => {
+    try {
+      const apiResponse = await vehicleService.remove(vehicleId);
+      if (apiResponse) { // update this response
+        // use toast library later
+        const updatedList = await vehicleService.listAll();
+        setVehiclesList(updatedList);
+        toast.success(messages.vehicleDeleted.defaultMessage);
+      }
+    } catch (err) {
+      toast.error(err.message);
+    }
   }
 
   return (
@@ -57,7 +73,7 @@ const ListVehicle = () => {
       vehiclesList={vehiclesList}
       onEditHandler={onEditHandler}
       onDeleteHandler={onDeleteHandler}
-      brandsFilterOptions={brandsFilterOptions}
+      brandsFilterOptions={[]}
       modelsFilterOptions={[]}
       priceRangesFilterOptions={[]}
     />

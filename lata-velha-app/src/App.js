@@ -1,25 +1,24 @@
-import 'react-toastify/dist/ReactToastify.css';
 import { useTheme } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IntlProvider } from "react-intl";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Header from "./components/Header";
 import Menu from "./components/Menu";
-import style from "./style";
+import PrivateRoute from './components/PrivateRoute';
 import FormValidations from "./contexts/formValidations";
+import HttpContext from './contexts/HttpContext';
+import useToken from './hooks/useToken';
 import {
   validateName,
   validatePassword,
-  validateSelect,
-  validatePrice,
+  validatePrice, 
+  validateSelect
 } from "./models/form";
-import HttpClient from "./utils/HttpClient";
 import { routes, subroutes } from './routes';
-import HttpContext from './contexts/HttpContext';
-import SignIn from "./pages/User/SignIn";
-import useToken from './hooks/useToken';
-import PrivateRoute from './components/PrivateRoute';
-import { ToastContainer } from 'react-toastify';
+import style from "./style";
+import HttpClient from "./utils/HttpClient";
 
 function App() {
   const { token, setToken } = useToken();
@@ -42,7 +41,7 @@ function App() {
   };
 
   const renderRoutes = (routes) => {
-    return routes.map(({ path, Component, isPrivate }, key) => 
+    return routes.map(({ path, Component, isPrivate }, key) =>
       <PrivateRoute path={path} component={(props) => <Component setToken={setToken} {...props} />} key={key} token={token} isPrivate={isPrivate} exact />
     );
   }
