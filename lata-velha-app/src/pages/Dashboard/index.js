@@ -1,25 +1,27 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import CardDashboard from '../../components/CardDashboard';
 import style from './style';
+import HttpContext from '../../contexts/HttpContext';
+import DashboardRepository from '../../api/services/Dashboard/DashboardRepository';
+import DashboardService from '../../api/services/Dashboard/DashboardService';
 
 const ListDashboard = () => {
   const classes = style();
+  const httpClient = useContext(HttpContext);
+  const dashboardRepository = DashboardRepository(httpClient);
+  const dashboardService = DashboardService(dashboardRepository);
   
-  const data = [
-    {
-      id: Math.random(), brand: 'fiat', total: 40000, amount: 10,
-    },
-    {
-      id: Math.random(), brand: 'BMW', total: 100000, amount: 5,
-    },
-    {
-      id: Math.random(), brand: 'Volks', total: 25000, amount: 2,
-    },
-  ];
+  const [dashboardList, setDashboardList] = useState([]);
+
+  useEffect(() => {
+    dashboardService.listAll().then(list => {
+      setDashboardList(list);
+    });
+  }, []);
 
   return (
     <div className={classes.container}>
-      {data.map((item) => <CardDashboard key={item.id} item={item} />)}
+      {dashboardList.map((item, index) => <CardDashboard key={index} item={{...item, id: index}} />)}
     </div>
   );
 };

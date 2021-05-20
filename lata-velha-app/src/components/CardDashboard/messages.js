@@ -5,6 +5,6 @@ const prefix = 'src.components.Dashboard.ListDashboard';
 export default defineMessages({
   contentDashboard: {
     id: `${prefix}.contentDashboard`,
-    defaultMessage: 'Existem {amount} veículos, totalizando R$ {total}',
+    defaultMessage: 'Existem {numberOfVehicles} veículos, totalizando R$ {amount}',
   },
 });

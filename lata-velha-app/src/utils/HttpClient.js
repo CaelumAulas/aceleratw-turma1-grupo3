@@ -1,10 +1,13 @@
 const HttpClient = () => {
 
-  const get = async (url, params) => {
-    if (typeof params === 'undefined') {
+  const get = async (url, params, headers) => {
+    if (!params || typeof params === 'undefined') {
       params = '';
     }
-    const response = await fetch(`${url}` + new URLSearchParams(params));
+    const response = await fetch(`${url}` + new URLSearchParams(params), {
+        headers: headers
+      },
+    );
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -17,8 +20,8 @@ const HttpClient = () => {
     const response = await fetch(url,
       {
         method: 'POST',
-        body: JSON.stringify(body),
-        headers: {...headers}
+        headers: {...headers},
+        body: JSON.stringify(body)
       },
     );
 
