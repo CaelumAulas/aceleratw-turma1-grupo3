@@ -51,8 +51,12 @@ const ListVehicle = () => {
     
   }
 
-  const onDeleteHandler = (vehicleId) => {
-    console.log('ListVehicle -> onDeleteHandler', vehicleId);
+  const onDeleteHandler = async (vehicleId) => {
+    const apiResponse = await vehicleService.remove(vehicleId);
+    if (apiResponse){ // update this response
+      const updatedList = vehiclesList.filter(vehicle => vehicle.id != vehicleId);
+      setVehiclesList(updatedList);
+    }
   }
 
   return (

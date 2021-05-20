@@ -6,21 +6,23 @@ const VehicleRepository = (httpClient) => {
   // VEHICLES_PATH already has /
   const URL = `${apiConfig.API_URL}:${apiConfig.PORT}${VEHICLES_PATH}`;
   const { token } = useToken();
+  
+  const authHeader = {
+    'Authorization': `Bearer ${token}`
+  };
   const findAll = async () => {
-    return await httpClient.get(URL, null, {
-      'Authorization': `Bearer ${token}`
-    });
+    return await httpClient.get(URL, null, authHeader);
   }
 
   const save = async (vehicleForm) => {
     return await httpClient.post(URL, vehicleForm, {
+      ...authHeader,
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
     });
   }
 
   const remove = async (vehicleId) => {
-    return await httpClient.remove(`${URL}/${vehicleId}`);
+    return await httpClient.remove(`${URL}/${vehicleId}`, authHeader);
   }
 
   return {
