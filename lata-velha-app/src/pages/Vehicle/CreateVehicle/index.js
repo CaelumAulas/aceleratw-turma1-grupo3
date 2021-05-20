@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import VehicleBrandRepository from '../../../api/services/VehicleBrand/VehicleBrandRepository';
-import VehicleBrandService from '../../../api/services/VehicleBrand/VehicleBrandService';
 import FormValidations from '../../../contexts/formValidations';
-import HttpContext from '../../../contexts/HttpContext';
 import useErrors from '../../../hooks/useErrors';
 import useVehicleBrandService from '../../../hooks/useVehicleBrandService';
 import useVehicleService from '../../../hooks/useVehicleService';
@@ -47,7 +44,7 @@ const CreateVehicle = () => {
           Vehicle(model, brand, year, price)
         );
         if (apiResponse.success) {
-          resetStates();
+          resetFormStates();
           toast.success(messages.vehicleCreated.defaultMessage);
         }
       }
@@ -56,7 +53,7 @@ const CreateVehicle = () => {
     }
   };
 
-  const resetStates = () => {
+  const resetFormStates = () => {
     setFormState({ ...initialFormState });
   }
 
