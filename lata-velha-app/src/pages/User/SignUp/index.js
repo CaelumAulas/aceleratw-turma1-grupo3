@@ -11,35 +11,61 @@ import {
 import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
 import messages from '../messages';
+import HttpContext from '../../../contexts/HttpContext';
+import AuthRepository from '../../../api/services/Auth/AuthRepository';
+import AuthService from '../../../api/services/Auth/AuthService';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
-
   const validations = useContext(FormValidations);
   const [errors, validateField, formIsValid] = useErrors(validations);
 
-  console.log(errors);
-  const handleSubmit = (data) => {
-    console.log('Signup Handle Submit');
+  const initialFormState = {
+    name: '',
+    email: '',
+    password: '',
+    passwordConfirmation: ''
   };
+  const [form, setFormState] = useState(initialFormState);
+
+  const httpClient = useContext(HttpContext);
+
+  const authRepository = AuthRepository(httpClient);
+  const authService = AuthService(authRepository);
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      if (formIsValid()) {
+        const { name, email, password } = form;
+        const apiResponse = await authService.create({
+          name, email, password,
+        });
+        if (apiResponse.success) {
+          resetStates();
+        }
+      }
+    } catch(err) {
+      toast.error(err.messages);
+    }
+  };
+
+  const resetStates = () => {
+    setFormState({ ...initialFormState });
+  }
+
+  const onFormChange = (e) => {
+    const { name, value } = e.target;
+    const newFormState = { ...form };
+    newFormState[name] = value;
+    setFormState(newFormState);
+  }
 
   return (
     <>
     <Typography variant="h4" component="h1"><FormattedMessage {...messages.signUpTitle} /></Typography>
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (formIsValid()) {
-          handleSubmit(
-            {
-              name, email, password, passwordConfirmation,
-            },
-          );
-        }
-      }}
+      onSubmit={handleSubmit}
     >
       <FormControl fullWidth margin="normal">
         <InputLabel htmlFor="name">
@@ -50,8 +76,8 @@ const SignUp = () => {
           name="name"
           onBlur={validateField}
           error={!errors.name.valid}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={form.name}
+          onChange={onFormChange}
           required
           autoComplete="off"
           aria-describedby="name-text"
@@ -69,8 +95,8 @@ const SignUp = () => {
           id="email"
           type="email"
           name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={form.email}
+          onChange={onFormChange}
           required
           autoComplete="off"
         />
@@ -86,8 +112,8 @@ const SignUp = () => {
           type="password"
           onBlur={validateField}
           error={!errors.password.valid}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={form.password}
+          onChange={onFormChange}
           required
           aria-describedby="password-text"
         />
@@ -106,8 +132,8 @@ const SignUp = () => {
           type="password"
           onBlur={validateField}
           error={!errors.passwordConfirmation.valid}
-          value={passwordConfirmation}
-          onChange={(e) => setPasswordConfirmation(e.target.value)}
+          value={form.passwordConfirmation}
+          onChange={onFormChange}
           aria-describedby="password-confirmation-text"
           required
         />

@@ -1,12 +1,18 @@
 const AuthService = (authRepository) => {
   const create = async (authForm) => {
-    const auth = await authRepository.save(authForm);
+    const newUser = await authRepository.save(authForm);
 
-    return auth;
+    return newUser;
   }
 
+  const login = async (loginForm) => {
+    const user = await authRepository.login(loginForm);
+
+    return user;
+  }
   return {
     create,
+    login,
   }
 }
 
