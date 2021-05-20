@@ -30,7 +30,7 @@ const ListVehiclePage = (props) => {
               year={vehicle.year}
               brandName={vehicle.brandName}
               brandLogoUrl="https://ccorpusa.com/wp-content/uploads/2017/07/logo.png"
-              onEditClick={() => onEditHandler(vehicle.id)}
+              onEditClick={() => onEditHandler(vehicle)}
               onDeleteClick={() => onDeleteHandler(vehicle.id)} />
           )
           }

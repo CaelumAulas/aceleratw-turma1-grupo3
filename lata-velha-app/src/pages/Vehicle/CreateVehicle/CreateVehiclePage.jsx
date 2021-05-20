@@ -10,17 +10,20 @@ const CreateVehiclePage = (props) => {
   const {
     onFormSubmitHandler,
     onFormChangeHandler,
+    onCancelClickHandler,
     formValues,
     errorsValidation,
     validateField,
     brandOptions,
+    isEditing,
   } = props;
   const theme = useTheme();
   const classes = style(theme);
-
   return (
     <>
-      <Typography variant="h4" component="h1"><FormattedMessage {...messages.createVehicleTitle} /></Typography>
+      <Typography variant="h4" component="h1">
+      {!isEditing ? <FormattedMessage {...messages.createVehicleTitle} /> : <FormattedMessage {...messages.editVehicleTitle} />}
+      </Typography>
       <form onSubmit={onFormSubmitHandler}>
         <FilterSelect
           options={brandOptions}
@@ -86,6 +89,7 @@ const CreateVehiclePage = (props) => {
           variant="contained"
           color="default"
           type="button"
+          onClick={onCancelClickHandler}
         >
           <FormattedMessage {...messages.buttonCancel} />
         </Button>
@@ -95,7 +99,7 @@ const CreateVehiclePage = (props) => {
           color="primary"
           type="submit"
         >
-          <FormattedMessage {...messages.buttonCad} />
+          {!isEditing ? <FormattedMessage {...messages.buttonCad} /> : <FormattedMessage {...messages.buttonEdit} />}
         </Button>
       </form>
     </>
@@ -105,10 +109,12 @@ const CreateVehiclePage = (props) => {
 CreateVehiclePage.propTypes = {
   onFormSubmitHandler: PropTypes.func.isRequired,
   onFormChangeHandler: PropTypes.func.isRequired,
+  onCancelClickHandler: PropTypes.func.isRequired,
   formValues: PropTypes.object.isRequired,
   errorsValidation: PropTypes.object.isRequired,
   validateField: PropTypes.func.isRequired,
   brandOptions: PropTypes.array.isRequired,
+  isEditing: PropTypes.bool.isRequired,
 };
 
 export default CreateVehiclePage;

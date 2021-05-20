@@ -7,6 +7,10 @@ export default defineMessages({
     id: `${prefix}.createVehicleTitle`,
     defaultMessage: 'Adicionar novo veículo',
   },
+  editVehicleTitle: {
+    id: `${prefix}.editVehicleTitle`,
+    defaultMessage: 'Alterar veículo',
+  },
   brand: {
     id: `${prefix}.brand`,
     defaultMessage: 'Marca',
@@ -35,6 +39,10 @@ export default defineMessages({
     id: `${prefix}.buttonCad`,
     defaultMessage: 'Cadastrar',
   },
+  buttonEdit: {
+    id: `${prefix}.buttonEdit`,
+    defaultMessage: 'Atualizar',
+  },
   vehicleCreated: {
     id: `${prefix}.vehicleCreated`,
     defaultMessage: 'Veículo salvo com sucesso!',
@@ -43,8 +51,12 @@ export default defineMessages({
     id: `${prefix}.vehicleDeleted`,
     defaultMessage: 'Veículo excluído com sucesso!',
   },
+  vehicleUpdated: {
+    id: `${prefix}.vehicleUpdated`,
+    defaultMessage: 'Veículo atualizado com sucesso!',
+  },
   listError: {
     id: `${prefix}.listError`,
     defaultMessage: 'Não foi possível carregar a lista',
-  }
+  },
 });

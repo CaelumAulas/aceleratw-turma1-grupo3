@@ -3,15 +3,17 @@ import VehicleView from "../../../models/Vehicle/VehicleView";
 const VehicleService = (vehicleRepository) => {
 
   const listAll = async () => {
-    const vehicleViewList = [];
     const vehiclesJson = await vehicleRepository.findAll();
-    vehiclesJson.forEach(vehicle => {
-      vehicleViewList.push(
-        VehicleView(vehicle.id, vehicle.model, vehicle.brandName, vehicle.year, vehicle.price)
-      );
+    const vehicleViewList = vehiclesJson.map(vehicle => {
+      return VehicleView(vehicle.id, vehicle.model, vehicle.brand.name, vehicle.year, vehicle.price);
     });
     return vehicleViewList;
   }
+
+  const getById = async (vehicleId) => {
+    const vehicleJson = await vehicleRepository.findById(vehicleId);
+    return new VehicleView(vehicle.id, vehicle.model, vehicle.brand.name, vehicle.year, vehicle.price);
+  };
 
 
   const create = async (vehicleForm) => {
@@ -19,7 +21,9 @@ const VehicleService = (vehicleRepository) => {
     return apiResponse;
   }
 
-  const update = async (vehicleForm) => {
+  const update = async (id, vehicleForm) => {
+    const apiResponse = await vehicleRepository.update(id, vehicleForm);
+    return apiResponse;
   }
 
   const remove = async (vehicleId) => {
@@ -32,6 +36,7 @@ const VehicleService = (vehicleRepository) => {
     create,
     update,
     remove,
+    getById
   }
 }
 

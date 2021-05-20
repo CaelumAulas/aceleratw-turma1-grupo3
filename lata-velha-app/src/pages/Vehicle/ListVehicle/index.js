@@ -50,8 +50,8 @@ const ListVehicle = () => {
 
   }, []);
 
-  const onEditHandler = (vehicleId) => {
-    history.push(EDIT_VEHICLES_PATH.replace(':id', vehicleId), { form: 'asdasd'});
+  const onEditHandler = (vehicle) => {
+    history.push(EDIT_VEHICLES_PATH.replace(':id', vehicle.id), { form: vehicle });
   }
 
   const onDeleteHandler = async (vehicleId) => {
@@ -63,7 +63,7 @@ const ListVehicle = () => {
         setVehiclesList(updatedList);
         toast.success(messages.vehicleDeleted.defaultMessage);
       }
-    } catch(err) {
+    } catch (err) {
       toast.error(err.message);
     }
   }

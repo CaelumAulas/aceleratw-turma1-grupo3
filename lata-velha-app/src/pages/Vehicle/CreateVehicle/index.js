@@ -7,9 +7,11 @@ import useVehicleService from '../../../hooks/useVehicleService';
 import Vehicle from '../../../models/Vehicle/VehicleForm';
 import messages from '../messages';
 import CreateVehiclePage from './CreateVehiclePage';
+import PropTypes from 'prop-types';
+import { useHistory } from 'react-router';
 
 
-const CreateVehicle = () => {
+const CreateVehicle = ({ location }) => {
   const validations = useContext(FormValidations);
   const [errors, validateField, formIsValid] = useErrors(validations);
   const initialFormState = {
@@ -18,26 +20,39 @@ const CreateVehicle = () => {
     price: 0,
     brand: '_'
   };
-  const [form, setFormState] = useState(initialFormState);
+  const editForm = location.state?.form;
+
+  const [form, setFormState] = useState(editForm ?? initialFormState);
   const [brandOptions, setBrandOptions] = useState([{ id: 0, name: '_' }]);
 
   const brandService = useVehicleBrandService();
-  const vehicleService  = useVehicleService();
+  const vehicleService = useVehicleService();
+  const history = useHistory();
 
-  useEffect(loadList, []);
+  useEffect(() => {
+    loadBrandsList();
+  }, []);
 
-  const loadList = async () => {
+  const loadBrandsList = async () => {
     try {
-      const listOfVehicles = await brandService.listAll();
-      setBrandOptions(listOfVehicles);
+      const listOfBrands = await brandService.listAll();
+      setBrandOptions(listOfBrands);
     } catch (error) {
       toast.error(messages.listError.defaultMessage);
     }
   };
 
   const onFormSubmit = async (e) => {
+    e.preventDefault();
+    if (isEditing()) {
+      editVehicle();
+    } else {
+      createVehicle();
+    }
+  };
+
+  const createVehicle = async () => {
     try {
-      e.preventDefault();
       if (formIsValid()) {
         const { model, brand, year, price } = form;
         const apiResponse = await vehicleService.create(
@@ -51,7 +66,29 @@ const CreateVehicle = () => {
     } catch (err) {
       toast.error(err.message);
     }
-  };
+  }
+
+  const editVehicle = async () => {
+    try {
+      if (formIsValid()) {
+        const { model, brand, year, price } = form;
+        const vehicle = Vehicle(model, brand, year, price);
+        const { id } = editForm;
+        const apiResponse = await vehicleService.update(id, vehicle);
+        console.log(apiResponse);
+        if (apiResponse) {
+          resetFormStates();
+          toast.success(messages.vehicleUpdated.defaultMessage);
+        }
+      }
+    } catch (err) {
+      toast.error(err.message);
+    }
+  }
+
+  const isEditing = () => {
+    return typeof editForm !== 'undefined';
+  }
 
   const resetFormStates = () => {
     setFormState({ ...initialFormState });
@@ -64,16 +101,26 @@ const CreateVehicle = () => {
     setFormState(newFormState);
   }
 
+  const onCancelClick = () => {
+    history.goBack();
+  }
+
   return (
     <CreateVehiclePage
       onFormSubmitHandler={onFormSubmit}
       onFormChangeHandler={onFormChange}
+      onCancelClickHandler={onCancelClick}
       errorsValidation={errors}
       validateField={validateField}
       brandOptions={brandOptions}
       formValues={form}
+      isEditing={isEditing()}
     />
   );
+};
+
+CreateVehicle.propTypes = {
+  location: PropTypes.object
 };
 
 export default CreateVehicle;
