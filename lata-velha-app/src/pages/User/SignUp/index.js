@@ -14,6 +14,7 @@ import messages from '../messages';
 import HttpContext from '../../../contexts/HttpContext';
 import AuthRepository from '../../../api/services/Auth/AuthRepository';
 import AuthService from '../../../api/services/Auth/AuthService';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
   const validations = useContext(FormValidations);
@@ -33,15 +34,19 @@ const SignUp = () => {
   const authService = AuthService(authRepository);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (formIsValid()) {
-      const { name, email, password } = form;
-      const apiResponse = await authService.create({
-        name, email, password,
-      });
-      if (apiResponse.success) {
-        resetStates();
+    try {
+      e.preventDefault();
+      if (formIsValid()) {
+        const { name, email, password } = form;
+        const apiResponse = await authService.create({
+          name, email, password,
+        });
+        if (apiResponse.success) {
+          resetStates();
+        }
       }
+    } catch(err) {
+      toast.error(err.messages);
     }
   };
 
