@@ -18,8 +18,7 @@ const UserService = (userRepository) => {
   }
 
   const remove = async (userId) => {
-    // const existantUser = await userRepository.findById(userId);
-    // console.log(existantUser);
+    return userRepository.remove(userId);    
   }
 
   return {

@@ -46,7 +46,7 @@ const SignUp = () => {
         }
       }
     } catch(err) {
-      toast.error(err.messages);
+      toast.error(err.message);
     }
   };
 
