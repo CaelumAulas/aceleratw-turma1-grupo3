@@ -13,7 +13,9 @@ const UserRepository = (httpClient) => {
   }
 
   const remove = async (userId) => {
-    return await httpClient.remove(`${URL}/${userId}`);
+    return await httpClient.remove(`${URL}/${userId}`, {
+      'Authorization': `Bearer ${token}`
+    });
   }
 
   return {

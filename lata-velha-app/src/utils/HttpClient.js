@@ -23,7 +23,7 @@ const HttpClient = () => {
     const response = await fetch(url,
       {
         method: 'POST',
-        headers: {...headers},
+        headers: headers,
         body: JSON.stringify(body)
       },
     );
@@ -42,7 +42,7 @@ const HttpClient = () => {
       {
         method: 'PUT',
         body: JSON.stringify(body),
-        headers: {...headers}
+        headers: headers
       },
     );
 
@@ -56,10 +56,11 @@ const HttpClient = () => {
   }
 
   // delete is a reserved js keyword
-  const remove = async (url) => {
+  const remove = async (url, headers) => {
     const response = await fetch(url,
       {
         method: 'DELETE',
+        headers: headers
       },
     );
 
