@@ -9,6 +9,7 @@ import useErrors from '../../../hooks/useErrors';
 import CreateVehiclePage from './CreateVehiclePage';
 import { toast } from 'react-toastify';
 import messages from '../messages';
+import Vehicle from '../../../models/Vehicle/VehicleForm';
 
 
 const CreateVehicle = () => {
@@ -42,11 +43,10 @@ const CreateVehicle = () => {
     try {
       e.preventDefault();
       if (formIsValid()) {
-        const brand = { id: form.brand };
-        const { model, year, price } = form;
-        const apiResponse = await vehicleService.create({
-          brand, model, year, price,
-        });
+        const { model, brand, year, price } = form;
+        const apiResponse = await vehicleService.create(
+          Vehicle(model, brand, year, price)
+        );
         if (apiResponse.success) {
           resetStates();
           toast.success(messages.vehicleCreated.defaultMessage);
