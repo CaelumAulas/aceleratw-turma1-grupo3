@@ -15,15 +15,23 @@ import React, { forwardRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { routes } from '../../routes';
 import style from './style';
+import { ExitToApp as ExitToAppIcon } from '@material-ui/icons';
+import { useHistory } from 'react-router';
+import { VEHICLES_PATH } from '../../routes/constants';
 
-const Menu = ({ handleDrawerToggle, window, mobileOpen, token }) => {
+const Menu = ({ handleDrawerToggle, window, mobileOpen, setToken, token }) => {
   const theme = useTheme();
   const classes = style(theme);
+  const history = useHistory();
 
   const CustomLink = forwardRef((props, ref) => {
     return <NavLink innerRef={ref} activeClassName={classes.navLinkActive} exact {...props} />
   });
 
+  const handleLogout = () => {
+    setToken(null);
+    history.push(VEHICLES_PATH);
+  }
 
   const drawer = (
     <div>
@@ -38,6 +46,17 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen, token }) => {
             </ListItem>
           ))
         )}
+        {
+          token && (
+            <ListItem className={classes.navLink}>
+               <button className={classes.navLinkLogout} onClick={() => handleLogout()}>
+                <ListItemIcon color="disabled"><ExitToAppIcon /></ListItemIcon>
+                <ListItemText primary="Sair" />
+              </button>
+            </ListItem>
+          )
+        }
+        
       </List>
     </div>
   );
@@ -85,7 +104,8 @@ Menu.propTypes = {
   handleDrawerToggle: PropTypes.func.isRequired,
   window: PropTypes.func,
   mobileOpen: PropTypes.bool.isRequired,
-  token: PropTypes.string
+  token: PropTypes.string,
+  setToken: PropTypes.func.isRequired,
 };
 
 Menu.defaultProps = {
