@@ -5,6 +5,7 @@ import VehicleRepository from '../../../api/services/Vehicle/VehicleRepository';
 import VehicleService from '../../../api/services/Vehicle/VehicleService';
 import VehicleBrandRepository from '../../../api/services/VehicleBrand/VehicleBrandRepository';
 import VehicleBrandService from '../../../api/services/VehicleBrand/VehicleBrandService';
+import { useHistory } from 'react-router';
 
 const ListVehicle = () => {
 
@@ -15,17 +16,19 @@ const ListVehicle = () => {
   const brandRepository = VehicleBrandRepository(httpClient);
   const brandService = VehicleBrandService(brandRepository);
 
+  const history = useHistory();
+
   // todo: remember to user observable pattern!!!
   const [vehiclesList, setVehiclesList] = useState([]);
   const [brandsFilterOptions, setBrandsFilterOptions ] = useState({
     list: [],
-    onChange: (e) => {
-      console.log(brandsFilterOptions.list);
-      const newState = {...brandsFilterOptions};
+    // onChange: (e) => {
+    //   console.log(brandsFilterOptions.list);
+    //   const newState = {...brandsFilterOptions};
       
-      console.log('onChange', newState);
-      setBrandsFilterOptions(newState);
-    }, 
+    //   console.log('onChange', newState);
+    //   setBrandsFilterOptions(newState);
+    // }, 
     value: '_',
   });
 
@@ -44,8 +47,8 @@ const ListVehicle = () => {
 
   }, []);
 
-  const onEditHandler = (vehicleId) => {
-    console.log('ListVehicle -> onEditHandler', vehicleId);
+  const onEditHandler = (vehicle) => {
+    
   }
 
   const onDeleteHandler = (vehicleId) => {
