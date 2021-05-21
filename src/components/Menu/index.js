@@ -17,7 +17,7 @@ import { routes } from '../../routes';
 import style from './style';
 import { ExitToApp as ExitToAppIcon } from '@material-ui/icons';
 import { useHistory } from 'react-router';
-import { VEHICLES_PATH } from '../../routes/constants';
+import { SIGNIN_PATH, VEHICLES_PATH } from '../../routes/constants';
 
 const Menu = ({ handleDrawerToggle, window, mobileOpen, setToken, token }) => {
   const theme = useTheme();
@@ -39,7 +39,7 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen, setToken, token }) => {
       <Divider />
       <List>
         {routes.map(({ name, path, Icon, isPrivate }) =>
-          ((isPrivate && !token) ? null : (
+          (((isPrivate && !token) || path === SIGNIN_PATH && token) ? null : (
             <ListItem className={classes.navLink} key={path} component={CustomLink} to={path}>
               <ListItemIcon color="disabled" className={classes.navLinkActiveIcon}>{Icon}</ListItemIcon>
               <ListItemText primary={name} />
@@ -56,7 +56,6 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen, setToken, token }) => {
             </ListItem>
           )
         }
-        
       </List>
     </div>
   );
