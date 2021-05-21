@@ -1,23 +1,25 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import CardDashboard from '../../components/CardDashboard';
-import style from './style';
-import HttpContext from '../../contexts/HttpContext';
-import DashboardRepository from '../../api/services/Dashboard/DashboardRepository';
-import DashboardService from '../../api/services/Dashboard/DashboardService';
 import EmptyState from '../../components/EmptyState/EmptyState';
+import useDashboardService from '../../hooks/useDashboardService';
+import style from './style';
+import messages from './messages';
 
 const ListDashboard = () => {
   const classes = style();
-  const httpClient = useContext(HttpContext);
-  const dashboardRepository = DashboardRepository(httpClient);
-  const dashboardService = DashboardService(dashboardRepository);
+  const dashboardService = useDashboardService();
 
   const [dashboardList, setDashboardList] = useState([]);
 
   useEffect(() => {
-    dashboardService.listAll().then(list => {
-      setDashboardList(list);
-    });
+    try {
+      dashboardService.listAll().then(list => {
+        setDashboardList(list);
+      });
+    } catch (error) {
+      toast.error(messages.listError.defaultMessage);
+    }
   }, []);
 
   return (
