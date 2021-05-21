@@ -13,6 +13,7 @@ const ListVehicleBrandPage = ({ vehicleBrandsList, onEditHandler, onDeleteHandle
           <CardVehicleBrand
             key={vehicleBrand.id}
             name={vehicleBrand.name}
+            brandLogoUrl="https://ccorpusa.com/wp-content/uploads/2017/07/logo.png"
             onEditClick={() => onEditHandler(vehicleBrand.id)}
             onDeleteClick={() => onDeleteHandler(vehicleBrand.id)} />)}
       </div>
