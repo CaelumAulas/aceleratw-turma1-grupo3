@@ -5,6 +5,8 @@ import VehicleRepository from '../../../api/services/Vehicle/VehicleRepository';
 import VehicleService from '../../../api/services/Vehicle/VehicleService';
 import VehicleBrandRepository from '../../../api/services/VehicleBrand/VehicleBrandRepository';
 import VehicleBrandService from '../../../api/services/VehicleBrand/VehicleBrandService';
+import PriceRepository from '../../../api/services/Price/PriceRepository';
+import PriceService from '../../../api/services/Price/PriceService';
 import { useHistory } from 'react-router';
 import { EDIT_VEHICLES_PATH } from '../../../routes/constants';
 import { toast } from 'react-toastify';
@@ -19,6 +21,9 @@ const ListVehicle = () => {
 
   const brandRepository = VehicleBrandRepository(httpClient);
   const brandService = VehicleBrandService(brandRepository);
+
+  const priceRepository = PriceRepository(httpClient);
+  const priceService = PriceService(priceRepository);
 
   const history = useHistory();
 
@@ -39,6 +44,15 @@ const ListVehicle = () => {
       const newState = { ...modelsFilterOptions, value: e.target.value };
 
       setModelsFilterOptions(newState);
+    }, 
+    value: '_',
+  });
+  const [pricesFilterOptions, setPricesFilterOptions] = useState({
+    list: [],
+    onChange: (e) => {
+      const newState = { ...pricesFilterOptions, value: e.target.value };
+
+      setPricesFilterOptions(newState);
     }, 
     value: '_',
   });
@@ -65,10 +79,17 @@ const ListVehicle = () => {
         
         setBrandsFilterOptions(newState);
       });
+
+      priceService.listAll().then(list => {
+        const newState = { ...pricesFilterOptions };
+        newState['list'] = list;
+
+        setPricesFilterOptions(newState);
+      });
     }
 
     getFilters();
-  }, [brandsFilterOptions.list.length, modelsFilterOptions.list.length]);
+  }, [brandsFilterOptions.list.length, modelsFilterOptions.list.length, pricesFilterOptions.list.length]);
 
   // write on change function
   useEffect(() => {
@@ -116,7 +137,7 @@ const ListVehicle = () => {
       onDeleteHandler={onDeleteHandler}
       brandsFilterOptions={brandsFilterOptions}
       modelsFilterOptions={modelsFilterOptions}
-      priceRangesFilterOptions={[]}
+      pricesFilterOptions={pricesFilterOptions}
     />
   );
 };

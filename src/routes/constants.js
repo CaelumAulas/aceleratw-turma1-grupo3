@@ -18,3 +18,6 @@ export const DASHBOARD_PATH = '/dashboard';
 export const AUTH_PATH = '/auth'
 export const AUTH_PATH_SIGN_IN = `${AUTH_PATH}/signIn`;
 export const AUTH_PATH_SIGN_UP = `${AUTH_PATH}/signUp`;
+
+export const PRICE_RANGES_PATH = '/priceRanges';
+
