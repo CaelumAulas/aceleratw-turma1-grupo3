@@ -104,13 +104,17 @@ const ListVehicle = () => {
         params = `?model=${modelsFilterOptions.value}`
       }
 
+      if(pricesFilterOptions.value && pricesFilterOptions.value !== '_') {
+        params = `?price=${pricesFilterOptions.value}`
+      }
+
       vehicleService.listAll(params).then(list => {
         setVehiclesList(list);
       });
     }
 
     getVehicles();
-  }, [brandsFilterOptions.value, modelsFilterOptions.value]);
+  }, [brandsFilterOptions.value, modelsFilterOptions.value, pricesFilterOptions.value]);
 
   const onEditHandler = (vehicle) => {
     history.push(EDIT_VEHICLES_PATH.replace(':id', vehicle.id), { form: vehicle });

@@ -21,11 +21,11 @@ const ListVehiclePage = (props) => {
 
   return (
     <>
-      <FiltersBar 
+      {/* <FiltersBar 
         brandsFilterOptions={brandsFilterOptions} 
         modelsFilterOptions={modelsFilterOptions}
         pricesFilterOptions={pricesFilterOptions} 
-      />
+      /> */}
       <div className={classes.listContainer}>
         <div className={classes.list}>
           {vehiclesList.map(vehicle =>
