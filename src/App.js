@@ -16,6 +16,7 @@ import {
   validatePrice, 
   validateSelect
 } from "./models/form";
+import NotFoundPage from "./pages/NotFound";
 import { routes, subroutes } from './routes';
 import { VEHICLES_PATH } from "./routes/constants";
 import style from "./style";
@@ -67,8 +68,11 @@ function App() {
                 <Switch>
                   {renderRoutes(routes)}
                   {renderRoutes(subroutes)}
-                  <Route path="/">
+                  <Route path="/" exact>
                     <Redirect to={VEHICLES_PATH} />
+                  </Route>
+                  <Route>
+                    <NotFoundPage />
                   </Route>
                 </Switch>
               </main>
