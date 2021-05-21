@@ -17,55 +17,47 @@ import { useHistory } from 'react-router';
 import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
 import { toast } from 'react-toastify';
+import VehicleBrand from '../../../models/VehicleBrand/VehicleBrand';
 
-const VehicleBrand = ({ location }) => {
+const CreateVehicleBrand = ({ location }) => {
   const [brand, setBrand] = useState('');
   const theme = useTheme();
   const classes = style(theme);
   const validations = useContext(FormValidations);
   const [errors, validateField, formIsValid] = useErrors(validations);
-  const initialFormState = {
-    name: ''
-  };
-  const editForm = location.state?.form;
+  // const initialFormState = {
+  //   name: ''
+  // };
+  // const editForm = location.state?.form;
 
-  const [form, setFormState] = useState(editForm ?? initialFormState);
+  // const [form, setFormState] = useState(editForm ?? initialFormState);
 
   const brandService = useVehicleBrandService();
   const history = useHistory();
 
-  const handleSubmit = async (e) => {
+  const onFormSubmit = (e) => {
     e.preventDefault();
     if (isEditing()) {
       editVehicleBrand();
     } else {
       createVehicleBrand();
-    }  };
+    }
+  };
 
   const createVehicleBrand = async () => {
-    console.log(brand)
-    if (formIsValid()) {
-      const apiResponse = await brandService.create(
-        VehicleBrand(brand)
-      );
-      if (apiResponse.success) {
-        resetFormStates();
-        toast.success(messages.vehicleBrandCreated.defaultMessage);
+    try {
+      if (formIsValid()) {
+        const apiResponse = await brandService.create(
+          VehicleBrand(brand)
+        );
+        if (apiResponse.success) {
+          resetFormStates();
+          toast.success(messages.vehicleBrandCreated.defaultMessage);
+        }
       }
+    } catch (err) {
+      toast.error(err.message);
     }
-    // try {
-    //   if (formIsValid()) {
-    //     const apiResponse = await brandService.create(
-    //       VehicleBrand(brand)
-    //     );
-    //     if (apiResponse.success) {
-    //       resetFormStates();
-    //       toast.success(messages.vehicleBrandCreated.defaultMessage);
-    //     }
-    //   }
-    // } catch (err) {
-    //   toast.error(err.message);
-    // }
   }
 
   const editVehicleBrand = async () => {
@@ -90,7 +82,7 @@ const VehicleBrand = ({ location }) => {
   }
 
   const resetFormStates = () => {
-    setFormState({ ...initialFormState });
+    setBrand('');
   }
 
   const onCancelClick = () => {
@@ -100,50 +92,50 @@ const VehicleBrand = ({ location }) => {
   return (
     <>
       <Typography variant="h4" component="h1">
-      {!isEditing() ? <FormattedMessage {...messages.createVehicleBrandTitle} /> : <FormattedMessage {...messages.editVehicleBrandTitle} />}
+        {!isEditing() ? <FormattedMessage {...messages.createVehicleBrandTitle} /> : <FormattedMessage {...messages.editVehicleBrandTitle} />}
       </Typography>
       <form
-      onSubmit={handleSubmit}
-    >
-      <FormControl fullWidth margin="normal">
-        <InputLabel htmlFor="brand">
-          <FormattedMessage {...messages.brand} />
-        </InputLabel>
-        <Input
-          id="brand"
-          value={brand}
-          onChange={(e) => setBrand(e.target.value)}
-          aria-describedby="brand-text"
-          required
-        />
-        <FormHelperText id="brand-text">
-          <FormattedMessage {...messages.textBrand} />
-        </FormHelperText>
-      </FormControl>
+        onSubmit={onFormSubmit}
+      >
+        <FormControl fullWidth margin="normal">
+          <InputLabel htmlFor="brand">
+            <FormattedMessage {...messages.brand} />
+          </InputLabel>
+          <Input
+            id="brand"
+            value={brand}
+            onChange={(e) => setBrand(e.target.value)}
+            aria-describedby="brand-text"
+            required
+          />
+          <FormHelperText id="brand-text">
+            <FormattedMessage {...messages.textBrand} />
+          </FormHelperText>
+        </FormControl>
 
-      <Button
-        className={classes.formButton}
-        variant="contained"
-        color="default"
-        type="button"
-        onClick={onCancelClick}
-      >
-        <FormattedMessage {...messages.buttonCancel} />
-      </Button>
-      <Button
-        className={classes.formButton}
-        variant="contained"
-        color="primary"
-        type="submit"
-      >
-        {!isEditing() ? <FormattedMessage {...messages.buttonCad} /> : <FormattedMessage {...messages.buttonEdit} />}
-      </Button>
-    </form>
+        <Button
+          className={classes.formButton}
+          variant="contained"
+          color="default"
+          type="button"
+          onClick={onCancelClick}
+        >
+          <FormattedMessage {...messages.buttonCancel} />
+        </Button>
+        <Button
+          className={classes.formButton}
+          variant="contained"
+          color="primary"
+          type="submit"
+        >
+          {!isEditing() ? <FormattedMessage {...messages.buttonCad} /> : <FormattedMessage {...messages.buttonEdit} />}
+        </Button>
+      </form>
     </>
   );
 };
 
-VehicleBrand.propTypes = {
+CreateVehicleBrand.propTypes = {
   location: PropTypes.object
 };
-export default VehicleBrand;
+export default CreateVehicleBrand;
