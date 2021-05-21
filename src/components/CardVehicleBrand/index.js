@@ -14,21 +14,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import style from './style';
 
-const CardVehicleBrand = ({ name, onEditClick, onDeleteClick }) => {
+const CardVehicleBrand = ({ name, brandLogoUrl, onEditClick, onDeleteClick }) => {
   const classes = style();
 
   return (
     <Card className={classes.root} data-testid="card-vehicle-brand">
       <CardHeader
         avatar={(
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            U
-          </Avatar>
-        )}
-        action={(
-          <IconButton aria-label="settings">
-            <input type="checkbox" />
-          </IconButton>
+          <Avatar 
+            aria-label="recipe" 
+            src={brandLogoUrl}
+          />
         )}
         title={(
           <Typography variant="h5" component="h2" className={classes.name}>
@@ -52,6 +48,7 @@ export default CardVehicleBrand;
 
 CardVehicleBrand.propTypes = {
   name: PropTypes.string.isRequired,
+  brandLogoUrl: PropTypes.string.isRequired,
   onEditClick: PropTypes.func.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
 };

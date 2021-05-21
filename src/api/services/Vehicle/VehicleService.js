@@ -2,11 +2,12 @@ import VehicleView from "../../../models/Vehicle/VehicleView";
 
 const VehicleService = (vehicleRepository) => {
 
-  const listAll = async () => {
-    const vehiclesJson = await vehicleRepository.findAll();
+  const listAll = async (params) => {
+    const vehiclesJson = await vehicleRepository.findAll(params);
     const vehicleViewList = vehiclesJson.map(vehicle => {
       return VehicleView(vehicle.id, vehicle.model, vehicle.brand.name, vehicle.year, vehicle.price);
     });
+
     return vehicleViewList;
   }
 

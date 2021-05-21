@@ -5,10 +5,10 @@ import FilterSelect from '../Select';
 import style from './style';
 import messages from './messages';
 
-const FiltersBar = ({ brandsFilterOptions, modelsList, priceRangesList }) => {
+const FiltersBar = ({ brandsFilterOptions, modelsFilterOptions, priceRangesList }) => {
   const theme = useTheme();
   const classes = style(theme);
-  console.log('FiltersBar', brandsFilterOptions);
+  
   return (
     <div className={classes.filtersBar} data-testid="filters-bar">
       <FilterSelect
@@ -19,13 +19,13 @@ const FiltersBar = ({ brandsFilterOptions, modelsList, priceRangesList }) => {
         onChangeHandler={brandsFilterOptions.onChange}
         value={brandsFilterOptions.value}
       />
-      {/* <FilterSelect
-        options={modelsList}
+      <FilterSelect
+        options={modelsFilterOptions.list}
         defaultOption={messages.searchModel.defaultMessage}
         label="Modelo"
         id="select-model"
-        onChangeHandler={() => console.log('handler')}
-        value="_"
+        onChangeHandler={modelsFilterOptions.onChange}
+        value={modelsFilterOptions.value}
       />
       <FilterSelect
         options={priceRangesList}
@@ -34,7 +34,7 @@ const FiltersBar = ({ brandsFilterOptions, modelsList, priceRangesList }) => {
         id="select-price"
         onChangeHandler={() => console.log('handler')}
         value="_"
-      /> */}
+      />
     </div>
   );
 };
@@ -48,6 +48,10 @@ FiltersBar.propTypes = {
     onChange: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired
   }).isRequired,
-  modelsList: PropTypes.array.isRequired,
+  modelsFilterOptions: PropTypes.shape({
+    list: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
+  }).isRequired,
   priceRangesList: PropTypes.array.isRequired,
 };
