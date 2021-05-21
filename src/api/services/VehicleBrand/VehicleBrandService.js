@@ -18,6 +18,8 @@ const VehicleBrandService = (vehicleBrandRepository) => {
   }
 
   const update = async (vehicleBrandForm) => {
+    const apiResponse = await vehicleBrandRepository.update(id, vehicleBrandForm);
+    return apiResponse;
   }
 
   const remove = async (vehicleBrandId) => {

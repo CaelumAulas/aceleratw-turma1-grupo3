@@ -16,6 +16,7 @@ import useVehicleBrandService from '../../../hooks/useVehicleBrandService';
 import { useHistory } from 'react-router';
 import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
+import { toast } from 'react-toastify';
 
 const VehicleBrand = ({ location }) => {
   const [brand, setBrand] = useState('');
@@ -33,46 +34,55 @@ const VehicleBrand = ({ location }) => {
   const brandService = useVehicleBrandService();
   const history = useHistory();
 
-  const handleSubmit = async ({ brand }) => {
-    // e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (isEditing()) {
-      editVehicleBrand(brand);
+      editVehicleBrand();
     } else {
-      createVehicleBrand(brand);
+      createVehicleBrand();
     }  };
 
-  const createVehicleBrand = async (brand) => {
-    try {
-      if (formIsValid()) {
-        // const { name } = form;
-        const apiResponse = await brandService.create(
-          VehicleBrand(brand)
-        );
-        if (apiResponse.success) {
-          resetFormStates();
-          toast.success(messages.vehicleBrandCreated.defaultMessage);
-        }
+  const createVehicleBrand = async () => {
+    console.log(brand)
+    if (formIsValid()) {
+      const apiResponse = await brandService.create(
+        VehicleBrand(brand)
+      );
+      if (apiResponse.success) {
+        resetFormStates();
+        toast.success(messages.vehicleBrandCreated.defaultMessage);
       }
-    } catch (err) {
-      toast.error(err.message);
     }
+    // try {
+    //   if (formIsValid()) {
+    //     const apiResponse = await brandService.create(
+    //       VehicleBrand(brand)
+    //     );
+    //     if (apiResponse.success) {
+    //       resetFormStates();
+    //       toast.success(messages.vehicleBrandCreated.defaultMessage);
+    //     }
+    //   }
+    // } catch (err) {
+    //   toast.error(err.message);
+    // }
   }
 
-  const editVehicleBrand = async (brand) => {
-    try {
-      if (formIsValid()) {
-        // const { name } = form;
-        const brand = VehicleBrand(brand);
-        const { id } = editForm;
-        const apiResponse = await brandService.update(id, brand);
-        if (apiResponse) {
-          resetFormStates();
-          toast.success(messages.vehicleBrandUpdated.defaultMessage);
-        }
-      }
-    } catch (err) {
-      toast.error(err.message);
-    }
+  const editVehicleBrand = async () => {
+    // try {
+    //   if (formIsValid()) {
+    //     // const { name } = form;
+    //     const brand = VehicleBrand(brand);
+    //     const { id } = editForm;
+    //     const apiResponse = await brandService.update(id, brand);
+    //     if (apiResponse) {
+    //       resetFormStates();
+    //       toast.success(messages.vehicleBrandUpdated.defaultMessage);
+    //     }
+    //   }
+    // } catch (err) {
+    //   toast.error(err.message);
+    // }
   }
 
   const isEditing = () => {
@@ -90,7 +100,7 @@ const VehicleBrand = ({ location }) => {
   return (
     <>
       <Typography variant="h4" component="h1">
-      {!isEditing ? <FormattedMessage {...messages.createVehicleBrandTitle} /> : <FormattedMessage {...messages.editVehicleBrandTitle} />}
+      {!isEditing() ? <FormattedMessage {...messages.createVehicleBrandTitle} /> : <FormattedMessage {...messages.editVehicleBrandTitle} />}
       </Typography>
       <form
       onSubmit={handleSubmit}
@@ -126,7 +136,7 @@ const VehicleBrand = ({ location }) => {
         color="primary"
         type="submit"
       >
-        {!isEditing ? <FormattedMessage {...messages.buttonCad} /> : <FormattedMessage {...messages.buttonEdit} />}
+        {!isEditing() ? <FormattedMessage {...messages.buttonCad} /> : <FormattedMessage {...messages.buttonEdit} />}
       </Button>
     </form>
     </>

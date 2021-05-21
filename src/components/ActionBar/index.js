@@ -8,7 +8,6 @@ import messages from './messages';
 import { USERS_PATH } from '../../routes/constants';
 
 const ActionBar = () => {
-  // pq que usa o useLocation e não o useRouteMatch?
   const path = useLocation().pathname;
   const theme = useTheme();
   const classes = style(theme);

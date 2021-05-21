@@ -28,10 +28,18 @@ const VehicleBrandRepository = (httpClient) => {
     return await httpClient.remove(`${URL}/${vehicleBrandId}`);
   }
 
+  const update = async (id, vehicleBrandForm) => {
+    return await httpClient.put(`${URL}/${id}`, {
+      ...authHeader,
+      'Content-Type': 'application/json',
+    }, vehicleBrandForm);
+  }
+
   return {
     findAll,
     save,
-    remove
+    remove,
+    update
   }
 }
 
