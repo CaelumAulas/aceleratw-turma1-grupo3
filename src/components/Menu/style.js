@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
         color: '#ffffff', 
       },
     },
+    '&:hover > button': {
+      color: '#ffffff', 
+    },
   },
   navLinkActive: {
     backgroundColor: theme.palette.primary.main,
