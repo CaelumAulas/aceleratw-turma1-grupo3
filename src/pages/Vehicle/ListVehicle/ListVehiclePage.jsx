@@ -27,7 +27,7 @@ const ListVehiclePage = (props) => {
         modelsFilterOptions={modelsFilterOptions}
         priceRangesList={priceRangesFilterOptions}
       />
-      {vehiclesList.length ? (
+      {vehiclesList?.length ? (
         <div className={classes.listContainer}>
           <div className={classes.list}>
             {vehiclesList.map(vehicle =>
