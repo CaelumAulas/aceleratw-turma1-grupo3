@@ -20,17 +20,13 @@ import { toast } from 'react-toastify';
 import VehicleBrand from '../../../models/VehicleBrand/VehicleBrand';
 
 const CreateVehicleBrand = ({ location }) => {
-  const [brand, setBrand] = useState('');
   const theme = useTheme();
   const classes = style(theme);
   const validations = useContext(FormValidations);
   const [errors, validateField, formIsValid] = useErrors(validations);
-  // const initialFormState = {
-  //   name: ''
-  // };
-  // const editForm = location.state?.form;
-
-  // const [form, setFormState] = useState(editForm ?? initialFormState);
+  
+  const editForm = location.state?.form;
+  const [brand, setBrand] = useState(editForm.name ?? '');
 
   const brandService = useVehicleBrandService();
   const history = useHistory();
@@ -38,6 +34,7 @@ const CreateVehicleBrand = ({ location }) => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     if (isEditing()) {
+      console.log('here');
       editVehicleBrand();
     } else {
       createVehicleBrand();
@@ -61,20 +58,19 @@ const CreateVehicleBrand = ({ location }) => {
   }
 
   const editVehicleBrand = async () => {
-    // try {
-    //   if (formIsValid()) {
-    //     // const { name } = form;
-    //     const brand = VehicleBrand(brand);
-    //     const { id } = editForm;
-    //     const apiResponse = await brandService.update(id, brand);
-    //     if (apiResponse) {
-    //       resetFormStates();
-    //       toast.success(messages.vehicleBrandUpdated.defaultMessage);
-    //     }
-    //   }
-    // } catch (err) {
-    //   toast.error(err.message);
-    // }
+    try {
+      if (formIsValid()) {
+        const vehicleBrand = VehicleBrand(brand);
+        const { id } = editForm;
+        const apiResponse = await brandService.update(id, vehicleBrand);
+        if (apiResponse) {
+          resetFormStates();
+          toast.success(messages.vehicleBrandUpdated.defaultMessage);
+        }
+      }
+    } catch (err) {
+      toast.error(err.message);
+    }
   }
 
   const isEditing = () => {

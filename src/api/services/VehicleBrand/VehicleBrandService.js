@@ -17,7 +17,7 @@ const VehicleBrandService = (vehicleBrandRepository) => {
     return apiResponse;
   }
 
-  const update = async (vehicleBrandForm) => {
+  const update = async (id, vehicleBrandForm) => {
     const apiResponse = await vehicleBrandRepository.update(id, vehicleBrandForm);
     return apiResponse;
   }
