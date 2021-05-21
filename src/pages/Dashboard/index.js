@@ -21,7 +21,7 @@ const ListDashboard = () => {
   }, []);
 
   return (
-    dashboardList.length ?
+    dashboardList?.length ?
       (
         <div className={classes.container} >
           { dashboardList.map((item, index) => <CardDashboard key={index} item={{ ...item, id: index }} />)}
