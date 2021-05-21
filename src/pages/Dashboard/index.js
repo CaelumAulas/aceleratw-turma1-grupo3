@@ -4,13 +4,14 @@ import style from './style';
 import HttpContext from '../../contexts/HttpContext';
 import DashboardRepository from '../../api/services/Dashboard/DashboardRepository';
 import DashboardService from '../../api/services/Dashboard/DashboardService';
+import EmptyState from '../../components/EmptyState/EmptyState';
 
 const ListDashboard = () => {
   const classes = style();
   const httpClient = useContext(HttpContext);
   const dashboardRepository = DashboardRepository(httpClient);
   const dashboardService = DashboardService(dashboardRepository);
-  
+
   const [dashboardList, setDashboardList] = useState([]);
 
   useEffect(() => {
@@ -20,9 +21,12 @@ const ListDashboard = () => {
   }, []);
 
   return (
-    <div className={classes.container}>
-      {dashboardList.map((item, index) => <CardDashboard key={index} item={{...item, id: index}} />)}
-    </div>
+    dashboardList.length ?
+      (
+        <div className={classes.container} >
+          { dashboardList.map((item, index) => <CardDashboard key={index} item={{ ...item, id: index }} />)}
+        </div >
+      ) : <EmptyState />
   );
 };
 

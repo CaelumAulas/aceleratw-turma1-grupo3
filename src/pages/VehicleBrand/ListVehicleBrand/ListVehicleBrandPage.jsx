@@ -20,7 +20,6 @@ const ListVehicleBrandPage = ({ vehicleBrandsList, onEditHandler, onDeleteHandle
               onDeleteClick={() => onDeleteHandler(vehicleBrand.id)} />
           )
         ) : <EmptyState />}
-
       </div>
       <ActionBar />
     </>
