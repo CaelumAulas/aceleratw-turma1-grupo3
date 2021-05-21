@@ -23,7 +23,8 @@ const VehicleBrandService = (vehicleBrandRepository) => {
   }
 
   const remove = async (vehicleBrandId) => {
-    
+    const apiResponse = await vehicleBrandRepository.remove(vehicleBrandId);
+    return apiResponse;
   }
 
   return {

@@ -26,7 +26,7 @@ const CreateVehicleBrand = ({ location }) => {
   const [errors, validateField, formIsValid] = useErrors(validations);
   
   const editForm = location.state?.form;
-  const [brand, setBrand] = useState(editForm.name ?? '');
+  const [brand, setBrand] = useState(editForm?.name ?? '');
 
   const brandService = useVehicleBrandService();
   const history = useHistory();

@@ -33,15 +33,15 @@ export default defineMessages({
   },
   vehicleBrandCreated: {
     id: `${prefix}.vehicleBrandCreated`,
-    defaultMessage: 'Veículo salvo com sucesso!',
+    defaultMessage: 'Marca salva com sucesso!',
   },
   vehicleBrandDeleted: {
     id: `${prefix}.vehicleBrandDeleted`,
-    defaultMessage: 'Veículo excluído com sucesso!',
+    defaultMessage: 'Marca excluída com sucesso!',
   },
   vehicleBrandUpdated: {
     id: `${prefix}.vehicleBrandUpdated`,
-    defaultMessage: 'Veículo atualizado com sucesso!',
+    defaultMessage: 'Marca atualizada com sucesso!',
   },
   listError: {
     id: `${prefix}.listError`,

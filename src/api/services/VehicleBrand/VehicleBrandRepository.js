@@ -25,7 +25,10 @@ const VehicleBrandRepository = (httpClient) => {
   }
 
   const remove = async (vehicleBrandId) => {
-    return await httpClient.remove(`${URL}/${vehicleBrandId}`);
+    return await httpClient.remove(`${URL}/${vehicleBrandId}`,
+      {
+        ...authHeader
+      });
   }
 
   const update = async (id, vehicleBrandForm) => {
