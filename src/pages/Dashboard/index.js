@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import CardDashboard from '../../components/CardDashboard';
-import EmptyState from '../../components/EmptyState/EmptyState';
 import useDashboardService from '../../hooks/useDashboardService';
-import style from './style';
+import DashboardPage from './DashboardPage';
 import messages from './messages';
 
 const ListDashboard = () => {
-  const classes = style();
   const dashboardService = useDashboardService();
-
   const [dashboardList, setDashboardList] = useState([]);
 
   useEffect(() => {
@@ -22,14 +18,7 @@ const ListDashboard = () => {
     }
   }, []);
 
-  return (
-    dashboardList?.length ?
-      (
-        <div className={classes.container} >
-          { dashboardList.map((item, index) => <CardDashboard key={index} item={{ ...item, id: index }} />)}
-        </div >
-      ) : <EmptyState />
-  );
+  return (<DashboardPage dashboardList={dashboardList} />);
 };
 
 export default ListDashboard;
