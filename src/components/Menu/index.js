@@ -39,7 +39,7 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen, setToken, token }) => {
       <Divider />
       <List>
         {routes.map(({ name, path, Icon, isPrivate }) =>
-          ((isPrivate && !token) ? null : (
+          (((isPrivate && !token) || name === 'Entrar' && token) ? null : (
             <ListItem className={classes.navLink} key={path} component={CustomLink} to={path}>
               <ListItemIcon color="disabled" className={classes.navLinkActiveIcon}>{Icon}</ListItemIcon>
               <ListItemText primary={name} />
@@ -56,7 +56,6 @@ const Menu = ({ handleDrawerToggle, window, mobileOpen, setToken, token }) => {
             </ListItem>
           )
         }
-        
       </List>
     </div>
   );
