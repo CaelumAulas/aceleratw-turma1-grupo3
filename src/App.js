@@ -1,7 +1,7 @@
 import { useTheme } from "@material-ui/core";
 import React, { useState } from "react";
 import { IntlProvider } from "react-intl";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from "./components/Header";
@@ -17,6 +17,7 @@ import {
   validateSelect
 } from "./models/form";
 import { routes, subroutes } from './routes';
+import { VEHICLES_PATH } from "./routes/constants";
 import style from "./style";
 import HttpClient from "./utils/HttpClient";
 
@@ -66,6 +67,9 @@ function App() {
                 <Switch>
                   {renderRoutes(routes)}
                   {renderRoutes(subroutes)}
+                  <Route path="/">
+                    <Redirect to={VEHICLES_PATH} />
+                  </Route>
                 </Switch>
               </main>
             </div>
