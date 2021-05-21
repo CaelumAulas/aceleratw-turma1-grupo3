@@ -14,7 +14,7 @@ const ListVehiclePage = (props) => {
     onDeleteHandler,
     brandsFilterOptions,
     modelsFilterOptions,
-    priceRangesFilterOptions,
+    pricesFilterOptions,
   } = props;
 
   const theme = useTheme();
@@ -25,7 +25,7 @@ const ListVehiclePage = (props) => {
       <FiltersBar
         brandsFilterOptions={brandsFilterOptions}
         modelsFilterOptions={modelsFilterOptions}
-        priceRangesList={priceRangesFilterOptions}
+        pricesFilterOptions={pricesFilterOptions} 
       />
       {vehiclesList?.length ? (
         <div className={classes.listContainer}>
@@ -56,8 +56,16 @@ ListVehiclePage.propTypes = {
     onChange: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired
   }).isRequired,
-  modelsFilterOptions: PropTypes.array.isRequired,
-  priceRangesFilterOptions: PropTypes.array.isRequired,
+  modelsFilterOptions: PropTypes.shape({
+    list: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
+  }).isRequired,
+  pricesFilterOptions: PropTypes.shape({
+    list: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
+  }).isRequired,
   onEditHandler: PropTypes.func.isRequired,
   onDeleteHandler: PropTypes.func.isRequired,
 }

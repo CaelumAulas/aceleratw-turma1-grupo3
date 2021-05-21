@@ -16,7 +16,7 @@ const ListVehicleBrandPage = ({ vehicleBrandsList, onEditHandler, onDeleteHandle
               key={vehicleBrand.id}
               name={vehicleBrand.name}
               brandLogoUrl="https://ccorpusa.com/wp-content/uploads/2017/07/logo.png"
-              onEditClick={() => onEditHandler(vehicleBrand.id)}
+              onEditClick={() => onEditHandler(vehicleBrand)}
               onDeleteClick={() => onDeleteHandler(vehicleBrand.id)} />
           )
         ) : <EmptyState />}
