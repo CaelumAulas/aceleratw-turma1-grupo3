@@ -8,7 +8,7 @@ import CreateVehicle from "../pages/Vehicle/CreateVehicle";
 import ListVehicle from "../pages/Vehicle/ListVehicle";
 import CreateVehicleBrand from "../pages/VehicleBrand/CreateVehicleBrand";
 import ListVehicleBrand from "../pages/VehicleBrand/ListVehicleBrand";
-import { ADD_USERS_PATH, ADD_VEHICLES_PATH, BRANDS_PATH, DASHBOARD_PATH, SIGNIN_PATH, SIGNOUT_PATH, USERS_PATH, VEHICLES_PATH, UPDATE_PASSWORD_PATH, ADD_BRANDS_PATH, EDIT_VEHICLES_PATH } from "./constants";
+import { ADD_USERS_PATH, ADD_VEHICLES_PATH, BRANDS_PATH, DASHBOARD_PATH, SIGNIN_PATH, SIGNOUT_PATH, USERS_PATH, VEHICLES_PATH, UPDATE_PASSWORD_PATH, ADD_BRANDS_PATH, EDIT_VEHICLES_PATH, EDIT_BRANDS_PATH } from "./constants";
 import {
   VpnKey as VpnKeyIcon,
   DirectionsCar as DirectionsCarIcon,
@@ -31,6 +31,7 @@ const subroutes = [
   { path: ADD_VEHICLES_PATH, name: "Adicionar Veículos", Component: CreateVehicle, isPrivate: true },
   { path: EDIT_VEHICLES_PATH, name: "Editar Veículo", Component: CreateVehicle, isPrivate: true },
   { path: ADD_BRANDS_PATH, name: "Adicionar Marcas", Component: CreateVehicleBrand, isPrivate: true },
+  { path: EDIT_BRANDS_PATH, name: "Editar Marcas", Component: CreateVehicleBrand, isPrivate: true },
   { path: UPDATE_PASSWORD_PATH, name: "Atualizar Senha", Component: UpdatePassword, isPrivate: true },
 ]
 

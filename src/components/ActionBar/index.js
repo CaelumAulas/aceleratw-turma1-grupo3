@@ -7,7 +7,6 @@ import style from './style';
 import messages from './messages';
 
 const ActionBar = () => {
-  // pq que usa o useLocation e não o useRouteMatch?
   const path = useLocation().pathname;
   const theme = useTheme();
   const classes = style(theme);
