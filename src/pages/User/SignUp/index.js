@@ -42,7 +42,8 @@ const SignUp = () => {
           name, email, password,
         });
         if (apiResponse.success) {
-          resetStates();
+          resetFormStates();
+          toast.success(messages.userCreated.defaultMessage);
         }
       }
     } catch(err) {
@@ -50,7 +51,7 @@ const SignUp = () => {
     }
   };
 
-  const resetStates = () => {
+  const resetFormStates = () => {
     setFormState({ ...initialFormState });
   }
 
