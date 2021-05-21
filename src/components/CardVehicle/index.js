@@ -7,7 +7,6 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  Checkbox,
   Divider,
   IconButton,
   List,
@@ -46,11 +45,6 @@ const CardVehicle = (props) => {
       <CardHeader
         avatar={(
           <Avatar aria-label="recipe" src={brandLogoUrl} alt={`${messages.defaultAlt.defaultMessage} ${brandName}`} />
-        )}
-        action={(
-          <Checkbox onChange={(e) => setChecked(e.target.checked)} aria-label={
-            checked ? `${messages.checkboxChecked.defaultMessage} ${model}`
-              : `${messages.checkboxUnchecked.defaultMessage} ${model}`} checked={checked} />
         )}
         title={(
           <>

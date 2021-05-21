@@ -25,11 +25,6 @@ const CardVehicleBrand = ({ name, onEditClick, onDeleteClick }) => {
             U
           </Avatar>
         )}
-        action={(
-          <IconButton aria-label="settings">
-            <input type="checkbox" />
-          </IconButton>
-        )}
         title={(
           <Typography variant="h5" component="h2" className={classes.name}>
             {name}
