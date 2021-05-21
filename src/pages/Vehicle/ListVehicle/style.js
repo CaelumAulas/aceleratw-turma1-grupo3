@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   listContainer: {
     width: '100%',
-    maxHeight: '700px', // maybe calculate this based on action bar height
+    maxHeight: '600px', // maybe calculate this based on action bar height
     overflow: 'auto',
     [theme.breakpoints.up('lg')]: {
       maxHeight: '800px',

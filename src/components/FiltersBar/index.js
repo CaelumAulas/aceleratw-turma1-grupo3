@@ -4,6 +4,7 @@ import { useTheme } from '@material-ui/core';
 import FilterSelect from '../Select';
 import style from './style';
 import messages from './messages';
+import Select from '../Select';
 
 const FiltersBar = ({ brandsFilterOptions, modelsFilterOptions, pricesFilterOptions }) => {
   const theme = useTheme();
@@ -27,7 +28,7 @@ const FiltersBar = ({ brandsFilterOptions, modelsFilterOptions, pricesFilterOpti
         onChangeHandler={modelsFilterOptions.onChange}
         value={modelsFilterOptions.value}
       />
-      <FilterSelect
+      <Select
         options={pricesFilterOptions.list}
         defaultOption={messages.searchPrice.defaultMessage}
         label="Faixa de Preço"

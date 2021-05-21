@@ -2,6 +2,7 @@ import { Button, FormControl, FormHelperText, Input, InputAdornment, InputLabel,
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import Select from '../../../components/Select';
 import FilterSelect from '../../../components/Select';
 import messages from '../messages';
 import style from './style';
@@ -25,7 +26,7 @@ const CreateVehiclePage = (props) => {
       {!isEditing ? <FormattedMessage {...messages.createVehicleTitle} /> : <FormattedMessage {...messages.editVehicleTitle} />}
       </Typography>
       <form onSubmit={onFormSubmitHandler}>
-        <FilterSelect
+        <Select
           options={brandOptions}
           defaultOption={messages.textBrand.defaultMessage}
           label={messages.brand.defaultMessage}

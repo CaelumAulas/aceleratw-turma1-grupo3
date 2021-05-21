@@ -22,11 +22,11 @@ const ListVehiclePage = (props) => {
 
   return (
     <>
-      <FiltersBar
+      {/* <FiltersBar
         brandsFilterOptions={brandsFilterOptions}
         modelsFilterOptions={modelsFilterOptions}
         pricesFilterOptions={pricesFilterOptions} 
-      />
+      /> */}
       {vehiclesList?.length ? (
         <div className={classes.listContainer}>
           <div className={classes.list}>
