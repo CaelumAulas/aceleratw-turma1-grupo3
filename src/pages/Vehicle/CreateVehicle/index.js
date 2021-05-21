@@ -75,7 +75,7 @@ const CreateVehicle = ({ location }) => {
         const vehicle = Vehicle(model, brand, year, price);
         const { id } = editForm;
         const apiResponse = await vehicleService.update(id, vehicle);
-        console.log(apiResponse);
+
         if (apiResponse) {
           resetFormStates();
           toast.success(messages.vehicleUpdated.defaultMessage);

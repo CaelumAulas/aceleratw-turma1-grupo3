@@ -9,9 +9,6 @@ const useStyles = makeStyles(() => ({
     marginRight: '20px',
     marginBottom: '20px',
   },
-  avatar: {
-    backgroundColor: red[500],
-  },
   cardActions: {
     display: 'flex',
     justifyContent: 'space-between',

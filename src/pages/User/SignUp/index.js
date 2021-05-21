@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { useHistory } from 'react-router';
 import {
   Button,
   FormControl,
@@ -7,6 +8,7 @@ import {
   Input,
   InputLabel,
   Typography,
+  useTheme,
 } from '@material-ui/core';
 import useErrors from '../../../hooks/useErrors';
 import FormValidations from '../../../contexts/formValidations';
@@ -15,6 +17,7 @@ import HttpContext from '../../../contexts/HttpContext';
 import AuthRepository from '../../../api/services/Auth/AuthRepository';
 import AuthService from '../../../api/services/Auth/AuthService';
 import { toast } from 'react-toastify';
+import style from './style';
 
 const SignUp = () => {
   const validations = useContext(FormValidations);
@@ -27,6 +30,10 @@ const SignUp = () => {
     passwordConfirmation: ''
   };
   const [form, setFormState] = useState(initialFormState);
+  const history = useHistory();
+
+  const theme = useTheme();
+  const classes = style(theme);
 
   const httpClient = useContext(HttpContext);
 
@@ -42,7 +49,8 @@ const SignUp = () => {
           name, email, password,
         });
         if (apiResponse.success) {
-          resetStates();
+          resetFormStates();
+          toast.success(messages.userCreated.defaultMessage);
         }
       }
     } catch(err) {
@@ -50,7 +58,7 @@ const SignUp = () => {
     }
   };
 
-  const resetStates = () => {
+  const resetFormStates = () => {
     setFormState({ ...initialFormState });
   }
 
@@ -59,6 +67,10 @@ const SignUp = () => {
     const newFormState = { ...form };
     newFormState[name] = value;
     setFormState(newFormState);
+  }
+
+  const onCancelClick = () => {
+    history.goBack();
   }
 
   return (
@@ -145,7 +157,20 @@ const SignUp = () => {
         </FormHelperText>
       </FormControl>
 
-      <Button variant="contained" color="primary" type="submit">
+      <Button
+          className={classes.formButton}
+          variant="contained"
+          color="default"
+          type="button"
+          onClick={onCancelClick}
+        >
+          <FormattedMessage {...messages.buttonCancel} />
+        </Button>
+      <Button 
+        className={classes.formButton}
+        variant="contained" 
+        color="primary" 
+        type="submit">
         <FormattedMessage {...messages.buttonCad} />
       </Button>
     </form>

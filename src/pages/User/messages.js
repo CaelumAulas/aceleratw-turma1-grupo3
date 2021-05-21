@@ -71,4 +71,12 @@ export default defineMessages({
     id: `${prefix}.successDelete`,
     defaultMessage: 'Usuário excluido com sucesso',
   },
+  userCreated: {
+    id: `${prefix}.userCreated`,
+    defaultMessage: 'Usuário salvo com sucesso!',
+  },
+  buttonCancel: {
+    id: `${prefix}.buttonCancel`,
+    defaultMessage: 'Cancelar',
+  },
 });

@@ -10,12 +10,9 @@ const VehicleRepository = (httpClient) => {
   const authHeader = {
     'Authorization': `Bearer ${token}`
   };
-  const findAll = async () => {
-    return await httpClient.get(URL);
-  }
 
-  const findById = async (vehicleId) => {
-    return await httpClient.get(`${URL}/${vehicleId}`);
+  const findAll = async (params) => {
+    return await httpClient.get(URL, params);
   }
 
   const save = async (vehicleForm) => {
@@ -40,7 +37,6 @@ const VehicleRepository = (httpClient) => {
     findAll,
     save,
     remove,
-    findById,
     update
   }
 }

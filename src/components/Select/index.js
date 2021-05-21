@@ -20,6 +20,9 @@ const Select = ({
   const theme = useTheme();
   const classes = style(theme);
 
+  // console.log(value)
+  // console.log('otpionss ', options)
+
   return (
     <FormControl margin="normal" data-testid={id}>
       <InputLabel htmlFor={id}>{label}</InputLabel>
@@ -34,8 +37,8 @@ const Select = ({
         <option value="_" disabled>
           {defaultOption}
         </option>
-        {options.map(({id, name}) => (
-          <option key={name.toLowerCase() + id} value={id}>
+        {options.length > 0 && options.map(({id, name}) => (
+          <option key={name.toLowerCase() + id} value={name}>
             {name}
           </option>
         ))}

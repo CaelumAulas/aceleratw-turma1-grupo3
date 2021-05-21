@@ -19,9 +19,14 @@ const ListVehiclePage = (props) => {
 
   const theme = useTheme();
   const classes = style(theme);
+
   return (
     <>
-      {/* <FiltersBar modelsList={modelsFilterOptions} brandsFilterOptions={brandsFilterOptions} priceRangesList={priceRangesFilterOptions} /> */}
+      <FiltersBar
+        brandsFilterOptions={brandsFilterOptions}
+        modelsFilterOptions={modelsFilterOptions}
+        priceRangesList={priceRangesFilterOptions}
+      />
       {vehiclesList.length ? (
         <div className={classes.listContainer}>
           <div className={classes.list}>
@@ -36,9 +41,9 @@ const ListVehiclePage = (props) => {
                 onDeleteClick={() => onDeleteHandler(vehicle.id)} />
             )}
           </div>
-        </div>) : <EmptyState />
-      }
-      <ActionBar />
+        </div>
+      ) : <EmptyState />}
+      < ActionBar />
     </>
   );
 };

@@ -13,15 +13,18 @@ const VehicleBrandService = (vehicleBrandRepository) => {
 
 
   const create = async (vehicleBrandForm) => {
-    const newVehicleBrand = await vehicleBrandRepository.save(vehicleBrandForm);
-    return newVehicleBrand;
+    const apiResponse = await vehicleBrandRepository.save(vehicleBrandForm);
+    return apiResponse;
   }
 
-  const update = async (vehicleBrandForm) => {
+  const update = async (id, vehicleBrandForm) => {
+    const apiResponse = await vehicleBrandRepository.update(id, vehicleBrandForm);
+    return apiResponse;
   }
 
   const remove = async (vehicleBrandId) => {
-    
+    const apiResponse = await vehicleBrandRepository.remove(vehicleBrandId);
+    return apiResponse;
   }
 
   return {
