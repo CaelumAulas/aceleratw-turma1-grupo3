@@ -5,7 +5,7 @@ import FilterSelect from '../Select';
 import style from './style';
 import messages from './messages';
 
-const FiltersBar = ({ brandsFilterOptions, modelsFilterOptions, priceRangesList }) => {
+const FiltersBar = ({ brandsFilterOptions, modelsFilterOptions, pricesFilterOptions }) => {
   const theme = useTheme();
   const classes = style(theme);
   
@@ -28,12 +28,12 @@ const FiltersBar = ({ brandsFilterOptions, modelsFilterOptions, priceRangesList 
         value={modelsFilterOptions.value}
       />
       <FilterSelect
-        options={priceRangesList}
+        options={pricesFilterOptions.list}
         defaultOption={messages.searchPrice.defaultMessage}
         label="Faixa de Preço"
         id="select-price"
-        onChangeHandler={() => console.log('handler')}
-        value="_"
+        onChangeHandler={pricesFilterOptions.onChange}
+        value={pricesFilterOptions.value}
       />
     </div>
   );
@@ -53,5 +53,9 @@ FiltersBar.propTypes = {
     onChange: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired
   }).isRequired,
-  priceRangesList: PropTypes.array.isRequired,
+  pricesFilterOptions: PropTypes.shape({
+    list: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
+  }).isRequired,
 };
