@@ -11,6 +11,7 @@ export const EDIT_VEHICLES_PATH = `${VEHICLES_PATH}/edit/:id`;
 
 export const BRANDS_PATH = '/brands';
 export const ADD_BRANDS_PATH = `${BRANDS_PATH}/add`;
+export const EDIT_BRAND_PATH = `${BRANDS_PATH}/edit/:id`;
 
 export const DASHBOARD_PATH = '/dashboard';
 

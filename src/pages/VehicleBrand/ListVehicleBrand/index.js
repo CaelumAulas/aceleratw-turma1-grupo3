@@ -3,6 +3,7 @@ import ListVehicleBrandPage from './ListVehicleBrandPage';
 import HttpContext from '../../../contexts/HttpContext';
 import VehicleBrandRepository from '../../../api/services/VehicleBrand/VehicleBrandRepository';
 import VehicleBrandService from '../../../api/services/VehicleBrand/VehicleBrandService';
+import { EDIT_BRAND_PATH } from '../../../routes/constants';
 
 const ListVehicleBrand = () => {
   const httpClient = useContext(HttpContext);
@@ -17,8 +18,8 @@ const ListVehicleBrand = () => {
     });
   }, []);
 
-  const onEditHandler = (userId) => {
-    console.log("ListUserPage-> onEditHandler", userId);
+  const onEditHandler = (brand) => {
+    history.push(EDIT_BRAND_PATH.replace(':id', brand.id), { form: brand });
   }
 
   const onDeleteHandler = (userId) => {

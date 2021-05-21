@@ -7,16 +7,20 @@ const VehicleBrandRepository = (httpClient) => {
   const URL = `${apiConfig.API_URL}:${apiConfig.PORT}${BRANDS_PATH}`;
   const { token } = useToken();
 
+  const authHeader = {
+    'Authorization': `Bearer ${token}`
+  };
+
   const findAll = async () => {
     return await httpClient.get(URL, null, {
-      'Authorization': `Bearer ${token}`
+      ...authHeader
     });
   }
 
   const save = async (vehicleBrandForm) => {
     return await httpClient.post(URL, vehicleBrandForm, {
+      ...authHeader,
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
     });
   }
 

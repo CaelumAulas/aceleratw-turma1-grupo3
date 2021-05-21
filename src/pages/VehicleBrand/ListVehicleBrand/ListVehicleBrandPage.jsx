@@ -13,7 +13,7 @@ const ListVehicleBrandPage = ({ vehicleBrandsList, onEditHandler, onDeleteHandle
           <CardVehicleBrand
             key={vehicleBrand.id}
             name={vehicleBrand.name}
-            onEditClick={() => onEditHandler(vehicleBrand.id)}
+            onEditClick={() => onEditHandler(vehicleBrand)}
             onDeleteClick={() => onDeleteHandler(vehicleBrand.id)} />)}
       </div>
       <ActionBar />
