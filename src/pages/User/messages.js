@@ -75,4 +75,8 @@ export default defineMessages({
     id: `${prefix}.userCreated`,
     defaultMessage: 'Usuário salvo com sucesso!',
   },
+  buttonCancel: {
+    id: `${prefix}.buttonCancel`,
+    defaultMessage: 'Cancelar',
+  },
 });
