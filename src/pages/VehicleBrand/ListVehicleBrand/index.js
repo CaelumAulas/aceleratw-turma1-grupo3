@@ -44,7 +44,11 @@ const ListVehicleBrand = () => {
   }
 
   return (
-    <ListVehicleBrandPage vehicleBrandsList={vehicleBrandsList} onEditHandler={onEditHandler} onDeleteHandler={onDeleteHandler}/>
+    <ListVehicleBrandPage 
+      vehicleBrandsList={vehicleBrandsList} 
+      onEditHandler={onEditHandler} 
+      onDeleteHandler={onDeleteHandler}
+    />
   );
 };
 
